@@ -1,0 +1,18 @@
+[
+  {
+    "id": "2025", "year": 2025, "name": "Copa Crack 2025",
+    "categories": [
+      { "category": "Sub-08", "oro": { "campeon": "Rico Valle", "subcampeon": "Íntimos FC" }, "plata": { "campeon": "Paulino FC", "subcampeon": "Dollar FC" } },
+      { "category": "Sub-10", "oro": { "campeon": "Deportivo Municipal", "subcampeon": "Sport Junior FC" }, "plata": { "campeon": "Villa Esperanza", "subcampeon": "J&G FC" } },
+      { "category": "Sub-12", "oro": { "campeon": "Club Huachipa", "subcampeon": "Los Pumas (Huachipa)" }, "plata": { "campeon": "Fé Deportiva", "subcampeon": "Aldemar A&M" } }
+    ]
+  },
+  {
+    "id": "2024", "year": 2024, "name": "Copa Crack 2024",
+    "categories": [
+      { "category": "Sub-08", "oro": { "campeon": "Íntimos FC", "subcampeon": "Rico Valle" }, "plata": { "campeon": "Dollar FC", "subcampeon": "Villa Esperanza" } },
+      { "category": "Sub-10", "oro": { "campeon": "Sport Junior FC", "subcampeon": "Deportivo Municipal" }, "plata": { "campeon": "J&G FC", "subcampeon": "Paulino FC" } },
+      { "category": "Sub-12", "oro": { "campeon": "Los Pumas (Huachipa)", "subcampeon": "Club Huachipa" }, "plata": { "campeon": "Aldemar A&M", "subcampeon": "Fé Deportiva" } }
+    ]
+  }
+]
