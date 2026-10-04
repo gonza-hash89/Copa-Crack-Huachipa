@@ -1,7 +1,7 @@
 import Logo from "./Logo";
 
-const left = [["Equipos", "#equipos"], ["Historial", "#historial"]];
-const right = [["Galería", "#galeria"], ["Contacto", "#contacto"]];
+const left = [["Nosotros", "#nosotros"], ["Categorías", "#categorias"]];
+const right = [["Sedes", "#sedes"], ["Contacto", "#contacto"]];
 const link = "px-3 py-2 rounded-lg text-sm text-emerald-50/80 hover:text-gold hover:bg-white/5 transition-colors";
 
 export default function Header() {
@@ -11,7 +11,7 @@ export default function Header() {
         <div className="hidden sm:flex justify-end gap-1 pr-4">
           {left.map(([t, h]) => <a key={h} href={h} className={link}>{t}</a>)}
         </div>
-        <a href="#inicio" className="col-start-2 flex flex-col items-center" aria-label="Copa Crack, inicio">
+        <a href="#inicio" className="col-start-2 flex flex-col items-center" aria-label="Lucmar Huachipa, inicio">
           <Logo size={48} />
         </a>
         <div className="hidden sm:flex gap-1 pl-4">

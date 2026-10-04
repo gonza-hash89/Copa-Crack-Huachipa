@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Escuela de Fútbol Lucmar de Huachipa - Formación integral deportiva para niños y jóvenes. Desarrollo técnico, táctico, físico y valores. Inscripciones abiertas.">
+    <title>Escuela de Fútbol Lucmar de Huachipa | Formando Campeones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Model Viewer for 3D shield -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer-legacy.js"></script>
+    <!-- Three.js & GSAP for 3D Scroll Experience -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Fixed WebGL Canvas for 3D Scroll Experience -->
+    <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+    
+    <!-- Main Content Overlay -->
+    <div id="page-content" class="page-content">
+        <!-- Navbar -->
+        <header class="navbar" id="navbar">
+        <nav class="nav-container">
+            <a href="#" class="nav-logo" aria-label="Escuela de Fútbol Lucmar de Huachipa - Inicio">
+                <span class="logo-icon">⚽</span>
+                <span class="logo-text">LUCMAR HUACHIPA</span>
+            </a>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                <li><a href="#categorias" class="nav-link">Categorías</a></li>
+                <li><a href="#sedes" class="nav-link">Sedes</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+
+            <a href="https://wa.me/51944897167?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20inscripciones" 
+               class="nav-cta" target="_blank" rel="noopener noreferrer" aria-label="Inscribirme por WhatsApp">
+                Matricularme ya
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero" id="hero" aria-labelledby="hero-title">
+            <div class="hero-background">
+                <div class="hero-gradient"></div>
+                <div class="hero-pattern"></div>
+            </div>
+
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-badge">⚽ Formación Integral Deportiva</span>
+
+                    <h1 id="hero-title" class="hero-title">
+                        Formando a los <span class="highlight">futuros cracks</span> del fútbol
+                    </h1>
+
+                    <p class="hero-description">
+                        Desarrollo técnico, físico y valores para niños y jóvenes de 4 a 17 años. 
+                        Metodología profesional adaptada a cada etapa formativa, entrenadores certificados 
+                        y sedes con infraestructura de primer nivel.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="https://wa.me/51944897167?text=Hola%2C%20quiero%20inscribir%20a%20mi%20hijo%20en%20la%20academia" 
+                           class="btn btn-primary" target="_blank" rel="noopener noreferrer" aria-label="Inscribir por WhatsApp">
+                            Matricularme ya
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Sede disponible</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Años de experiencia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="hero-image-wrapper">
+                        <div class="hero-shape shape-1"></div>
+                        <div class="hero-shape shape-2"></div>
+                        <div class="hero-shape shape-3"></div>
+                        <div class="hero-ball"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-scroll" aria-hidden="true">
+                <span class="scroll-text">Desliza</span>
+                <div class="scroll-arrow">⌄</div>
+            </div>
+        </section>
+
+        <!-- Copa Crack Perú Banner -->
+        <section class="copa-crack-banner" aria-labelledby="copa-crack-title">
+            <div class="copa-crack-container">
+                <div class="copa-crack-content">
+                    <span class="copa-crack-badge">🏆 Torneo Oficial Inter-Academias</span>
+
+                    <h2 id="copa-crack-title" class="copa-crack-title">
+                        Compite en la <span class="highlight">COPA CRACK PERÚ</span>
+                    </h2>
+
+                    <p class="copa-crack-description">
+                        Sigue los partidos, tablas de posiciones y resultados del campeonato organizado por nuestra escuela.
+                    </p>
+
+                    <a href="https://copacrackperu.com" class="btn btn-copa" target="_blank" rel="noopener noreferrer" aria-label="Ver tabla y partidos de la Copa Crack Perú">
+                        Ver Tabla y Partidos <span class="btn-arrow">➔</span>
+                    </a>
+                </div>
+
+                <div class="copa-crack-visual" aria-hidden="true">
+                    <div class="copa-crack-glow"></div>
+                    <div class="copa-crack-trophy">🏆</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categorías y Programas Section -->
+        <section id="programas" class="programas-section" aria-labelledby="programas-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-badge">⚽ Categorías por Edad</span>
+                    <h2 id="programas-title" class="section-title">Nuestras Categorías de Formación</h2>
+                    <p class="section-subtitle">Programas diseñados para el desarrollo deportivo e integral de niños de 4 a 13 años</p>
+                </header>
+
+                <div class="programas-grid">
+                    <!-- Tarjeta 1: Iniciación (4-6 años) -->
+                    <article class="programa-card">
+                        <div class="programa-header">
+                            <span class="programa-icon" aria-hidden="true">🌱</span>
+                            <span class="programa-badge">4 - 6 años</span>
+                        </div>
+                        <h3 class="programa-title">Iniciación</h3>
+                        <p class="programa-description">Primeros pasos en el fútbol mediante el juego y la exploración motriz.</p>
+                        <ul class="programa-features">
+                            <li>Psicomotricidad y coordinación básica</li>
+                            <li>Juegos recreativos con balón</li>
+                            <li>Primer contacto y familiarización</li>
+                            <li>Desarrollo de lateralidad y equilibrio</li>
+                            <li>Socialización y trabajo en grupo</li>
+                        </ul>
+                        <a href="https://wa.me/51944897167?text=Hola%2C%20deseo%20informaci%C3%B3n%20sobre%20la%20categor%C3%ADa%20de%20Iniciaci%C3%B3n%20(4%20a%206%20a%C3%B1os)" 
+                           class="btn btn-primary programa-cta" target="_blank" rel="noopener noreferrer" aria-label="Consultar horarios para Iniciación 4-6 años">
+                            Consultar Horarios
+                        </a>
+                    </article>
+
+                    <!-- Tarjeta 2: Formación (7-10 años) -->
+                    <article class="programa-card">
+                        <div class="programa-header">
+                            <span class="programa-icon" aria-hidden="true">⚽</span>
+                            <span class="programa-badge">7 - 10 años</span>
+                        </div>
+                        <h3 class="programa-title">Formación</h3>
+                        <p class="programa-description">Consolidación técnica y táctica para el desarrollo del jugador integral.</p>
+                        <ul class="programa-features">
+                            <li>Técnica individual: pase, recepción, remate</li>
+                            <li>Fundamentos tácticos defensivos y ofensivos</li>
+                            <li>Trabajo en equipo y comunicación</li>
+                            <li>Desarrollo de habilidades motrices complejas</li>
+                            <li>Introducción a la competición formativa</li>
+                        </ul>
+                        <a href="https://wa.me/51944897167?text=Hola%2C%20deseo%20informaci%C3%B3n%20sobre%20la%20categor%C3%ADa%20de%20Formaci%C3%B3n%20(7%20a%2010%20a%C3%B1os)" 
+                           class="btn btn-primary programa-cta" target="_blank" rel="noopener noreferrer" aria-label="Consultar horarios para Formación 7-10 años">
+                            Consultar Horarios
+                        </a>
+                    </article>
+
+                    <!-- Tarjeta 3: Competencia Infantil (11-13 años) -->
+                    <article class="programa-card">
+                        <div class="programa-header">
+                            <span class="programa-icon" aria-hidden="true">🏆</span>
+                            <span class="programa-badge">11 - 13 años</span>
+                        </div>
+                        <h3 class="programa-title">Competencia Infantil</h3>
+                        <p class="programa-description">Preparación avanzada para torneos y alto rendimiento formativo.</p>
+                        <ul class="programa-features">
+                            <li>Táctica aplicada y sistemas de juego</li>
+                            <li>Rendimiento físico y prevención de lesiones</li>
+                            <li>Preparación para torneos inter-academias</li>
+                            <li>Mentalidad competitiva y liderazgo</li>
+                            <li>Análisis de vídeo y toma de decisiones</li>
+                        </ul>
+                        <a href="https://wa.me/51944897167?text=Hola%2C%20deseo%20informaci%C3%B3n%20sobre%20la%20categor%C3%ADa%20de%20Competencia%20Infantil%20(11%20a%2013%20a%C3%B1os)" 
+                           class="btn btn-primary programa-cta" target="_blank" rel="noopener noreferrer" aria-label="Consultar horarios para Competencia Infantil 11-13 años">
+                            Consultar Horarios
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto Section - Sede, Horarios y Contacto -->
+        <section id="contacto" class="contacto-section" aria-labelledby="contacto-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-badge">📍 Nuestra Sede</span>
+                    <h2 id="contacto-title" class="section-title">Sede y Horarios de Entrenamiento</h2>
+                    <p class="section-subtitle">Entrenamientos personalizados por categorías en simultáneo. ¡Ven a conocer nuestra cancha y solicita tu clase de prueba gratis!</p>
+                </header>
+
+                <div class="contacto-grid">
+                    <!-- Columna 1: Información de Sede y Mapa -->
+                    <div class="contacto-info">
+                        <div class="info-card">
+                            <h3 class="info-title">Complejo Deportivo "Parque Industrial"</h3>
+                            <div class="info-item">
+                                <span class="info-icon" aria-hidden="true">📍</span>
+                                <div class="info-content">
+                                    <strong>Huachipa / Lurigancho-Chosica</strong>
+                                    <span>2372+44Q, Lurigancho-Chosica 15461</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-icon" aria-hidden="true">🕐</span>
+                                <div class="info-content">
+                                    <strong>Martes y Jueves</strong>
+                                    <span>5:30 PM a 7:00 PM</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-icon" aria-hidden="true">⚽</span>
+                                <div class="info-content">
+                                    <strong>Metodología</strong>
+                                    <span>Trabajo en paralelo en cancha por grupos de edad (Iniciación y Competencia con comando técnico dedicado)</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-icon" aria-hidden="true">📞</span>
+                                <div class="info-content">
+                                    <strong>WhatsApp Directo</strong>
+                                    <a href="https://wa.me/51944897167" class="info-link" target="_blank" rel="noopener noreferrer">+51 944 897 167</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.9738312345678!2d-76.8068123!3d-11.9567891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8e7f8e7f8e7%3A0x123456789abcdef!2sComplejo%20Deportivo%20Parque%20Industrial!5e0!3m2!1ses!2spe!4v1699999999999!5m2!1ses!2spe" 
+                                width="100%" 
+                                height="300" 
+                                style="border:0; border-radius: var(--radius-lg);" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Ubicación Complejo Deportivo Parque Industrial - Huachipa">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- Columna 2: Formulario de Pre-Inscripción -->
+                    <div class="contacto-form-wrapper">
+                        <div class="form-card">
+                            <h3 class="form-title">Solicita tu Clase de Prueba Gratis</h3>
+                            <p class="form-subtitle">Completa el formulario y te contactaremos por WhatsApp para coordinar tu visita.</p>
+                            
+                            <form id="preinscripcion-form" class="preinscripcion-form" novalidate>
+                                <div class="form-group">
+                                    <label for="padre-nombre" class="form-label">Nombre del Padre / Apoderado <span class="required" aria-hidden="true">*</span></label>
+                                    <input type="text" id="padre-nombre" name="padreNombre" class="form-input" placeholder="Ej. Juan Pérez" required autocomplete="name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="alumno-nombre" class="form-label">Nombre y edad del alumno <span class="required" aria-hidden="true">*</span></label>
+                                    <input type="text" id="alumno-nombre" name="alumnoNombre" class="form-input" placeholder="Ej. Carlos Pérez, 8 años" required autocomplete="name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="categoria" class="form-label">Categoría de interés <span class="required" aria-hidden="true">*</span></label>
+                                    <select id="categoria" name="categoria" class="form-select" required>
+                                        <option value="">Selecciona una categoría</option>
+                                        <option value="4 - 6 años">Iniciación — 4 a 6 años</option>
+                                        <option value="7 - 10 años">Formación — 7 a 10 años</option>
+                                        <option value="11 - 13 años">Competencia Infantil — 11 a 13 años</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="telefono" class="form-label">Teléfono de contacto <span class="required" aria-hidden="true">*</span></label>
+                                    <input type="tel" id="telefono" name="telefono" class="form-input" placeholder="Ej. 944 897 167" required autocomplete="tel">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary form-submit">
+                                    Matricularme ya
+                                </button>
+
+                                <p class="form-disclaimer">Al enviar, se abrirá WhatsApp con tu mensaje prellenado. No se guardan datos en este sitio.</p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experiencia 3D - Escudo Oficial -->
+        <section id="logo-3d-section" class="logo-3d-section" aria-labelledby="logo-3d-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-badge">🛡️ Identidad Visual</span>
+                    <h2 id="logo-3d-title" class="section-title">Experiencia 3D - Escudo Oficial</h2>
+                    <p class="section-subtitle">Explora el escudo de la academia en 360°. Arrastra para rotar, usa la rueda del ratón para hacer zoom.</p>
+                </header>
+
+                <div class="logo-3d-container">
+                    <model-viewer 
+                        id="logo-3d-viewer"
+                        src="assets/logo-3d.glb"
+                        alt="Escudo 3D de la Escuela de Fútbol Lucmar de Huachipa"
+                        auto-rotate
+                        camera-controls
+                        touch-action="pan-y"
+                        shadow-intensity="1"
+                        shadow-softness="0.8"
+                        environment-image="neutral"
+                        exposure="1.2"
+                        poster="assets/logo-3d-poster.jpg"
+                        loading="lazy"
+                        ar
+                        ar-modes="webxr scene-viewer quick-look"
+                        class="logo-3d-model">
+                        
+                        <div class="logo-3d-fallback" slot="poster" aria-hidden="true">
+                            <div class="fallback-shield">
+                                <svg viewBox="0 0 200 240" class="shield-svg" aria-hidden="true">
+                                    <defs>
+                                        <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#00A2E8;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#070D1E;stop-opacity:1" />
+                                        </linearGradient>
+                                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#FFF200;stop-opacity:1" />
+                                            <stop offset="50%" style="stop-color:#FFD700;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#FFF200;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                    <!-- Shield shape -->
+                                    <path d="M100 10 C50 10 10 50 10 100 C10 190 100 230 100 230 C100 230 190 190 190 100 C190 50 150 10 100 10 Z" 
+                                          fill="url(#shieldGradient)" stroke="url(#goldGradient)" stroke-width="3"/>
+                                    <!-- Inner shield -->
+                                    <path d="M100 30 C65 30 35 60 35 95 C35 160 100 210 100 210 C100 210 165 160 165 95 C165 60 135 30 100 30 Z" 
+                                          fill="rgba(255,242,0,0.1)" stroke="url(#goldGradient)" stroke-width="1.5"/>
+                                    <!-- Football -->
+                                    <circle cx="100" cy="100" r="35" fill="rgba(255,255,255,0.05)" stroke="#00FF00" stroke-width="1.5"/>
+                                    <ellipse cx="85" cy="95" rx="12" ry="6" fill="none" stroke="#00FF00" stroke-width="1.5"/>
+                                    <ellipse cx="115" cy="105" rx="6" ry="12" fill="none" stroke="#00FF00" stroke-width="1.5"/>
+                                    <!-- LUCMAR text -->
+                                    <text x="100" y="65" text-anchor="middle" font-family="Poppins, sans-serif" font-size="18" font-weight="800" fill="url(#goldGradient)" letter-spacing="3">LUCMAR</text>
+                                    <text x="100" y="145" text-anchor="middle" font-family="Poppins, sans-serif" font-size="14" font-weight="600" fill="#00FF00" letter-spacing="2">HUACHIPA</text>
+                                    <!-- Stars -->
+                                    <polygon points="100,40 103,48 111,48 104,53 106,61 100,56 94,61 96,53 89,48 97,48" fill="url(#goldGradient)"/>
+                                </svg>
+                            </div>
+                            <div class="fallback-loader">
+                                <span class="loader-text">Cargando modelo 3D...</span>
+                                <div class="loader-spinner"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="logo-3d-controls" slot="ar-button">
+                            <button class="control-btn" data-action="reset" aria-label="Restablecer vista">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                                    <path d="M3 3v5h5"/>
+                                </svg>
+                            </button>
+                            <button class="control-btn" data-action="toggle-rotate" aria-label="Pausar/Reanudar rotación">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5 3 19 12 5 21 5 3"/>
+                                </svg>
+                            </button>
+                            <button class="control-btn" data-action="fullscreen" aria-label="Pantalla completa">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </model-viewer>
+                    
+                    <div class="logo-3d-info">
+                        <div class="info-item">
+                            <span class="info-label">Formato</span>
+                            <span class="info-value">GLB / WebGL</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Interactividad</span>
+                            <span class="info-value">Rotación 360°, Zoom, AR</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Optimizado</span>
+                            <span class="info-value">Móvil y Escritorio</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Indumentaria Oficial / Uniformes -->
+        <section id="uniforme" class="uniforme-section" aria-labelledby="uniforme-title">
+            <div class="container">
+                <header class="section-header">
+                    <span class="section-badge">👕 Equipamiento</span>
+                    <h2 id="uniforme-title" class="section-title">Indumentaria Oficial Lucmar</h2>
+                    <p class="section-subtitle">Diseñada para el alto rendimiento y comodidad de nuestros alumnos en cada entrenamiento y partido.</p>
+                </header>
+
+                <div class="uniforme-grid">
+                    <!-- Kit 1: Titular -->
+                    <article class="uniforme-card" data-kit="titular">
+                        <div class="uniforme-header">
+                            <span class="uniforme-badge badge-titular">Titular</span>
+                            <h3 class="uniforme-title">Camiseta Titular</h3>
+                        </div>
+                        
+                        <div class="uniforme-viewer">
+                            <div class="view-tabs" role="tablist" aria-label="Vistas de la camiseta titular">
+                                <button class="view-tab active" role="tab" aria-selected="true" data-view="front" data-kit="titular">Frente</button>
+                                <button class="view-tab" role="tab" aria-selected="false" data-view="back" data-kit="titular">Espalda</button>
+                            </div>
+                            
+                            <div class="kit-display">
+                                <div class="kit-view front active" data-view="front" data-kit="titular">
+                                    <div class="kit-svg-container">
+                                        <svg viewBox="0 0 300 400" class="kit-svg" aria-label="Camiseta titular vista frontal">
+                                            <!-- Jersey shape -->
+                                            <path d="M150 20 C80 20 30 70 30 140 L30 350 L270 350 L270 140 C270 70 220 20 150 20 Z" 
+                                                  fill="#00A2E8" stroke="#FFF200" stroke-width="2"/>
+                                            <!-- Collar -->
+                                            <path d="M110 80 Q150 60 190 80" fill="none" stroke="#FFF200" stroke-width="3"/>
+                                            <!-- Yellow stripes -->
+                                            <rect x="90" y="100" width="120" height="8" fill="#FFF200" rx="2"/>
+                                            <rect x="85" y="130" width="130" height="6" fill="#FFF200" rx="2"/>
+                                            <rect x="80" y="160" width="140" height="8" fill="#FFF200" rx="2"/>
+                                            <!-- Side panels -->
+                                            <path d="M30 140 L50 180 L50 320 L30 350" fill="#0088C0"/>
+                                            <path d="M270 140 L250 180 L250 320 L270 350" fill="#0088C0"/>
+                                            <!-- Sponsor area -->
+                                            <rect x="100" y="200" width="100" height="60" fill="rgba(255,242,0,0.2)" stroke="#FFF200" stroke-width="1" rx="4"/>
+                                            <text x="150" y="238" text-anchor="middle" font-family="Poppins" font-size="14" font-weight="700" fill="#FFF200">LUCMAR</text>
+                                        </svg>
+                                    </div>
+                                    <div class="kit-parts">
+                                        <div class="kit-part">
+                                            <span class="part-icon">👕</span>
+                                            <span class="part-name">Camiseta</span>
+                                            <span class="part-color" style="background: linear-gradient(90deg, #00A2E8, #0088C0)"></span>
+                                        </div>
+                                        <div class="kit-part">
+                                            <span class="part-icon">🩳</span>
+                                            <span class="part-name">Short</span>
+                                            <span class="part-color" style="background: #0088C0"></span>
+                                        </div>
+                                        <div class="kit-part">
+                                            <span class="part-icon">🧦</span>
+                                            <span class="part-name">Medias</span>
+                                            <span class="part-color" style="background: linear-gradient(180deg, #00A2E8, #0088C0)"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="kit-view back" data-view="back" data-kit="titular">
+                                    <div class="kit-svg-container">
+                                        <svg viewBox="0 0 300 400" class="kit-svg" aria-label="Camiseta titular vista trasera">
+                                            <path d="M150 20 C80 20 30 70 30 140 L30 350 L270 350 L270 140 C270 70 220 20 150 20 Z" 
+                                                  fill="#00A2E8" stroke="#FFF200" stroke-width="2"/>
+                                            <path d="M110 80 Q150 60 190 80" fill="none" stroke="#FFF200" stroke-width="3"/>
+                                            <rect x="90" y="100" width="120" height="8" fill="#FFF200" rx="2"/>
+                                            <rect x="85" y="130" width="130" height="6" fill="#FFF200" rx="2"/>
+                                            <rect x="80" y="160" width="140" height="8" fill="#FFF200" rx="2"/>
+                                            <path d="M30 140 L50 180 L50 320 L30 350" fill="#0088C0"/>
+                                            <path d="M270 140 L250 180 L250 320 L270 350" fill="#0088C0"/>
+                                            <!-- Number placeholder -->
+                                            <circle cx="150" cy="220" r="45" fill="rgba(255,242,0,0.15)" stroke="#FFF200" stroke-width="2"/>
+                                            <text x="150" y="230" text-anchor="middle" font-family="Poppins" font-size="40" font-weight="800" fill="#FFF200">10</text>
+                                            <text x="150" y="150" text-anchor="middle" font-family="Poppins" font-size="16" font-weight="700" fill="#FFF200">APELLIDO</text>
+                                        </svg>
+                                    </div>
+                                    <div class="kit-parts">
+                                        <div class="kit-part">
+                                            <span class="part-icon">👕</span>
+                                            <span class="part-name">Camiseta</span>
+                                            <span class="part-color" style="background: linear-gradient(90deg, #00A2E8, #0088C0)"></span>
+                                        </div>
+                                        <div class="kit-part">
+                                            <span class="part-icon">🩳</span>
+                                            <span class="part-name">Short</span>
+                                            <span class="part-color" style="background: #0088C0"></span>
+                                        </div>
+                                        <div class="kit-part">
+                                            <span class="part-icon">🧦</span>
+                                            <span class="part-name">Medias</span>
+                                            <span class="part-color" style="background: linear-gradient(180deg, #00A2E8, #0088C0)"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="https://wa.me/51944897167?text=Hola%2C%20deseo%20informaci%C3%B3n%20sobre%20tallas%20de%20la%20Camiseta%20Titular%20Lucmar" 
+                           class="btn btn-secondary uniforme-cta" target="_blank" rel="noopener noreferrer">
+                            Consultar Tallas Disponibles por WhatsApp
+                        </a>
+                    </article>
+
+                    <!-- Kit 2: Alternativa -->
+                    <article class="uniforme-card" data-kit="alternativa">
+                        <div class="uniforme-header">
+                            <span class="uniforme-badge badge-alternativa">Alternativa</span>
+                            <h3 class="uniforme-title">Camiseta Alternativa</h3>
+                        </div>
+                        
+                        <div class="uniforme-viewer">
+                            <div class="view-tabs" role="tablist" aria-label="Vistas de la camiseta alternativa">
+                                <button class="view-tab active" role="tab" aria-selected="true" data-view="front" data-kit="alternativa">Frente</button>
+                                <button class="view-tab" role="tab" aria-selected="false" data-view="back" data-kit="alternativa">Espalda</button>
+                            </div>
+                            
+                            <div class="kit-display">
+                                <div class="kit-view front active" data-view="front" data-kit="alternativa">
+                                    <div class="kit-svg-container">
+                                        <svg viewBox="0 0 300 400" class="kit-svg" aria-label="Camiseta alternativa vista frontal">
+                                            <path d="M150 20 C80 20 30 70 30 140 L30 350 L270 350 L270 140 C270 70 220 20 150 20 Z" 
+                                                  fill="#FFFFFF" stroke="#00FF00" stroke-width="2"/>
+                                            <path d="M110 80 Q150 60 190 80" fill="none" stroke="#00FF00" stroke-width="3"/>
+                                            <!-- Green accents -->
+                                            <rect x="90" y="100" width="120" height="8" fill="#00FF00" rx="2"/>
+                                            <rect x="85" y="130" width="130" height="6" fill="#00FF00" rx="2"/>
+                                            <rect x="80" y="160" width="140" height="8" fill="#00FF00" rx="2"/>
+                                            <path d="M30 140 L50 180 L50 320 L30 350" fill="#CCCCCC"/>
+                                            <path d="M270 140 L250 180 L250 320 L270 350" fill="#CCCCCC"/>
+                                            <rect x="100" y="200" width="100" height="60" fill="rgba(0,255,0,0.15)" stroke="#00FF00" stroke-width="1" rx="4"/>
+                                            <text x="150" y="238" text-anchor="middle" font-family="Poppins" font-size="14" font-weight="700" fill="#00FF00">LUCMAR</text>
+                                        </svg>
+                                    </div>
+                                    <div class="kit-parts">
+                                        <div class="kit-part">
+                                            <span class="part-icon">👕</span>
+                                            <span class="part-name">Camiseta</span>
+                                            <span class="part-color" style="background: linear-gradient(90deg, #FFFFFF, #EEEEEE)"></span>
+                                        </div>
+                                        <div class="kit-part">
+                                            <span class="part-icon">🩳</span>
+                                            <span class="part-name">Short</span>
+                                            <span class="part-color" style="background: #FFFFFF"></span>
+                                        </div>
+                                        <div class="kit-part">
+                                            <span class="part-icon">🧦</span>
+                                            <span class="part-name">Medias</span>
+                                            <span class="part-color" style="background: linear-gradient(180deg, #FFFFFF, #CCCCCC)"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="kit-view back" data-view="back" data-kit="alternativa">
+                                    <div class="kit-svg-container">
+                                        <svg viewBox="0 0 300 400" class="kit-svg" aria-label="Camiseta alternativa vista trasera">
+                                            <path d="M150 20 C80 20 30 70 30 140 L30 350 L270 350 L270 140 C270 70 220 20 150 20 Z" 
+                                                  fill="#FFFFFF" stroke="#00FF00" stroke-width="2"/>
+                                            <path d="M110 80 Q150 60 190 80" fill="none" stroke="#00FF00" stroke-width="3"/>
+                                            <rect x="90" y="100" width="120" height="8" fill="#00FF00" rx="2"/>
+                                            <rect x="85" y="130" width="130" height="6" fill="#00FF00" rx="2"/>
+                                            <rect x="80" y="160" width="140" height="8" fill="#00FF00" rx="2"/>
+                                            <path d="M30 140 L50 180 L50 320 L30 350" fill="#CCCCCC"/>
+                                            <path d="M270 140 L250 180 L250 320 L270 350" fill="#CCCCCC"/>
+                                            <circle cx="150" cy="220" r="45" fill="rgba(0,255,0,0.15)" stroke="#00FF00" stroke-width="2"/>
+                                            <text x="150" y="230" text-anchor="middle" font-family="Poppins" font-size="40" font-weight="800" fill="#00FF00">10</text>
+                                            <text x="150" y="150" text-anchor="middle" font-family="Poppins" font-size="16" font-weight="700" fill="#00FF00">APELLIDO</text>
+                                        </svg>
+                                    </div>
+                                    <div class="kit-parts">
+                                        <div class="kit-part">
+                                            <span class="part-icon">👕</span>
+                                            <span class="part-name">Camiseta</span>
+                                            <span class="part-color" style="background: linear-gradient(90deg, #FFFFFF, #EEEEEE)"></span>
+                                        </div>
+                                        <div class="kit-part">
+                                            <span class="part-icon">🩳</span>
+                                            <span class="part-name">Short</span>
+                                            <span class="part-color" style="background: #FFFFFF"></span>
+                                        </div>
+                                        <div class="kit-part">
+                                            <span class="part-icon">🧦</span>
+                                            <span class="part-name">Medias</span>
+                                            <span class="part-color" style="background: linear-gradient(180deg, #FFFFFF, #CCCCCC)"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="https://wa.me/51944897167?text=Hola%2C%20deseo%20informaci%C3%B3n%20sobre%20tallas%20de%20la%20Camiseta%20Alternativa%20Lucmar" 
+                           class="btn btn-secondary uniforme-cta" target="_blank" rel="noopener noreferrer">
+                            Consultar Tallas Disponibles por WhatsApp
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Placeholder sections for navigation -->
+        <section id="nosotros" class="section-placeholder" aria-labelledby="nosotros-title">
+            <h2 id="nosotros-title" class="visually-hidden">Nosotros</h2>
+        </section>
+        <section id="categorias" class="section-placeholder" aria-labelledby="categorias-title">
+            <h2 id="categorias-title" class="visually-hidden">Categorías</h2>
+        </section>
+        <section id="sedes" class="section-placeholder" aria-labelledby="sedes-title">
+            <h2 id="sedes-title" class="visually-hidden">Sedes</h2>
+        </section>
+    </main>
+    </div>
+    <!-- End page-content -->
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="footer-logo" aria-label="Escuela de Fútbol Lucmar de Huachipa - Inicio">
+                    <span class="logo-icon">⚽</span>
+                    <span class="logo-text">LUCMAR HUACHIPA</span>
+                </a>
+                <p class="footer-tagline">Formando campeones dentro y fuera de la cancha</p>
+            </div>
+
+            <nav class="footer-nav" aria-label="Enlaces principales">
+                <a href="#nosotros">Nosotros</a>
+                <a href="#categorias">Categorías</a>
+                <a href="#sedes">Sedes</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+
+            <div class="footer-social" aria-label="Redes sociales">
+                <a href="#" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">📘</a>
+                <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">📷</a>
+                <a href="#" class="social-link" aria-label="TikTok" target="_blank" rel="noopener noreferrer">🎵</a>
+                <a href="#" class="social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">▶️</a>
+            </div>
+
+            <p class="footer-copyright">
+                &copy; 2025 Escuela de Fútbol Lucmar de Huachipa. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

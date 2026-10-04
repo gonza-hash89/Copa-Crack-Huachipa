@@ -1,9 +1,9 @@
 import { wa } from "./Hero";
 
 const socials = [
-  ["Facebook", "https://facebook.com/copacrack"],
-  ["Instagram", "https://instagram.com/copacrack"],
-  ["TikTok", "https://tiktok.com/@copacrack"],
+  ["Facebook", "https://facebook.com/lucmarhuachipa"],
+  ["Instagram", "https://instagram.com/lucmarhuachipa"],
+  ["TikTok", "https://tiktok.com/@lucmarhuachipa"],
 ];
 
 export default function Footer() {
@@ -11,8 +11,8 @@ export default function Footer() {
     <footer id="contacto" className="px-4 pt-16 pb-10">
       <div className="mx-auto max-w-3xl glass rounded-2xl p-6 text-center">
         <h2 className="font-display text-3xl">Contacto</h2>
-        <p className="mt-3 text-emerald-50/80">WhatsApp: +51 999 999 999</p>
-        <p className="text-emerald-50/80">Correo: contacto@copacrack.pe</p>
+        <p className="mt-3 text-emerald-50/80">WhatsApp: +51 944 897 167</p>
+        <p className="text-emerald-50/80">Correo: contacto@lucmarhuachipa.pe</p>
         <p className="text-emerald-50/80">Huachipa, Lima, Perú</p>
         <div className="mt-4 flex justify-center gap-4 text-sm">
           {socials.map(([n, u]) => (
@@ -20,8 +20,8 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <p className="mt-6 text-center text-xs text-emerald-50/50">© {new Date().getFullYear()} Copa Crack. Todos los derechos reservados.</p>
-      <a href={wa("Hola, quiero información sobre la Copa Crack.")} target="_blank" rel="noopener noreferrer"
+      <p className="mt-6 text-center text-xs text-emerald-50/50">© {new Date().getFullYear()} Escuela de Fútbol Lucmar de Huachipa. Todos los derechos reservados.</p>
+      <a href={wa("Hola, quiero información sobre las inscripciones en la Escuela Lucmar Huachipa.")} target="_blank" rel="noopener noreferrer"
          aria-label="Escribir por WhatsApp"
          className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25d366] shadow-[0_0_24px_rgba(37,211,102,.6)] hover:scale-105 transition-transform">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">

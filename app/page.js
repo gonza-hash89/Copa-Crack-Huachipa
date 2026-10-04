@@ -1,15 +1,13 @@
 import Hero from "@/components/Hero";
-import Teams from "@/components/Teams";
-import PastTournaments from "@/components/PastTournaments";
-import PhotoGallery from "@/components/PhotoGallery";
+import Categorias from "@/components/Categorias";
+import Contacto from "@/components/Contacto";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Teams />
-      <PastTournaments />
-      <PhotoGallery />
+      <Categorias />
+      <Contacto />
     </>
   );
 }
