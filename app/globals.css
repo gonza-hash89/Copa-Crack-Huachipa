@@ -24,3 +24,111 @@ body {
 }
 :focus-visible { outline: 2px solid #f59e0b; outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+/* ========================================
+   LUCMAR - EFECTOS DINÁMICOS
+   ======================================== */
+
+/* 1. Título con brillo metálico animado */
+.metallic-shine {
+  display: inline-block;
+  position: relative;
+  background: linear-gradient(110deg, #FFF200 20%, #ffffff 38%, #FFF200 50%, #00FF00 65%, #FFF200 80%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: metallic-sweep 4.5s linear infinite;
+  filter: drop-shadow(0 0 18px rgba(255, 242, 0, 0.35));
+}
+.metallic-shine::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 42%, rgba(255,255,255,0.95) 50%, transparent 58%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: metallic-sweep 4.5s linear infinite;
+  pointer-events: none;
+}
+@keyframes metallic-sweep {
+  0% { background-position: 200% center; }
+  100% { background-position: -20% center; }
+}
+
+/* 2. Botón amarillo neón con pulso */
+.btn-pulse-neon {
+  position: relative;
+  animation: neon-breathe 2.2s ease-in-out infinite;
+}
+.btn-pulse-neon::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 2px solid rgba(255, 242, 0, 0.7);
+  opacity: 0;
+  animation: neon-ring 2.2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes neon-breathe {
+  0%, 100% { box-shadow: 0 4px 20px rgba(255,242,0,0.45), 0 0 12px rgba(255,242,0,0.25); }
+  50% { box-shadow: 0 6px 32px rgba(255,242,0,0.75), 0 0 36px rgba(255,242,0,0.5); }
+}
+@keyframes neon-ring {
+  0% { transform: scale(0.98); opacity: 0.8; }
+  70% { transform: scale(1.08); opacity: 0; }
+  100% { transform: scale(1.08); opacity: 0; }
+}
+
+/* 3. Tilt 3D + glare neón en tarjetas glass */
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255,255,255,0.22), transparent 60%);
+  opacity: 0;
+  transition: opacity 250ms ease;
+  pointer-events: none;
+}
+.tilt-card:hover .tilt-glare { opacity: 1; }
+
+/* 4. Canvas de partículas nocturnas */
+#night-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  background: transparent;
+}
+
+/* 5. Kit frente/espalda con flip suave */
+.kit-view { transition: opacity 350ms ease, transform 450ms ease; }
+.kit-view-enter { animation: kit-flip-in 450ms ease both; }
+@keyframes kit-flip-in {
+  from { opacity: 0; transform: perspective(800px) rotateY(28deg) translateY(10px); }
+  to { opacity: 1; transform: perspective(800px) rotateY(0deg) translateY(0); }
+}
+
+/* 6. Badge oficial Copa Crack */
+.copa-official-badge {
+  background: linear-gradient(135deg, rgba(255,242,0,0.22), rgba(0,255,0,0.14));
+  border: 1px solid rgba(255,242,0,0.65);
+  box-shadow: 0 0 24px rgba(255,242,0,0.25), inset 0 0 18px rgba(255,242,0,0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metallic-shine, .metallic-shine::after, .btn-pulse-neon, .btn-pulse-neon::after { animation: none; }
+}

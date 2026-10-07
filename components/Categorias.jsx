@@ -1,3 +1,5 @@
+import Tilt from "./Tilt";
+
 export default function Categorias() {
   const categorias = [
     {
@@ -65,7 +67,7 @@ export default function Categorias() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {categorias.map((cat) => (
-            <article key={cat.id} className="glass rounded-2xl p-6 flex flex-col hover:border-gold/60 transition-colors">
+            <Tilt key={cat.id} className="glass rounded-2xl p-6 flex flex-col hover:border-gold/60">
               <div className="flex items-start justify-between gap-4 mb-4">
                 <span className="text-5xl" aria-hidden="true">{cat.icon}</span>
                 <span className="flex-shrink-0 rounded-full bg-neon/10 border border-neon/30 px-3 py-1 text-xs font-bold text-neon">
@@ -89,7 +91,7 @@ export default function Categorias() {
               >
                 Consultar Horarios
               </a>
-            </article>
+            </Tilt>
           ))}
         </div>
       </div>
