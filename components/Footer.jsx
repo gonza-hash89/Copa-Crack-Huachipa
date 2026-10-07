@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { wa } from "./Hero";
 
 const socials = [
@@ -8,7 +9,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer id="contacto" className="px-4 pt-16 pb-10">
+    <footer className="px-4 pt-16 pb-10">
       <div className="mx-auto max-w-3xl glass rounded-2xl p-6 text-center">
         <h2 className="font-display text-3xl">Contacto</h2>
         <p className="mt-3 text-emerald-50/80">WhatsApp: +51 944 897 167</p>
@@ -20,7 +21,29 @@ export default function Footer() {
           ))}
         </div>
       </div>
-      <p className="mt-6 text-center text-xs text-emerald-50/50">© {new Date().getFullYear()} Escuela de Fútbol Lucmar de Huachipa. Todos los derechos reservados.</p>
+
+      <div className="mx-auto mt-6 max-w-3xl">
+        <div className="glass rounded-2xl px-5 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
+          <Link
+            href="/reclamaciones"
+            className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-gold/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-gold hover:bg-gold hover:text-night transition-colors"
+          >
+            <span aria-hidden="true" className="text-base">📕</span>
+            Libro de Reclamaciones Virtual
+          </Link>
+          <span className="hidden sm:inline text-emerald-50/30" aria-hidden="true">·</span>
+          <Link href="/privacidad" className="text-xs text-emerald-50/70 hover:text-gold underline">
+            Política de Privacidad
+          </Link>
+        </div>
+        <p className="mt-4 text-center text-xs text-emerald-50/50">
+          © {new Date().getFullYear()} Escuela de Fútbol Lucmar de Huachipa. Todos los derechos reservados.
+        </p>
+        <p className="mt-1 text-center text-[11px] text-emerald-50/40">
+          Protección de datos según Ley N° 29733 · Reclamos según normativa INDECOPI
+        </p>
+      </div>
+
       <a href={wa("Hola, quiero información sobre las inscripciones en la Escuela Lucmar Huachipa.")} target="_blank" rel="noopener noreferrer"
          aria-label="Escribir por WhatsApp"
          className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25d366] shadow-[0_0_24px_rgba(37,211,102,.6)] hover:scale-105 transition-transform">

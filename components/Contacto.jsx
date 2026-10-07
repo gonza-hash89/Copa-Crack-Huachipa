@@ -13,6 +13,7 @@ export default function Contacto() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [lastSentAt, setLastSentAt] = useState(0);
+  const [acepto, setAcepto] = useState(false);
 
   const categorias = [
     { value: "4 - 6 años", label: "Iniciación — 4 a 6 años" },
@@ -31,6 +32,8 @@ export default function Contacto() {
       setSubmitted(true);
       return;
     }
+    // Consentimiento Ley N° 29733: obligatorio para enviar
+    if (!acepto) return;
     // Rate limiting en cliente: 1 envío cada 30 segundos
     if (Date.now() - lastSentAt < 30 * 1000) return;
 
@@ -225,9 +228,27 @@ export default function Contacto() {
                     />
                   </div>
 
+                  <label className="flex items-start gap-3 cursor-pointer text-xs leading-relaxed text-emerald-50/75">
+                    <input
+                      type="checkbox"
+                      checked={acepto}
+                      onChange={(e) => setAcepto(e.target.checked)}
+                      required
+                      className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#00FF00]"
+                    />
+                    <span>
+                      He leído y acepto la{" "}
+                      <a href="/privacidad" target="_blank" rel="noopener noreferrer" className="text-gold hover:text-neon underline">
+                        Política de Privacidad
+                      </a>{" "}
+                      para el tratamiento de mis datos personales.
+                    </span>
+                  </label>
+
                   <button
                     type="submit"
-                    className="w-full rounded-full bg-neon px-6 py-3 font-semibold text-night hover:bg-gold hover:shadow-[0_0_30px_rgba(16,185,129,.5)] transition-all"
+                    disabled={!acepto}
+                    className="w-full rounded-full bg-neon px-6 py-3 font-semibold text-night hover:bg-gold hover:shadow-[0_0_30px_rgba(16,185,129,.5)] transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-neon disabled:hover:shadow-none"
                   >
                     Matricularme ya
                   </button>

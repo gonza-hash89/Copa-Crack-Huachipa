@@ -40,6 +40,7 @@ export default function Testimonios() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [sendError, setSendError] = useState("");
+  const [acepto, setAcepto] = useState(false);
 
   useEffect(() => {
     let alive = true;
@@ -79,6 +80,11 @@ export default function Testimonios() {
   const submit = async (e) => {
     e.preventDefault();
     setSendError("");
+    // Consentimiento Ley N° 29733: obligatorio para enviar
+    if (!acepto) {
+      setSendError("Debes aceptar la Política de Privacidad para enviar tu opinión.");
+      return;
+    }
     // Sanitización previa en cliente (la autoritativa está en el servidor)
     const clean = {
       nombre: form.nombre.replace(/<[^>]*>/g, "").trim().slice(0, 60),
@@ -111,6 +117,7 @@ export default function Testimonios() {
       }
       setSent(true);
       setForm({ nombre: "", parentesco: "", puntuacion: 5, opinion: "", website: "" });
+      setAcepto(false);
     } catch {
       setSendError("Error de conexión. Inténtalo más tarde.");
     } finally {
@@ -159,6 +166,7 @@ export default function Testimonios() {
               setModalOpen(true);
               setSent(false);
               setSendError("");
+              setAcepto(false);
             }}
             className="rounded-full bg-[#FFF200] px-8 py-3 text-sm font-extrabold uppercase tracking-wide text-[#070D1E] shadow-[0_0_24px_rgba(255,242,0,0.45)] hover:shadow-[0_0_36px_rgba(255,242,0,0.7)] hover:-translate-y-0.5 transition-all"
           >
@@ -296,11 +304,28 @@ export default function Testimonios() {
                   </div>
                 </div>
 
+                <label className="flex items-start gap-3 cursor-pointer text-xs leading-relaxed text-emerald-50/75">
+                  <input
+                    type="checkbox"
+                    checked={acepto}
+                    onChange={(e) => setAcepto(e.target.checked)}
+                    required
+                    className="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#00FF00]"
+                  />
+                  <span>
+                    He leído y acepto la{" "}
+                    <a href="/privacidad" target="_blank" rel="noopener noreferrer" className="text-gold hover:text-neon underline">
+                      Política de Privacidad
+                    </a>{" "}
+                    para el tratamiento de mis datos personales.
+                  </span>
+                </label>
+
                 {sendError && <p className="text-sm text-red-400">{sendError}</p>}
 
                 <button
                   type="submit"
-                  disabled={sending}
+                  disabled={sending || !acepto}
                   className="w-full rounded-full bg-[#FFF200] px-6 py-3 text-sm font-extrabold uppercase tracking-wide text-[#070D1E] shadow-[0_0_24px_rgba(255,242,0,0.45)] hover:shadow-[0_0_36px_rgba(255,242,0,0.7)] transition-all disabled:opacity-60"
                 >
                   {sending ? "Enviando…" : "Enviar opinión"}
