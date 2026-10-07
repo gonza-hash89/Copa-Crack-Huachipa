@@ -1,15 +1,18 @@
 "use client";
 import { useState } from "react";
 import { wa } from "./Hero";
+import { sanitizeText, sanitizePhone } from "@/lib/sanitize";
 
 export default function Contacto() {
   const [formData, setFormData] = useState({
     padreNombre: "",
     alumnoNombre: "",
     categoria: "",
-    telefono: ""
+    telefono: "",
+    website: "" // honeypot anti-bots (debe ir vacío)
   });
   const [submitted, setSubmitted] = useState(false);
+  const [lastSentAt, setLastSentAt] = useState(0);
 
   const categorias = [
     { value: "4 - 6 años", label: "Iniciación — 4 a 6 años" },
@@ -23,13 +26,26 @@ export default function Contacto() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { padreNombre, alumnoNombre, categoria, telefono } = formData;
-    if (!padreNombre || !alumnoNombre || !categoria || !telefono) return;
+    // Honeypot: si un bot llenó el campo invisible, fingimos éxito sin hacer nada
+    if (formData.website && formData.website.trim() !== "") {
+      setSubmitted(true);
+      return;
+    }
+    // Rate limiting en cliente: 1 envío cada 30 segundos
+    if (Date.now() - lastSentAt < 30 * 1000) return;
+
+    // Sanitización anti-XSS antes de armar el mensaje de WhatsApp
+    const padreNombre = sanitizeText(formData.padreNombre, 60);
+    const alumnoNombre = sanitizeText(formData.alumnoNombre, 80);
+    const categoria = sanitizeText(formData.categoria, 20);
+    const telefono = sanitizePhone(formData.telefono);
+    if (padreNombre.length < 2 || alumnoNombre.length < 2 || !categoria || telefono.length < 6) return;
 
     const message = `Hola, soy ${padreNombre}, deseo una clase de prueba gratis para mi hijo ${alumnoNombre} en la categoría ${categoria}. Mi celular es ${telefono}`;
     window.open(wa(message), "_blank", "noopener,noreferrer");
+    setLastSentAt(Date.now());
     setSubmitted(true);
-    setFormData({ padreNombre: "", alumnoNombre: "", categoria: "", telefono: "" });
+    setFormData({ padreNombre: "", alumnoNombre: "", categoria: "", telefono: "", website: "" });
   };
 
   return (
@@ -122,7 +138,18 @@ export default function Contacto() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                  {/* Honeypot anti-bots: invisible para humanos */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    autoComplete="off"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    className="absolute h-0 w-0 opacity-0 pointer-events-none"
+                  />
                   <div>
                     <label htmlFor="padre-nombre" className="block text-sm font-medium text-emerald-50/80 mb-1">
                       Nombre del Padre / Apoderado <span className="text-gold">*</span>
