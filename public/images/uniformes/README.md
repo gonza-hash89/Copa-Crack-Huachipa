@@ -20,7 +20,8 @@ estos nombres de archivo (minúsculas, sin tildes ni espacios):
 - `alternativa-medias-espalda.jpg`
 
 ## Reglas
-- Formatos aceptados: `.jpg`, `.png` o `.webp` (el componente los prueba en ese orden).
+- Formatos aceptados: `.png`, `.jpg` o `.webp` (el componente los prueba en ese orden; `.png` ideal si la foto es sin fondo).
+- El visor usa un contenedor fijo de aspecto 3:4 con `object-contain`: cualquier foto se adapta sin deformarse.
 - Tamaño recomendado: 800 × 1000 px, fondo neutro, buena iluminación.
 - Peso recomendado: menos de 300 KB por foto (usa https://squoosh.app para comprimir).
 - Mientras falte una foto, la web muestra automáticamente una ilustración

@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 export const metadata = {
   title: "Escuela de Fútbol Lucmar de Huachipa | Formando Campeones",
   description: "Escuela de Fútbol Lucmar de Huachipa - Formación integral deportiva para niños y jóvenes. Desarrollo técnico, táctico, físico y valores. Inscripciones abiertas.",
+  // Bloqueo temporal de indexación hasta la carga de imágenes reales
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }) {

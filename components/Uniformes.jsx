@@ -51,7 +51,8 @@ const VISTAS = [
 
 function candidates(kitId, prendaId, vistaId) {
   const base = `/images/uniformes/${kitId}-${prendaId}-${vistaId}`;
-  return [`${base}.jpg`, `${base}.png`, `${base}.webp`];
+  // Orden de intento: .png (ideal sin fondo) → .jpg → .webp
+  return [`${base}.png`, `${base}.jpg`, `${base}.webp`];
 }
 
 /** Placeholder elegante cuando aún no hay foto real cargada. */
@@ -107,6 +108,8 @@ function VisorPrenda({ kit, prendaId, vistaId }) {
 
   return (
     <div className="mx-auto w-full max-w-[300px]">
+      {/* Contenedor fijo 3:4: las fotos reales (con o sin fondo) se adaptan sin deformarse */}
+      <div className="flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-xl bg-black/20">
       {!sinFoto ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -124,10 +127,10 @@ function VisorPrenda({ kit, prendaId, vistaId }) {
               setSinFoto(true);
             }
           }}
-          className="kit-view-enter w-full h-auto max-h-[380px] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+          className="kit-view-enter h-full w-full object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
         />
       ) : (
-        <div key={`${prendaId}-${vistaId}`} className="kit-view-enter">
+        <div key={`${prendaId}-${vistaId}`} className="kit-view-enter h-full w-full p-4">
           <PlaceholderPrenda
             jersey={kit.jersey}
             trim={kit.trim}
@@ -135,10 +138,13 @@ function VisorPrenda({ kit, prendaId, vistaId }) {
             vista={vistaId}
             kitNombre={kit.nombre}
           />
-          <p className="mt-3 text-center text-xs text-emerald-50/50">
-            Vista ilustrativa · sube la foto real a <code className="text-gold">/images/uniformes/{kit.id}-{prendaId}-{vistaId}.jpg</code>
-          </p>
         </div>
+      )}
+      </div>
+      {sinFoto && (
+        <p className="mt-3 text-center text-xs text-emerald-50/50">
+          Vista ilustrativa · sube la foto real a <code className="text-gold">/images/uniformes/{kit.id}-{prendaId}-{vistaId}.png</code>
+        </p>
       )}
     </div>
   );
