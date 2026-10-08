@@ -3,18 +3,14 @@ import { promises as fs } from "fs";
 import path from "path";
 import { validateOpinion } from "@/lib/sanitize";
 import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
+import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
 const DATA_FILE = path.join(process.cwd(), "data", "opiniones.json");
 
-/**
- * NOTA DE PERSISTENCIA: en Vercel (serverless) el sistema de archivos es
- * efímero: las opiniones guardadas con aprobado:false se conservan en local
- * y se pierden entre despliegues/instancias. Para producción definitiva se
- * recomienda migrar este route a Supabase/Neon (tabla `opiniones`).
- */
-async function readAll() {
+/* ---------- Respaldo JSON (modo local / sin credenciales) ---------- */
+async function readJson() {
   try {
     const raw = await fs.readFile(DATA_FILE, "utf-8");
     const list = JSON.parse(raw);
@@ -24,17 +20,42 @@ async function readAll() {
   }
 }
 
-async function writeAll(list) {
+async function writeJson(list) {
   await fs.writeFile(DATA_FILE, JSON.stringify(list, null, 2) + "\n", "utf-8");
+}
+
+function toPublic(row) {
+  return {
+    id: row.id,
+    nombre: row.nombre,
+    parentesco: row.parentesco,
+    puntuacion: row.puntuacion,
+    opinion: row.opinion,
+    creadoEn: row.created_at || row.creadoEn || null,
+  };
 }
 
 /** GET: solo opiniones aprobadas (las pendientes quedan ocultas). */
 export async function GET() {
-  const all = await readAll();
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = getSupabase();
+      const { data, error } = await supabase
+        .from("opiniones")
+        .select("*")
+        .eq("aprobado", true)
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return NextResponse.json({ opiniones: (data || []).map(toPublic), fuente: "supabase" });
+    } catch (e) {
+      console.error("Supabase GET opiniones falló, usando respaldo JSON:", e?.message);
+    }
+  }
+  const all = await readJson();
   const aprobadas = all
     .filter((o) => o && o.aprobado === true)
-    .sort((a, b) => new Date(b.creadoEn) - new Date(a.creadoEn));
-  return NextResponse.json({ opiniones: aprobadas });
+    .sort((a, b) => new Date(b.creadoEn || b.created_at) - new Date(a.creadoEn || a.created_at));
+  return NextResponse.json({ opiniones: aprobadas.map(toPublic), fuente: "json" });
 }
 
 /** POST: recibe una opinión y la guarda como pendiente (aprobado:false). */
@@ -57,7 +78,6 @@ export async function POST(req) {
   }
 
   // 2. Honeypot anti-bots: campo invisible "website" que solo los bots llenan.
-  //    Si viene con contenido, fingimos éxito sin guardar nada.
   if (body && typeof body.website === "string" && body.website.trim() !== "") {
     return NextResponse.json({ ok: true, moderacion: true });
   }
@@ -68,20 +88,45 @@ export async function POST(req) {
     return NextResponse.json({ error: "Revisa los campos del formulario.", detalles: errors }, { status: 400 });
   }
 
+  // 4a. Ruta principal: Supabase
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = getSupabase();
+      const { error } = await supabase.from("opiniones").insert({
+        nombre: clean.nombre,
+        parentesco: clean.parentesco,
+        puntuacion: clean.puntuacion,
+        opinion: clean.opinion,
+        aprobado: false, // moderación: visible solo tras aprobación
+      });
+      if (error) throw error;
+      return NextResponse.json(
+        {
+          ok: true,
+          moderacion: true,
+          mensaje: "¡Gracias por tu opinión! Tu comentario se publicará en la web una vez verificado por la administración.",
+        },
+        { status: 201 }
+      );
+    } catch (e) {
+      console.error("Supabase POST opiniones falló, usando respaldo JSON:", e?.message);
+    }
+  }
+
+  // 4b. Respaldo JSON (local / sin credenciales). En Vercel es efímero.
   const nueva = {
     id: `op-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     nombre: clean.nombre,
     parentesco: clean.parentesco,
     puntuacion: clean.puntuacion,
     opinion: clean.opinion,
-    aprobado: false, // moderación: visible solo tras aprobación de administración
+    aprobado: false,
     creadoEn: new Date().toISOString(),
   };
-
-  const all = await readAll();
+  const all = await readJson();
   all.push(nueva);
   try {
-    await writeAll(all);
+    await writeJson(all);
   } catch {
     return NextResponse.json({ error: "No se pudo guardar tu opinión. Inténtalo más tarde." }, { status: 500 });
   }
