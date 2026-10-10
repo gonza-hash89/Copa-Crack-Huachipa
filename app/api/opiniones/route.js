@@ -27,10 +27,11 @@ async function writeJson(list) {
 function toPublic(row) {
   return {
     id: row.id,
-    nombre: row.nombre,
-    parentesco: row.parentesco,
-    puntuacion: row.puntuacion,
-    opinion: row.opinion,
+    nombre_apoderado: row.nombre_apoderado,
+    nombre_alumno: row.nombre_alumno || "",
+    categoria: row.categoria || "",
+    estrellas: row.estrellas ?? row.puntuacion ?? 5,
+    comentario: row.comentario || row.opinion || "",
     creadoEn: row.created_at || row.creadoEn || null,
   };
 }
@@ -93,10 +94,11 @@ export async function POST(req) {
     try {
       const supabase = getSupabase();
       const { error } = await supabase.from("opiniones").insert({
-        nombre: clean.nombre,
-        parentesco: clean.parentesco,
-        puntuacion: clean.puntuacion,
-        opinion: clean.opinion,
+        nombre_apoderado: clean.nombre_apoderado,
+        nombre_alumno: clean.nombre_alumno || null,
+        categoria: clean.categoria || null,
+        estrellas: clean.estrellas,
+        comentario: clean.comentario,
         aprobado: false, // moderación: visible solo tras aprobación
       });
       if (error) throw error;
@@ -116,10 +118,11 @@ export async function POST(req) {
   // 4b. Respaldo JSON (local / sin credenciales). En Vercel es efímero.
   const nueva = {
     id: `op-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-    nombre: clean.nombre,
-    parentesco: clean.parentesco,
-    puntuacion: clean.puntuacion,
-    opinion: clean.opinion,
+    nombre_apoderado: clean.nombre_apoderado,
+    nombre_alumno: clean.nombre_alumno || "",
+    categoria: clean.categoria || "",
+    estrellas: clean.estrellas,
+    comentario: clean.comentario,
     aprobado: false,
     creadoEn: new Date().toISOString(),
   };

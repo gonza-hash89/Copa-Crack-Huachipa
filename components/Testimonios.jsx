@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import Tilt from "./Tilt";
 
+const CATEGORIAS = ["4 - 6 años", "7 - 10 años", "11 - 13 años"];
+
 function Stars({ value = 5, interactive = false, onPick = null }) {
   return (
     <div className="flex gap-1 text-[#FFF200]" role={interactive ? "radiogroup" : undefined} aria-label={`${value} de 5 estrellas`}>
@@ -31,11 +33,25 @@ function Stars({ value = 5, interactive = false, onPick = null }) {
 const inputCls =
   "w-full rounded-lg bg-black/30 border border-emerald-500/30 focus:border-[#00FF00] focus:ring-2 focus:ring-[#00FF00]/30 px-4 py-2.5 text-sm text-emerald-50 placeholder-emerald-50/40 transition-colors";
 
+function roleLine(r) {
+  const parts = [];
+  if (r.nombre_alumno) parts.push(r.nombre_alumno);
+  if (r.categoria) parts.push(r.categoria);
+  return parts.join(" · ");
+}
+
 export default function Testimonios() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
-  const [form, setForm] = useState({ nombre: "", parentesco: "", puntuacion: 5, opinion: "", website: "" });
+  const [form, setForm] = useState({
+    nombre_apoderado: "",
+    nombre_alumno: "",
+    categoria: "",
+    estrellas: 5,
+    comentario: "",
+    website: "",
+  });
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
@@ -87,17 +103,21 @@ export default function Testimonios() {
     }
     // Sanitización previa en cliente (la autoritativa está en el servidor)
     const clean = {
-      nombre: form.nombre.replace(/<[^>]*>/g, "").trim().slice(0, 60),
-      parentesco: form.parentesco.replace(/<[^>]*>/g, "").trim().slice(0, 80),
-      puntuacion: Number(form.puntuacion),
-      opinion: form.opinion.replace(/<[^>]*>/g, "").trim().slice(0, 600),
+      nombre_apoderado: form.nombre_apoderado.replace(/<[^>]*>/g, "").trim().slice(0, 60),
+      nombre_alumno: form.nombre_alumno.replace(/<[^>]*>/g, "").trim().slice(0, 80),
+      categoria: form.categoria,
+      estrellas: Number(form.estrellas),
+      comentario: form.comentario.replace(/<[^>]*>/g, "").trim().slice(0, 600),
       website: form.website, // honeypot: debe ir vacío
     };
     const errs = {};
-    if (clean.nombre.length < 2) errs.nombre = "Ingresa tu nombre.";
-    if (clean.parentesco.length < 2) errs.parentesco = "Indica tu parentesco o la categoría del alumno.";
-    if (!(clean.puntuacion >= 1 && clean.puntuacion <= 5)) errs.puntuacion = "Elige de 1 a 5 estrellas.";
-    if (clean.opinion.length < 10) errs.opinion = "Cuéntanos un poco más (mínimo 10 caracteres).";
+    if (clean.nombre_apoderado.length < 2) errs.nombre_apoderado = "Ingresa tu nombre.";
+    if (clean.nombre_alumno && clean.nombre_alumno.length < 2)
+      errs.nombre_alumno = "El nombre del alumno debe tener al menos 2 caracteres.";
+    if (clean.categoria && !CATEGORIAS.includes(clean.categoria))
+      errs.categoria = "Selecciona una categoría válida.";
+    if (!(clean.estrellas >= 1 && clean.estrellas <= 5)) errs.estrellas = "Elige de 1 a 5 estrellas.";
+    if (clean.comentario.length < 10) errs.comentario = "Cuéntanos un poco más (mínimo 10 caracteres).";
     if (Object.keys(errs).length) {
       setErrors(errs);
       return;
@@ -116,7 +136,14 @@ export default function Testimonios() {
         return;
       }
       setSent(true);
-      setForm({ nombre: "", parentesco: "", puntuacion: 5, opinion: "", website: "" });
+      setForm({
+        nombre_apoderado: "",
+        nombre_alumno: "",
+        categoria: "",
+        estrellas: 5,
+        comentario: "",
+        website: "",
+      });
       setAcepto(false);
     } catch {
       setSendError("Error de conexión. Inténtalo más tarde.");
@@ -147,13 +174,13 @@ export default function Testimonios() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {reviews.map((r) => (
-              <Tilt key={r.id || r.nombre} className="glass rounded-2xl p-6 flex flex-col">
+              <Tilt key={r.id || r.nombre_apoderado} className="glass rounded-2xl p-6 flex flex-col">
                 <span className="font-display text-5xl text-[#00FF00]/40 leading-none" aria-hidden="true">“</span>
-                <Stars value={r.puntuacion || 5} />
-                <p className="mt-3 text-sm leading-relaxed text-emerald-50/85 flex-1">{r.opinion}</p>
+                <Stars value={r.estrellas || 5} />
+                <p className="mt-3 text-sm leading-relaxed text-emerald-50/85 flex-1">{r.comentario}</p>
                 <div className="mt-5 pt-4 border-t border-white/10">
-                  <p className="font-semibold">{r.nombre}</p>
-                  <p className="text-xs text-emerald-50/60">{r.parentesco}</p>
+                  <p className="font-semibold">{r.nombre_apoderado}</p>
+                  {roleLine(r) && <p className="text-xs text-emerald-50/60">{roleLine(r)}</p>}
                 </div>
               </Tilt>
             ))}
@@ -239,55 +266,73 @@ export default function Testimonios() {
 
                 <div>
                   <label htmlFor="op-nombre" className="block text-sm font-medium text-emerald-50/80 mb-1">
-                    Nombre <span className="text-gold">*</span>
+                    Nombre del apoderado <span className="text-gold">*</span>
                   </label>
                   <input
                     id="op-nombre"
                     type="text"
-                    value={form.nombre}
-                    onChange={(e) => set("nombre", e.target.value)}
+                    value={form.nombre_apoderado}
+                    onChange={(e) => set("nombre_apoderado", e.target.value)}
                     placeholder="Ej. María Torres"
                     maxLength={60}
                     required
                     autoComplete="name"
                     className={inputCls}
                   />
-                  {errors.nombre && <p className="mt-1 text-xs text-red-400">{errors.nombre}</p>}
+                  {errors.nombre_apoderado && <p className="mt-1 text-xs text-red-400">{errors.nombre_apoderado}</p>}
                 </div>
 
-                <div>
-                  <label htmlFor="op-parentesco" className="block text-sm font-medium text-emerald-50/80 mb-1">
-                    Parentesco / Categoría del alumno <span className="text-gold">*</span>
-                  </label>
-                  <input
-                    id="op-parentesco"
-                    type="text"
-                    value={form.parentesco}
-                    onChange={(e) => set("parentesco", e.target.value)}
-                    placeholder="Ej. Mamá de Thiago · 7 años (Formación)"
-                    maxLength={80}
-                    required
-                    className={inputCls}
-                  />
-                  {errors.parentesco && <p className="mt-1 text-xs text-red-400">{errors.parentesco}</p>}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="op-alumno" className="block text-sm font-medium text-emerald-50/80 mb-1">
+                      Nombre del alumno
+                    </label>
+                    <input
+                      id="op-alumno"
+                      type="text"
+                      value={form.nombre_alumno}
+                      onChange={(e) => set("nombre_alumno", e.target.value)}
+                      placeholder="Ej. Thiago"
+                      maxLength={80}
+                      className={inputCls}
+                    />
+                    {errors.nombre_alumno && <p className="mt-1 text-xs text-red-400">{errors.nombre_alumno}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="op-cat" className="block text-sm font-medium text-emerald-50/80 mb-1">
+                      Categoría
+                    </label>
+                    <select
+                      id="op-cat"
+                      value={form.categoria}
+                      onChange={(e) => set("categoria", e.target.value)}
+                      className={inputCls}
+                    >
+                      <option value="">Selecciona…</option>
+                      {CATEGORIAS.map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
+                    {errors.categoria && <p className="mt-1 text-xs text-red-400">{errors.categoria}</p>}
+                  </div>
                 </div>
 
                 <div>
                   <span className="block text-sm font-medium text-emerald-50/80 mb-1">
                     Puntuación <span className="text-gold">*</span>
                   </span>
-                  <Stars value={form.puntuacion} interactive onPick={(n) => set("puntuacion", n)} />
-                  {errors.puntuacion && <p className="mt-1 text-xs text-red-400">{errors.puntuacion}</p>}
+                  <Stars value={form.estrellas} interactive onPick={(n) => set("estrellas", n)} />
+                  {errors.estrellas && <p className="mt-1 text-xs text-red-400">{errors.estrellas}</p>}
                 </div>
 
                 <div>
                   <label htmlFor="op-texto" className="block text-sm font-medium text-emerald-50/80 mb-1">
-                    Opinión <span className="text-gold">*</span>
+                    Comentario <span className="text-gold">*</span>
                   </label>
                   <textarea
                     id="op-texto"
-                    value={form.opinion}
-                    onChange={(e) => set("opinion", e.target.value)}
+                    value={form.comentario}
+                    onChange={(e) => set("comentario", e.target.value)}
                     placeholder="Cuéntanos tu experiencia en la escuela…"
                     maxLength={600}
                     rows={4}
@@ -295,12 +340,12 @@ export default function Testimonios() {
                     className={`${inputCls} resize-y`}
                   />
                   <div className="mt-1 flex items-center justify-between">
-                    {errors.opinion ? (
-                      <p className="text-xs text-red-400">{errors.opinion}</p>
+                    {errors.comentario ? (
+                      <p className="text-xs text-red-400">{errors.comentario}</p>
                     ) : (
                       <span />
                     )}
-                    <span className="text-xs text-emerald-50/40">{form.opinion.length}/600</span>
+                    <span className="text-xs text-emerald-50/40">{form.comentario.length}/600</span>
                   </div>
                 </div>
 

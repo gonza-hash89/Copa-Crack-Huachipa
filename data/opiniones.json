@@ -1,28 +1,31 @@
 [
   {
     "id": "seed-1",
-    "nombre": "María Torres",
-    "parentesco": "Mamá de Thiago · 7 años (Formación)",
-    "puntuacion": 5,
-    "opinion": "Thiago entró tímido y sin saber recepcionar. En tres meses mejoró su pase, su confianza y hasta sus notas. Los profesores tratan a cada niño por su nombre.",
+    "nombre_apoderado": "María Torres",
+    "nombre_alumno": "Thiago · 7 años",
+    "categoria": "7 - 10 años",
+    "estrellas": 5,
+    "comentario": "Thiago entró tímido y sin saber recepcionar. En tres meses mejoró su pase, su confianza y hasta sus notas. Los profesores tratan a cada niño por su nombre.",
     "aprobado": true,
     "creadoEn": "2025-06-10T00:00:00.000Z"
   },
   {
     "id": "seed-2",
-    "nombre": "Jorge Quispe",
-    "parentesco": "Papá de Matías · 11 años (Competencia)",
-    "puntuacion": 5,
-    "opinion": "Lo que más valoro es la formación integral: disciplina, respeto y trabajo en equipo. El comando técnico es exigente pero muy humano con los chicos.",
+    "nombre_apoderado": "Jorge Quispe",
+    "nombre_alumno": "Matías · 11 años",
+    "categoria": "11 - 13 años",
+    "estrellas": 5,
+    "comentario": "Lo que más valoro es la formación integral: disciplina, respeto y trabajo en equipo. El comando técnico es exigente pero muy humano con los chicos.",
     "aprobado": true,
     "creadoEn": "2025-07-22T00:00:00.000Z"
   },
   {
     "id": "seed-3",
-    "nombre": "Rosa Mendoza",
-    "parentesco": "Mamá de Dylan · 5 años (Iniciación)",
-    "puntuacion": 5,
-    "opinion": "Mi hijo ama los martes y jueves. Aprende jugando, hace amigos y llega feliz a casa. La clase de prueba nos convenció desde el primer día.",
+    "nombre_apoderado": "Rosa Mendoza",
+    "nombre_alumno": "Dylan · 5 años",
+    "categoria": "4 - 6 años",
+    "estrellas": 5,
+    "comentario": "Mi hijo ama los martes y jueves. Aprende jugando, hace amigos y llega feliz a casa. La clase de prueba nos convenció desde el primer día.",
     "aprobado": true,
     "creadoEn": "2025-08-15T00:00:00.000Z"
   }
