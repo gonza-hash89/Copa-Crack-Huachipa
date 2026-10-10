@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://lucmar-huachipa.vercel.app/sitemap.xml
+Disallow: /

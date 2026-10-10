@@ -27,7 +27,8 @@ export const metadata = {
     locale: "es_PE",
     type: "website",
   },
-  robots: { index: true, follow: true },
+  // Bloqueo temporal de indexación hasta subir los contenidos finales
+  robots: { index: false, follow: false },
   ...(analyticsConfig.gsc
     ? { verification: { google: analyticsConfig.gsc } }
     : {}),
