@@ -412,9 +412,58 @@
         const particleSystem = new THREE.Points(geometry, particleMaterial);
         particleSystem.name = 'particles';
         scene.add(particleSystem);
-        
+
         // Store for animation
         scene.userData.particles = particleSystem;
+
+        createNightFieldDust();
+    }
+
+    /**
+     * Night field dust - subtle green/cyan floating glow (stadium night feel)
+     */
+    function createNightFieldDust() {
+        const count = 380;
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(count * 3);
+        const colors = new Float32Array(count * 3);
+
+        const colorGreen = new THREE.Color(0x00FF00);
+        const colorCyan = new THREE.Color(0x00A2E8);
+
+        for (let i = 0; i < count; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 24;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 14;
+            positions[i * 3 + 2] = -6 + Math.random() * 8;
+
+            // Alternate green / cyan with soft variation
+            const useGreen = Math.random() < 0.55;
+            const base = useGreen ? colorGreen : colorCyan;
+            const dim = 0.55 + Math.random() * 0.45;
+            colors[i * 3] = base.r * dim;
+            colors[i * 3 + 1] = base.g * dim;
+            colors[i * 3 + 2] = base.b * dim;
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const dustMaterial = new THREE.PointsMaterial({
+            size: 0.09,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.75,
+            sizeAttenuation: true,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+        });
+
+        const dust = new THREE.Points(geometry, dustMaterial);
+        dust.name = 'night-dust';
+        scene.add(dust);
+
+        scene.userData.nightDust = dust;
+        scene.userData.nightDustBase = positions.slice();
     }
 
     /**
@@ -469,6 +518,20 @@
         if (particles) {
             particles.rotation.y += 0.0001;
             particles.rotation.x += 0.00005;
+        }
+
+        // Night field dust - gentle floating (stadium night feel)
+        const nightDust = scene.userData.nightDust;
+        const nightBase = scene.userData.nightDustBase;
+        if (nightDust && nightBase) {
+            const pos = nightDust.geometry.attributes.position;
+            const arr = pos.array;
+            for (let i = 0; i < arr.length; i += 3) {
+                arr[i] = nightBase[i] + Math.sin(time * 0.25 + i) * 0.35;
+                arr[i + 1] = nightBase[i + 1] + Math.sin(time * 0.4 + i * 0.7) * 0.45;
+            }
+            pos.needsUpdate = true;
+            nightDust.rotation.y = Math.sin(time * 0.05) * 0.05;
         }
 
         // Animate lights
@@ -733,6 +796,9 @@
                 setupSmoothScroll();
                 setupWhatsAppTracking();
                 setupPreinscripcionForm();
+                setupTiltCards();
+                setupUniformeTabs();
+                setupLogo3DViewer();
             });
         } else {
             initThreeJS();
@@ -742,6 +808,9 @@
             setupSmoothScroll();
             setupWhatsAppTracking();
             setupPreinscripcionForm();
+            setupTiltCards();
+            setupUniformeTabs();
+            setupLogo3DViewer();
         }
     }
 
@@ -912,6 +981,108 @@
             input.addEventListener('input', function() {
                 if (this.style.borderColor === 'rgb(255, 68, 68)') {
                     this.style.borderColor = '';
+                }
+            });
+        });
+    }
+
+    /**
+     * 3D Tilt + neon glare on glass cards
+     */
+    function setupTiltCards() {
+        const cards = document.querySelectorAll('[data-tilt], .programa-card, .uniforme-card, .info-card, .form-card');
+        if (!cards.length) return;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) return;
+
+        cards.forEach((card) => {
+            if (!card.querySelector('.tilt-glare')) {
+                const glare = document.createElement('span');
+                glare.className = 'tilt-glare';
+                glare.setAttribute('aria-hidden', 'true');
+                card.appendChild(glare);
+            }
+
+            let raf = null;
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const px = (e.clientX - rect.left) / rect.width;
+                const py = (e.clientY - rect.top) / rect.height;
+                const rx = (0.5 - py) * 10;
+                const ry = (px - 0.5) * 12;
+
+                if (raf) cancelAnimationFrame(raf);
+                raf = requestAnimationFrame(() => {
+                    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+                    card.style.setProperty('--glare-x', `${px * 100}%`);
+                    card.style.setProperty('--glare-y', `${py * 100}%`);
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                if (raf) cancelAnimationFrame(raf);
+                card.style.transform = '';
+            });
+        });
+    }
+
+    /**
+     * Interactive jersey switcher Frente / Espalda
+     */
+    function setupUniformeTabs() {
+        const cards = document.querySelectorAll('.uniforme-card');
+        if (!cards.length) return;
+
+        cards.forEach((card) => {
+            const tabs = card.querySelectorAll('.view-tab');
+            const views = card.querySelectorAll('.kit-view');
+            if (!tabs.length || !views.length) return;
+
+            tabs.forEach((tab) => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-view');
+                    tabs.forEach((t) => {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    tab.classList.add('active');
+                    tab.setAttribute('aria-selected', 'true');
+                    views.forEach((v) => {
+                        const show = v.getAttribute('data-view') === target;
+                        v.classList.toggle('active', show);
+                    });
+                });
+            });
+        });
+    }
+
+    /**
+     * model-viewer controls (reset / rotate / fullscreen)
+     */
+    function setupLogo3DViewer() {
+        const viewer = document.getElementById('logo-3d-viewer');
+        if (!viewer) return;
+
+        const buttons = document.querySelectorAll('.logo-3d-controls .control-btn');
+        buttons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const action = btn.getAttribute('data-action');
+                if (action === 'reset' && viewer.resetTurntableRotation) {
+                    try { viewer.resetTurntableRotation(); } catch (e) { /* noop */ }
+                    viewer.cameraOrbit = '0deg 75deg 105%';
+                }
+                if (action === 'toggle-rotate') {
+                    viewer.autoRotate = !viewer.autoRotate;
+                    btn.classList.toggle('is-paused', !viewer.autoRotate);
+                }
+                if (action === 'fullscreen') {
+                    const container = viewer.closest('.logo-3d-container');
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen();
+                    } else if (container && container.requestFullscreen) {
+                        container.requestFullscreen();
+                    }
                 }
             });
         });

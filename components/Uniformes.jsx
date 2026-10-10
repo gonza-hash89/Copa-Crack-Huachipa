@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import Tilt from "./Tilt";
 import { wa } from "./Hero";
 
@@ -109,13 +110,14 @@ function VisorPrenda({ kit, prendaId, vistaId }) {
   return (
     <div className="mx-auto w-full max-w-[300px]">
       {/* Contenedor fijo 3:4: las fotos reales (con o sin fondo) se adaptan sin deformarse */}
-      <div className="flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-xl bg-black/20">
+      <div className="relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-xl bg-black/20">
       {!sinFoto ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           key={urls.join("|")}
           src={urls[0]}
           alt={`${kit.nombre} · ${prenda.nombre} · ${vistaId === "frente" ? "frente" : "espalda"}`}
+          fill
+          sizes="(max-width: 768px) 90vw, 300px"
           loading="lazy"
           data-ext-index="0"
           onError={(e) => {
@@ -127,7 +129,7 @@ function VisorPrenda({ kit, prendaId, vistaId }) {
               setSinFoto(true);
             }
           }}
-          className="kit-view-enter h-full w-full object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+          className="kit-view-enter object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
         />
       ) : (
         <div key={`${prendaId}-${vistaId}`} className="kit-view-enter h-full w-full p-4">

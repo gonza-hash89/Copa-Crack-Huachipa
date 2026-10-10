@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const FILTERS = ["Todas", "Entrenamientos", "Copa Crack & Torneos", "Sede Huachipa"];
 
@@ -111,12 +112,13 @@ export default function Galeria() {
                 className="group relative block w-full aspect-square overflow-hidden rounded-2xl border border-[#00FF00]/40 bg-white/5 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.35)] hover:border-[#00FF00] hover:shadow-[0_0_28px_rgba(0,255,0,0.35)] transition-all"
                 aria-label={`Ampliar ${p.title}`}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={p.url}
                   alt={p.title}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-3 text-left">
                   <span className="block text-xs font-semibold">{p.title}</span>
@@ -144,9 +146,16 @@ export default function Galeria() {
           >
             ‹
           </button>
-          <figure onClick={(e) => e.stopPropagation()} className="max-h-full max-w-4xl">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={current.url} alt={current.title} className="max-h-[80vh] w-auto rounded-xl mx-auto border border-[#00FF00]/40" />
+          <figure onClick={(e) => e.stopPropagation()} className="max-h-full w-full max-w-4xl">
+            <div className="relative mx-auto h-[70vh] w-full">
+              <Image
+                src={current.url}
+                alt={current.title}
+                fill
+                sizes="100vw"
+                className="rounded-xl border border-[#00FF00]/40 object-contain"
+              />
+            </div>
             <figcaption className="mt-3 text-center text-sm text-emerald-50/80">
               {current.title} · <span className="text-[#00FF00]">{current.category}</span>
             </figcaption>

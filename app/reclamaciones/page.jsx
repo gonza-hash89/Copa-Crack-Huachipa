@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { sanitizeText } from "@/lib/sanitize";
 
 export const dynamic = "force-static";
 
@@ -7,14 +8,8 @@ const inputCls =
   "w-full rounded-lg bg-black/30 border border-emerald-500/30 focus:border-[#00FF00] focus:ring-2 focus:ring-[#00FF00]/30 px-4 py-2.5 text-sm text-emerald-50 placeholder-emerald-50/40 transition-colors";
 const labelCls = "block text-sm font-medium text-emerald-50/80 mb-1";
 
-const clean = (v, max) =>
-  String(v || "")
-    .replace(/<[^>]*>/g, "")
-    .replace(/javascript:/gi, "")
-    .replace(/on\w+\s*=/gi, "")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, max);
+// Toda entrada pasa por la sanitización centralizada de lib/sanitize.js
+const clean = (v, max) => sanitizeText(v, max);
 
 export default function Reclamaciones() {
   const [form, setForm] = useState({
