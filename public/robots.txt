@@ -1,2 +1,13 @@
+# Robots.txt para Copa Crack Perú
 User-agent: *
-Disallow: /
+Allow: /
+
+# Sitemap
+Sitemap: https://copa-crack-2d.vercel.app/sitemap.xml
+
+# No bloquear recursos estáticos
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

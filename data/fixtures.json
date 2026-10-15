@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "jornada": 1,
+    "date": "2025-03-15",
+    "time": "10:00",
+    "field": "Cancha 1 - Cerro Camote",
+    "status": "finalizado",
+    "local": { "id": 1, "name": "Academia Los Cracks FC", "short": "LCF", "color": "#e8c547", "category": "Sub-08" },
+    "visitante": { "id": 2, "name": "Escuela Fútbol Huachipa", "short": "EFH", "color": "#c0392b", "category": "Sub-08" },
+    "score": { "local": 3, "visitante": 1 }
+  },
+  {
+    "id": 2,
+    "jornada": 1,
+    "date": "2025-03-15",
+    "time": "11:30",
+    "field": "Cancha 1 - Cerro Camote",
+    "status": "finalizado",
+    "local": { "id": 3, "name": "Club Deportivo Cerro Camote", "short": "CDC", "color": "#10b981", "category": "Sub-08" },
+    "visitante": { "id": 4, "name": "Academia Estrellas del Futuro", "short": "EDF", "color": "#8b5cf6", "category": "Sub-08" },
+    "score": { "local": 2, "visitante": 2 }
+  },
+  {
+    "id": 3,
+    "jornada": 1,
+    "date": "2025-03-15",
+    "time": "13:00",
+    "field": "Cancha 2 - Cerro Camote",
+    "status": "finalizado",
+    "local": { "id": 9, "name": "Academia Los Cracks FC", "short": "LCF", "color": "#e8c547", "category": "Sub-10" },
+    "visitante": { "id": 10, "name": "Escuela Fútbol Huachipa", "short": "EFH", "color": "#c0392b", "category": "Sub-10" },
+    "score": { "local": 4, "visitante": 0 }
+  },
+  {
+    "id": 4,
+    "jornada": 1,
+    "date": "2025-03-15",
+    "time": "14:30",
+    "field": "Cancha 2 - Cerro Camote",
+    "status": "finalizado",
+    "local": { "id": 11, "name": "Club Deportivo Cerro Camote", "short": "CDC", "color": "#10b981", "category": "Sub-10" },
+    "visitante": { "id": 12, "name": "Academia Estrellas del Futuro", "short": "EDF", "color": "#8b5cf6", "category": "Sub-10" },
+    "score": { "local": 1, "visitante": 3 }
+  },
+  {
+    "id": 5,
+    "jornada": 2,
+    "date": "2025-03-22",
+    "time": "10:00",
+    "field": "Cancha 1 - Cerro Camote",
+    "status": "finalizado",
+    "local": { "id": 5, "name": "Real Huachipa FC", "short": "RHF", "color": "#f97316", "category": "Sub-08" },
+    "visitante": { "id": 1, "name": "Academia Los Cracks FC", "short": "LCF", "color": "#e8c547", "category": "Sub-08" },
+    "score": { "local": 0, "visitante": 5 }
+  },
+  {
+    "id": 6,
+    "jornada": 2,
+    "date": "2025-03-22",
+    "time": "11:30",
+    "field": "Cancha 1 - Cerro Camote",
+    "status": "finalizado",
+    "local": { "id": 6, "name": "Atlético Cerro Camote", "short": "ACC", "color": "#ec4899", "category": "Sub-08" },
+    "visitante": { "id": 3, "name": "Club Deportivo Cerro Camote", "short": "CDC", "color": "#10b981", "category": "Sub-08" },
+    "score": { "local": 1, "visitante": 4 }
+  },
+  {
+    "id": 7,
+    "jornada": 2,
+    "date": "2025-03-22",
+    "time": "13:00",
+    "field": "Cancha 2 - Cerro Camote",
+    "status": "programado",
+    "local": { "id": 13, "name": "Real Huachipa FC", "short": "RHF", "color": "#f97316", "category": "Sub-10" },
+    "visitante": { "id": 9, "name": "Academia Los Cracks FC", "short": "LCF", "color": "#e8c547", "category": "Sub-10" },
+    "score": { "local": 0, "visitante": 0 }
+  },
+  {
+    "id": 8,
+    "jornada": 2,
+    "date": "2025-03-22",
+    "time": "14:30",
+    "field": "Cancha 2 - Cerro Camote",
+    "status": "programado",
+    "local": { "id": 14, "name": "Atlético Cerro Camote", "short": "ACC", "color": "#ec4899", "category": "Sub-10" },
+    "visitante": { "id": 11, "name": "Club Deportivo Cerro Camote", "short": "CDC", "color": "#10b981", "category": "Sub-10" },
+    "score": { "local": 0, "visitante": 0 }
+  },
+  {
+    "id": 9,
+    "jornada": 3,
+    "date": "2025-03-29",
+    "time": "10:00",
+    "field": "Cancha 1 - Cerro Camote",
+    "status": "programado",
+    "local": { "id": 2, "name": "Escuela Fútbol Huachipa", "short": "EFH", "color": "#c0392b", "category": "Sub-08" },
+    "visitante": { "id": 5, "name": "Real Huachipa FC", "short": "RHF", "color": "#f97316", "category": "Sub-08" },
+    "score": { "local": 0, "visitante": 0 }
+  },
+  {
+    "id": 10,
+    "jornada": 3,
+    "date": "2025-03-29",
+    "time": "11:30",
+    "field": "Cancha 1 - Cerro Camote",
+    "status": "programado",
+    "local": { "id": 4, "name": "Academia Estrellas del Futuro", "short": "EDF", "color": "#8b5cf6", "category": "Sub-08" },
+    "visitante": { "id": 6, "name": "Atlético Cerro Camote", "short": "ACC", "color": "#ec4899", "category": "Sub-08" },
+    "score": { "local": 0, "visitante": 0 }
+  },
+  {
+    "id": 11,
+    "jornada": 3,
+    "date": "2025-03-29",
+    "time": "13:00",
+    "field": "Cancha 2 - Cerro Camote",
+    "status": "programado",
+    "local": { "id": 10, "name": "Escuela Fútbol Huachipa", "short": "EFH", "color": "#c0392b", "category": "Sub-10" },
+    "visitante": { "id": 13, "name": "Real Huachipa FC", "short": "RHF", "color": "#f97316", "category": "Sub-10" },
+    "score": { "local": 0, "visitante": 0 }
+  },
+  {
+    "id": 12,
+    "jornada": 3,
+    "date": "2025-03-29",
+    "time": "14:30",
+    "field": "Cancha 2 - Cerro Camote",
+    "status": "programado",
+    "local": { "id": 12, "name": "Academia Estrellas del Futuro", "short": "EDF", "color": "#8b5cf6", "category": "Sub-10" },
+    "visitante": { "id": 14, "name": "Atlético Cerro Camote", "short": "ACC", "color": "#ec4899", "category": "Sub-10" },
+    "score": { "local": 0, "visitante": 0 }
+  },
+  {
+    "id": 13,
+    "jornada": 4,
+    "date": "2025-04-05",
+    "time": "10:00",
+    "field": "Cancha 1 - Cerro Camote",
+    "status": "programado",
+    "local": { "id": 15, "name": "Academia Los Cracks FC", "short": "LCF", "color": "#e8c547", "category": "Sub-12" },
+    "visitante": { "id": 16, "name": "Escuela Fútbol Huachipa", "short": "EFH", "color": "#c0392b", "category": "Sub-12" },
+    "score": { "local": 0, "visitante": 0 }
+  },
+  {
+    "id": 14,
+    "jornada": 4,
+    "date": "2025-04-05",
+    "time": "11:30",
+    "field": "Cancha 1 - Cerro Camote",
+    "status": "programado",
+    "local": { "id": 17, "name": "Club Deportivo Cerro Camote", "short": "CDC", "color": "#10b981", "category": "Sub-12" },
+    "visitante": { "id": 18, "name": "Academia Estrellas del Futuro", "short": "EDF", "color": "#8b5cf6", "category": "Sub-12" },
+    "score": { "local": 0, "visitante": 0 }
+  },
+  {
+    "id": 15,
+    "jornada": 4,
+    "date": "2025-04-05",
+    "time": "13:00",
+    "field": "Cancha 2 - Cerro Camote",
+    "status": "programado",
+    "local": { "id": 19, "name": "Real Huachipa FC", "short": "RHF", "color": "#f97316", "category": "Sub-12" },
+    "visitante": { "id": 20, "name": "Atlético Cerro Camote", "short": "ACC", "color": "#ec4899", "category": "Sub-12" },
+    "score": { "local": 0, "visitante": 0 }
+  }
+]

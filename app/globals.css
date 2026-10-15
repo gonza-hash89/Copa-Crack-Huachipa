@@ -2,133 +2,548 @@
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; scroll-padding-top: 9rem; }
+:root {
+  --bg-night: #080404;
+  --grass-dark: #0a1208;
+  --grass-stripe: #0d1a0a;
+  --grass-fiber: #14280f;
+  --gold: #e8c547;
+  --gold-dim: #b89530;
+  --red: #c0392b;
+  --red-glow: #e74c3c;
+  --white: #f5f0e8;
+  --white-dim: #c9c0b0;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+
 body {
   min-height: 100vh;
-  color: #e7f5ee;
-  background-color: #050c08;
+  color: var(--white);
+  background-color: var(--bg-night);
   background-image:
-    radial-gradient(ellipse 60% 40% at 15% 0%, rgba(16,185,129,.28), transparent 70%),
-    radial-gradient(ellipse 50% 35% at 88% 4%, rgba(245,158,11,.22), transparent 70%),
-    radial-gradient(ellipse 70% 40% at 50% 100%, rgba(16,185,129,.12), transparent 70%);
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(232,197,71,0.15), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 10%, rgba(192,57,43,0.12), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(192,57,43,0.12), transparent 50%),
+    radial-gradient(ellipse 100% 60% at 50% 110%, rgba(232,197,71,0.08), transparent 50%);
   background-attachment: fixed;
-  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
 }
-.font-display { font-family: Impact, "Arial Narrow Bold", "Franklin Gothic Heavy", sans-serif; letter-spacing: .02em; }
-.glass {
-  background: rgba(255,255,255,.04);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(16,185,129,.25);
-  box-shadow: 0 0 0 1px rgba(255,255,255,.03) inset, 0 8px 32px rgba(0,0,0,.35);
-}
-:focus-visible { outline: 2px solid #f59e0b; outline-offset: 2px; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 
 /* ========================================
-   LUCMAR - EFECTOS DINÁMICOS
+   CÉSPED SINTÉTICO NOCTURNO - CSS PURO
    ======================================== */
 
-/* 1. Título con brillo metálico animado */
-.metallic-shine {
-  display: inline-block;
+.grass-field {
   position: relative;
-  background: linear-gradient(110deg, #FFF200 20%, #ffffff 38%, #FFF200 50%, #00FF00 65%, #FFF200 80%);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: metallic-sweep 4.5s linear infinite;
-  filter: drop-shadow(0 0 18px rgba(255, 242, 0, 0.35));
+  background-color: var(--grass-dark);
+  background-image:
+    /* Franjas de corte de cancha */
+    repeating-linear-gradient(
+      0deg,
+      var(--grass-dark) 0%,
+      var(--grass-dark) 3.5%,
+      var(--grass-stripe) 3.5%,
+      var(--grass-stripe) 7%
+    ),
+    /* Fibras sutiles */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 98%,
+      var(--grass-fiber) 98%,
+      var(--grass-fiber) 100%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0%,
+      transparent 96%,
+      rgba(20,40,15,0.15) 96%,
+      rgba(20,40,15,0.15) 100%
+    );
+  background-size:
+    100% 100%,
+    4px 100%,
+    100% 8px;
+  background-blend-mode: overlay, normal, normal;
 }
-.metallic-shine::after {
-  content: attr(data-text);
+
+.grass-field::before {
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(110deg, transparent 42%, rgba(255,255,255,0.95) 50%, transparent 58%);
-  background-size: 220% auto;
+  background:
+    /* Reflectores de estadio - 4 esquinas */
+    radial-gradient(ellipse 120% 80% at -10% -10%, rgba(245,240,220,0.18), transparent 60%),
+    radial-gradient(ellipse 120% 80% at 110% -10%, rgba(245,240,220,0.18), transparent 60%),
+    radial-gradient(ellipse 120% 80% at -10% 110%, rgba(245,240,220,0.12), transparent 60%),
+    radial-gradient(ellipse 120% 80% at 110% 110%, rgba(245,240,220,0.12), transparent 60%),
+    /* Reflectores laterales */
+    radial-gradient(ellipse 80% 60% at 50% -20%, rgba(245,240,220,0.22), transparent 55%),
+    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(245,240,220,0.15), transparent 55%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.grass-field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    /* Círculo central */
+    radial-gradient(circle at 50% 50%, transparent 18%, var(--gold) 18%, var(--gold) 18.5%, transparent 18.5%),
+    /* Área grande izquierda */
+    radial-gradient(ellipse 45% 35% at 5% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    /* Área grande derecha */
+    radial-gradient(ellipse 45% 35% at 95% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    /* Área chica izquierda */
+    radial-gradient(ellipse 20% 15% at 5% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    /* Área chica derecha */
+    radial-gradient(ellipse 20% 15% at 95% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    /* Punto penal izquierdo */
+    radial-gradient(circle at 18% 50%, var(--gold) 1.5%, transparent 1.5%),
+    /* Punto penal derecho */
+    radial-gradient(circle at 82% 50%, var(--gold) 1.5%, transparent 1.5%),
+    /* Línea central */
+    linear-gradient(90deg, transparent 49.8%, var(--gold-dim) 49.8%, var(--gold-dim) 50.2%, transparent 50.2%);
+  background-size: 100% 100%;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Variante hero - césped más visible */
+.grass-field.hero {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      var(--grass-dark) 0%,
+      var(--grass-dark) 3%,
+      var(--grass-stripe) 3%,
+      var(--grass-stripe) 6%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 97%,
+      var(--grass-fiber) 97%,
+      var(--grass-fiber) 100%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0%,
+      transparent 94%,
+      rgba(20,40,15,0.25) 94%,
+      rgba(20,40,15,0.25) 100%
+    );
+  background-size:
+    100% 100%,
+    3px 100%,
+    100% 6px;
+}
+
+.grass-field.hero::before {
+  background:
+    radial-gradient(ellipse 140% 90% at 50% -20%, rgba(245,240,220,0.28), transparent 55%),
+    radial-gradient(ellipse 100% 70% at 10% 10%, rgba(192,57,43,0.15), transparent 50%),
+    radial-gradient(ellipse 100% 70% at 90% 10%, rgba(192,57,43,0.15), transparent 50%);
+}
+
+.grass-field.hero::after {
+  opacity: 0.5;
+}
+
+/* Variante tables - césped más tenue */
+.grass-field.tables {
+  opacity: 0.4;
+}
+
+.grass-field.tables::before {
+  opacity: 0.5;
+}
+
+.grass-field.tables::after {
+  opacity: 0.15;
+}
+
+/* ========================================
+   TIPOGRAFÍA Y EFECTOS DE TEXTO
+   ======================================== */
+
+.font-display {
+  font-family: "Bebas Neue", "Impact", "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #ffd700 0%, #e8c547 30%, #ffd700 60%, #ff8c00 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: metallic-sweep 4.5s linear infinite;
-  pointer-events: none;
+  animation: gold-shine 3s linear infinite;
 }
-@keyframes metallic-sweep {
+
+@keyframes gold-shine {
   0% { background-position: 200% center; }
   100% { background-position: -20% center; }
 }
 
-/* 2. Botón amarillo neón con pulso */
-.btn-pulse-neon {
-  position: relative;
-  animation: neon-breathe 2.2s ease-in-out infinite;
-}
-.btn-pulse-neon::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: inherit;
-  border: 2px solid rgba(255, 242, 0, 0.7);
-  opacity: 0;
-  animation: neon-ring 2.2s ease-out infinite;
-  pointer-events: none;
-}
-@keyframes neon-breathe {
-  0%, 100% { box-shadow: 0 4px 20px rgba(255,242,0,0.45), 0 0 12px rgba(255,242,0,0.25); }
-  50% { box-shadow: 0 6px 32px rgba(255,242,0,0.75), 0 0 36px rgba(255,242,0,0.5); }
-}
-@keyframes neon-ring {
-  0% { transform: scale(0.98); opacity: 0.8; }
-  70% { transform: scale(1.08); opacity: 0; }
-  100% { transform: scale(1.08); opacity: 0; }
+.red-gradient {
+  background: linear-gradient(135deg, #c0392b 0%, #e74c3c 50%, #ff6b5b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
-/* 3. Tilt 3D + glare neón en tarjetas glass */
-.tilt-card {
-  transform-style: preserve-3d;
-  will-change: transform;
-  transition: border-color 300ms ease, box-shadow 300ms ease;
+/* ========================================
+   COMPONENTES BASE
+   ======================================== */
+
+.glass {
+  background: rgba(10, 18, 8, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232,197,71,0.2);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.02) inset,
+    0 8px 32px rgba(0,0,0,0.5),
+    0 0 40px rgba(232,197,71,0.05);
 }
-.tilt-glare {
+
+.glass-strong {
+  background: rgba(8, 16, 6, 0.92);
+  border-color: rgba(232,197,71,0.35);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03) inset,
+    0 12px 48px rgba(0,0,0,0.6),
+    0 0 60px rgba(232,197,71,0.08);
+}
+
+.gold-border {
+  border: 1px solid var(--gold-dim);
+}
+
+.gold-border-dim {
+  border: 1px solid rgba(232,197,71,0.3);
+}
+
+.btn-primary {
+  @apply relative px-8 py-3.5 rounded-full font-bold uppercase tracking-wider text-sm transition-all duration-300;
+  background: linear-gradient(135deg, #ffd700 0%, #e8c547 50%, #ffd700 100%);
+  background-size: 200% auto;
+  color: var(--bg-night);
+  box-shadow: 0 4px 24px rgba(232,197,71,0.4);
+}
+
+.btn-primary:hover {
+  background-position: 100% center;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(232,197,71,0.6);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  @apply px-8 py-3.5 rounded-full font-bold uppercase tracking-wider text-sm transition-all duration-300;
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+}
+
+.btn-secondary:hover {
+  background: var(--gold);
+  color: var(--bg-night);
+}
+
+.btn-whatsapp {
+  @apply px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 flex items-center gap-2;
+  background: #25d366;
+  color: white;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+}
+
+.btn-whatsapp:hover {
+  background: #1ea952;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37,211,102,0.7);
+}
+
+.badge-torneo {
+  @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider;
+  background: linear-gradient(135deg, rgba(232,197,71,0.2) 0%, rgba(192,57,43,0.15) 100%);
+  border: 1px solid rgba(232,197,71,0.5);
+  color: var(--gold);
+  box-shadow: 0 0 20px rgba(232,197,71,0.2);
+}
+
+/* ========================================
+   FORMULARIOS
+   ======================================== */
+
+.form-input {
+  @apply w-full px-4 py-3.5 rounded-xl text-base transition-all duration-300;
+  background: rgba(8, 16, 6, 0.8);
+  border: 1px solid rgba(232,197,71,0.2);
+  color: var(--white);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(232,197,71,0.2), 0 0 20px rgba(232,197,71,0.1);
+}
+
+.form-input::placeholder {
+  color: var(--white-dim);
+  opacity: 0.5;
+}
+
+.form-label {
+  @apply block mb-2 text-sm font-medium text-gold;
+}
+
+/* ========================================
+   TABLAS
+   ======================================== */
+
+.table-container {
+  @apply overflow-x-auto rounded-2xl;
+  background: rgba(8, 16, 6, 0.6);
+}
+
+.table {
+  @apply w-full border-collapse;
+}
+
+.table th {
+  @apply px-4 py-3 text-left text-xs font-bold uppercase tracking-wider;
+  background: linear-gradient(135deg, rgba(232,197,71,0.15) 0%, rgba(192,57,43,0.1) 100%);
+  color: var(--gold);
+  border-bottom: 2px solid rgba(232,197,71,0.3);
+}
+
+.table td {
+  @apply px-4 py-3 text-sm;
+  border-bottom: 1px solid rgba(232,197,71,0.08);
+  background: rgba(8, 16, 6, 0.5);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background: rgba(232,197,71,0.08);
+}
+
+.table tbody tr:nth-child(even) td {
+  background: rgba(8, 16, 6, 0.3);
+}
+
+.table tbody tr:nth-child(even):hover td {
+  background: rgba(232,197,71,0.08);
+}
+
+/* ========================================
+   TARJETAS DEPORTIVAS ANGULARES
+   ======================================== */
+
+.sport-card {
+  @apply relative overflow-hidden rounded-2xl transition-all duration-300;
+  clip-path: polygon(0 8%, 8% 0, 100% 0, 100% 92%, 92% 100%, 0 100%);
+  background: rgba(10, 18, 8, 0.9);
+  border: 1px solid rgba(232,197,71,0.15);
+}
+
+.sport-card::before {
+  content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255,255,255,0.22), transparent 60%);
+  clip-path: polygon(0 8%, 8% 0, 100% 0, 100% 92%, 92% 100%, 0 100%);
+  background: linear-gradient(135deg, rgba(232,197,71,0.08) 0%, transparent 50%, rgba(192,57,43,0.05) 100%);
   opacity: 0;
-  transition: opacity 250ms ease;
+  transition: opacity 0.3s ease;
   pointer-events: none;
 }
-.tilt-card:hover .tilt-glare { opacity: 1; }
 
-/* 4. Canvas de partículas nocturnas */
-#night-particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-  pointer-events: none;
-  background: transparent;
+.sport-card:hover::before {
+  opacity: 1;
 }
 
-/* 5. Kit frente/espalda con flip suave */
-.kit-view { transition: opacity 350ms ease, transform 450ms ease; }
-.kit-view-enter { animation: kit-flip-in 450ms ease both; }
-@keyframes kit-flip-in {
-  from { opacity: 0; transform: perspective(800px) rotateY(28deg) translateY(10px); }
-  to { opacity: 1; transform: perspective(800px) rotateY(0deg) translateY(0); }
+.sport-card:hover {
+  border-color: rgba(232,197,71,0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 40px rgba(232,197,71,0.1);
 }
 
-/* 6. Badge oficial Copa Crack */
-.copa-official-badge {
-  background: linear-gradient(135deg, rgba(255,242,0,0.22), rgba(0,255,0,0.14));
-  border: 1px solid rgba(255,242,0,0.65);
-  box-shadow: 0 0 24px rgba(255,242,0,0.25), inset 0 0 18px rgba(255,242,0,0.12);
+.sport-card-img {
+  @apply w-full h-48 object-cover transition-transform duration-500;
+}
+
+.sport-card:hover .sport-card-img {
+  transform: scale(1.05);
+}
+
+/* ========================================
+   ESCUDOS DE RESPALDO SVG
+   ======================================== */
+
+.team-badge {
+  @apply relative w-20 h-24 mx-auto flex items-center justify-center;
+  background: var(--team-color, var(--grass-dark));
+  clip-path: polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
+  border: 2px solid var(--gold-dim);
+}
+
+.team-badge::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  clip-path: polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
+  background: rgba(0,0,0,0.3);
+}
+
+.team-badge-initials {
+  @apply relative z-10 font-display text-2xl font-bold text-gold text-shadow-gold;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 12px var(--gold);
+}
+
+.text-shadow-gold {
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 12px var(--gold);
+}
+
+/* ========================================
+   ESCUDO OFICIAL DECORATIVO (HERO)
+   ======================================== */
+
+.official-crest {
+  @apply relative w-72 h-80 mx-auto;
+  filter: drop-shadow(0 0 30px rgba(232,197,71,0.4)) drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+}
+
+.official-crest svg {
+  width: 100%;
+  height: 100%;
+}
+
+.official-crest-glow {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(ellipse at center, rgba(232,197,71,0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: crest-pulse 4s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes crest-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* ========================================
+   FLOATING ACTION BUTTON (FAB)
+   ======================================== */
+
+.fab-whatsapp {
+  @apply fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full transition-all duration-300;
+  background: linear-gradient(135deg, #25d366 0%, #1ea952 100%);
+  box-shadow:
+    0 8px 32px rgba(37,211,102,0.5),
+    0 0 0 4px rgba(37,211,102,0.2),
+    0 0 60px rgba(37,211,102,0.3);
+  animation: fab-breathe 3s ease-in-out infinite;
+}
+
+.fab-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 12px 40px rgba(37,211,102,0.6),
+    0 0 0 6px rgba(37,211,102,0.3),
+    0 0 80px rgba(37,211,102,0.4);
+}
+
+@keyframes fab-breathe {
+  0%, 100% { box-shadow: 0 8px 32px rgba(37,211,102,0.5), 0 0 0 4px rgba(37,211,102,0.2), 0 0 60px rgba(37,211,102,0.3); }
+  50% { box-shadow: 0 8px 32px rgba(37,211,102,0.5), 0 0 0 8px rgba(37,211,102,0.15), 0 0 80px rgba(37,211,102,0.4); }
+}
+
+.fab-whatsapp svg {
+  @apply w-8 h-8 text-white;
+}
+
+/* ========================================
+   TABS / PESTAÑAS
+   ======================================== */
+
+.tabs-list {
+  @apply flex flex-wrap gap-2 mb-6;
+}
+
+.tab-btn {
+  @apply px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200;
+  background: rgba(8, 16, 6, 0.8);
+  border: 1px solid rgba(232,197,71,0.2);
+  color: var(--white-dim);
+}
+
+.tab-btn:hover {
+  border-color: rgba(232,197,71,0.5);
+  color: var(--gold);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--gold) 0%, #ffd700 100%);
+  color: var(--bg-night);
+  border-color: var(--gold);
+  box-shadow: 0 4px 20px rgba(232,197,71,0.4);
+}
+
+/* ========================================
+   ACCESIBILIDAD Y MOTION
+   ======================================== */
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .metallic-shine, .metallic-shine::after, .btn-pulse-neon, .btn-pulse-neon::after { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
+
+/* ========================================
+   UTILIDADES
+   ======================================== */
+
+.text-gold { color: var(--gold); }
+.text-gold-dim { color: var(--gold-dim); }
+.text-red { color: var(--red); }
+.text-white-dim { color: var(--white-dim); }
+
+.bg-grass { background-color: var(--grass-dark); }
+.bg-night { background-color: var(--bg-night); }
+
+.aspect-video { aspect-ratio: 16 / 9; }
+.aspect-square { aspect-ratio: 1 / 1; }
+.aspect-crest { aspect-ratio: 9 / 10; }
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-night); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }

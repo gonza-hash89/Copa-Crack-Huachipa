@@ -2,33 +2,31 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    // Compresión moderna automática (WebP/AVIF) + lazy loading
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
+      { protocol: "https", hostname: "*.vercel.app", pathname: "/**" },
+      { protocol: "https", hostname: "lh3.googleusercontent.com", pathname: "/**" },
     ],
   },
   async headers() {
     return [
       {
-        // Cabeceras de seguridad para todas las rutas
         source: "/(.*)",
         headers: [
           {
             key: "Content-Security-Policy",
-            // Nota: 'unsafe-inline' es requerido por Next.js para sus scripts/estilos.
-            // frame-src habilita el mapa embebido de Google; img-src las fotos de la galería.
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.clarity.ms https://connect.facebook.net",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "img-src 'self' data: blob: https://images.unsplash.com",
+              "img-src 'self' data: blob: https://images.unsplash.com https://*.vercel.app https://lh3.googleusercontent.com",
               "font-src 'self' https://fonts.gstatic.com data:",
-              "frame-src https://www.google.com",
-              "connect-src 'self'",
+              "frame-src https://www.google.com https://www.facebook.com",
+              "connect-src 'self' https://www.google-analytics.com https://*.vercel.app https://api.whatsapp.com https://wa.me",
               "object-src 'none'",
               "base-uri 'self'",
-              "form-action 'self'",
+              "form-action 'self' https://api.whatsapp.com https://wa.me",
               "frame-ancestors 'none'",
               "upgrade-insecure-requests",
             ].join("; "),

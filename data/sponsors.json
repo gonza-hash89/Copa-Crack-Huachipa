@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "Municipalidad de Lurigancho-Chosica",
+    "tier": "gold",
+    "logoUrl": null,
+    "url": "https://www.munichosica.gob.pe"
+  },
+  {
+    "id": 2,
+    "name": "Deportes Huachipa",
+    "tier": "gold",
+    "logoUrl": null,
+    "url": "https://facebook.com/deporteshuachipa"
+  },
+  {
+    "id": 3,
+    "name": "Hidratación Plus",
+    "tier": "gold",
+    "logoUrl": null,
+    "url": "https://instagram.com/hidratacionplus"
+  },
+  {
+    "id": 4,
+    "name": "Clínica San Juan de Dios",
+    "tier": "gold",
+    "logoUrl": null,
+    "url": "https://clinicasanjuandedios.pe"
+  },
+  {
+    "id": 5,
+    "name": "Transportes El Crack",
+    "tier": "silver",
+    "logoUrl": null,
+    "url": "#"
+  },
+  {
+    "id": 6,
+    "name": "Uniformes Deportivos Perú",
+    "tier": "silver",
+    "logoUrl": null,
+    "url": "#"
+  },
+  {
+    "id": 7,
+    "name": "Fisioterapia Sport Lima",
+    "tier": "silver",
+    "logoUrl": null,
+    "url": "#"
+  },
+  {
+    "id": 8,
+    "name": "Nutrición Activa Kids",
+    "tier": "silver",
+    "logoUrl": null,
+    "url": "#"
+  },
+  {
+    "id": 9,
+    "name": "Ferretería El Campeón",
+    "tier": "bronze",
+    "logoUrl": null,
+    "url": "#"
+  },
+  {
+    "id": 10,
+    "name": "Panadería Los Cracks",
+    "tier": "bronze",
+    "logoUrl": null,
+    "url": "#"
+  },
+  {
+    "id": 11,
+    "name": "Imprenta Golazo",
+    "tier": "bronze",
+    "logoUrl": null,
+    "url": "#"
+  },
+  {
+    "id": 12,
+    "name": "Seguros Campeón",
+    "tier": "bronze",
+    "logoUrl": null,
+    "url": "#"
+  }
+]

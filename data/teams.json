@@ -1,3 +1,22 @@
 [
-  { "id": 1, "name": "Escuela de Fútbol Lucmar Huachipa", "short": "LH", "color": "#fbbf24" }
+  { "id": 1, "name": "Academia Los Cracks FC", "short": "LCF", "color": "#e8c547", "category": "Sub-08", "group": "A", "crestUrl": null },
+  { "id": 2, "name": "Escuela Fútbol Huachipa", "short": "EFH", "color": "#c0392b", "category": "Sub-08", "group": "A", "crestUrl": null },
+  { "id": 3, "name": "Club Deportivo Cerro Camote", "short": "CDC", "color": "#10b981", "category": "Sub-08", "group": "B", "crestUrl": null },
+  { "id": 4, "name": "Academia Estrellas del Futuro", "short": "EDF", "color": "#8b5cf6", "category": "Sub-08", "group": "B", "crestUrl": null },
+  { "id": 5, "name": "Real Huachipa FC", "short": "RHF", "color": "#f97316", "category": "Sub-08", "group": "A", "crestUrl": null },
+  { "id": 6, "name": "Atlético Cerro Camote", "short": "ACC", "color": "#ec4899", "category": "Sub-08", "group": "B", "crestUrl": null },
+  { "id": 7, "name": "Deportivo Los Cracks", "short": "DLC", "color": "#06b6d4", "category": "Sub-08", "group": "A", "crestUrl": null },
+  { "id": 8, "name": "Fútbol Formativo Lima", "short": "FFL", "color": "#84cc16", "category": "Sub-08", "group": "B", "crestUrl": null },
+  { "id": 9, "name": "Academia Los Cracks FC", "short": "LCF", "color": "#e8c547", "category": "Sub-10", "group": "A", "crestUrl": null },
+  { "id": 10, "name": "Escuela Fútbol Huachipa", "short": "EFH", "color": "#c0392b", "category": "Sub-10", "group": "A", "crestUrl": null },
+  { "id": 11, "name": "Club Deportivo Cerro Camote", "short": "CDC", "color": "#10b981", "category": "Sub-10", "group": "B", "crestUrl": null },
+  { "id": 12, "name": "Academia Estrellas del Futuro", "short": "EDF", "color": "#8b5cf6", "category": "Sub-10", "group": "B", "crestUrl": null },
+  { "id": 13, "name": "Real Huachipa FC", "short": "RHF", "color": "#f97316", "category": "Sub-10", "group": "A", "crestUrl": null },
+  { "id": 14, "name": "Atlético Cerro Camote", "short": "ACC", "color": "#ec4899", "category": "Sub-10", "group": "B", "crestUrl": null },
+  { "id": 15, "name": "Academia Los Cracks FC", "short": "LCF", "color": "#e8c547", "category": "Sub-12", "group": "A", "crestUrl": null },
+  { "id": 16, "name": "Escuela Fútbol Huachipa", "short": "EFH", "color": "#c0392b", "category": "Sub-12", "group": "A", "crestUrl": null },
+  { "id": 17, "name": "Club Deportivo Cerro Camote", "short": "CDC", "color": "#10b981", "category": "Sub-12", "group": "B", "crestUrl": null },
+  { "id": 18, "name": "Academia Estrellas del Futuro", "short": "EDF", "color": "#8b5cf6", "category": "Sub-12", "group": "B", "crestUrl": null },
+  { "id": 19, "name": "Real Huachipa FC", "short": "RHF", "color": "#f97316", "category": "Sub-12", "group": "A", "crestUrl": null },
+  { "id": 20, "name": "Atlético Cerro Camote", "short": "ACC", "color": "#ec4899", "category": "Sub-12", "group": "B", "crestUrl": null }
 ]
