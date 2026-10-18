@@ -1,14 +1,10 @@
 [
-  { "id": 1, "title": "Ceremonia de Apertura 2025", "category": "Premiación", "url": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=1200&q=80" },
-  { "id": 2, "title": "Partido Inaugural Sub-10", "category": "Partidos", "url": "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1200&q=80" },
-  { "id": 3, "title": "Entrenamiento Pre-torneo", "category": "Entrenamientos", "url": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80" },
-  { "id": 4, "title": "Final Copa Oro Sub-12", "category": "Partidos", "url": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1200&q=80" },
-  { "id": 5, "title": "Jugada de Ataque Destacada", "category": "Partidos", "url": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1200&q=80" },
-  { "id": 6, "title": "Plantel Campeón Sub-08", "category": "Equipos", "url": "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=1200&q=80" },
-  { "id": 7, "title": "Calentamiento Bajo Luces", "category": "Entrenamientos", "url": "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=1200&q=80" },
-  { "id": 8, "title": "Celebración del Título", "category": "Equipos", "url": "https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=1200&q=80" },
-  { "id": 9, "title": "Entrega de Medallas Copa Plata", "category": "Premiación", "url": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80" },
-  { "id": 10, "title": "Portero Atrapando Balón", "category": "Partidos", "url": "https://images.unsplash.com/photo-1554136927-7a2d7942a36c?w=1200&q=80" },
-  { "id": 11, "title": "Equipo Técnico en Acción", "category": "Entrenamientos", "url": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1200&q=80" },
-  { "id": 12, "title": "Foto Oficial del Torneo", "category": "Equipos", "url": "https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=1200&q=80" }
+  { "id": 1, "title": "Entrega de copas", "category": "Premiación", "url": "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=1200&q=80" },
+  { "id": 2, "title": "Campeones en el podio", "category": "Premiación", "url": "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1200&q=80" },
+  { "id": 3, "title": "Disputa del balón", "category": "Partidos", "url": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80" },
+  { "id": 4, "title": "Final bajo las luces", "category": "Partidos", "url": "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1200&q=80" },
+  { "id": 5, "title": "Jugada de ataque", "category": "Partidos", "url": "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1200&q=80" },
+  { "id": 6, "title": "Plantel sub-10", "category": "Equipos", "url": "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?w=1200&q=80" },
+  { "id": 7, "title": "Formación antes del partido", "category": "Equipos", "url": "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=1200&q=80" },
+  { "id": 8, "title": "Celebración del equipo", "category": "Equipos", "url": "https://images.unsplash.com/photo-1553778263-73a83bab9b0c?w=1200&q=80" }
 ]

@@ -1,174 +1,82 @@
 "use client";
-
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import photos from "@/data/gallery.json";
 
-const filters = ["Todas", "Premiación", "Partidos", "Equipos", "Entrenamientos"];
+const filters = ["Todas", "Premiación", "Partidos", "Equipos"];
 
 export default function PhotoGallery() {
   const [filter, setFilter] = useState("Todas");
-  const [modalIndex, setModalIndex] = useState(null);
-  const [modalDirection, setModalDirection] = useState(0);
-
-  const filteredPhotos = filter === "Todas"
-    ? photos
-    : photos.filter((p) => p.category === filter);
+  const [index, setIndex] = useState(null);
+  const list = filter === "Todas" ? photos : photos.filter((p) => p.category === filter);
 
   useEffect(() => {
-    if (modalIndex === null) return;
-    const handleKey = (e) => {
-      if (e.key === "Escape") { setModalIndex(null); setModalDirection(0); }
-      if (e.key === "ArrowRight") { setModalDirection(1); setModalIndex((i) => (i + 1) % filteredPhotos.length); }
-      if (e.key === "ArrowLeft") { setModalDirection(-1); setModalIndex((i) => (i - 1 + filteredPhotos.length) % filteredPhotos.length); }
+    if (index === null) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") setIndex(null);
+      if (e.key === "ArrowRight") setIndex((i) => (i + 1) % list.length);
+      if (e.key === "ArrowLeft") setIndex((i) => (i - 1 + list.length) % list.length);
     };
-    window.addEventListener("keydown", handleKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", handleKey);
-      document.body.style.overflow = "";
-    };
-  }, [modalIndex, filteredPhotos.length]);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [index, list.length]);
 
-  const currentPhoto = modalIndex !== null ? filteredPhotos[modalIndex] : null;
-
-  const openModal = (index) => {
-    setModalIndex(index);
-    setModalDirection(0);
-  };
-
-  const closeModal = () => {
-    setModalIndex(null);
-    setModalDirection(0);
-  };
-
-  const nextPhoto = (e) => {
-    e.stopPropagation();
-    setModalDirection(1);
-    setModalIndex((i) => (i + 1) % filteredPhotos.length);
-  };
-
-  const prevPhoto = (e) => {
-    e.stopPropagation();
-    setModalDirection(-1);
-    setModalIndex((i) => (i - 1 + filteredPhotos.length) % filteredPhotos.length);
-  };
+  const current = index !== null ? list[index] : null;
 
   return (
-    <section id="galeria" className="px-4 py-16 grass-field tables">
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="text-center mb-12">
-          <span className="badge-torneo">Multimedia</span>
-          <h2 className="font-display mt-6 text-4xl sm:text-5xl neon-title" data-text="GALERÍA">GALERÍA DE FOTOS</h2>
-          <p className="mt-2 text-white-dim">Los mejores momentos del torneo</p>
+    <section id="galeria" className="px-4 pt-24 pb-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12">
+          <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl text-gradient-gold tracking-tight">Galería</h2>
+          <p className="mt-3 text-white/60 text-lg font-medium uppercase tracking-wide">{list.length} Fotos Disponibles</p>
         </div>
-
-        <div className="tabs-list justify-center mb-10" role="tablist" aria-label="Filtros de galería">
+        
+        <div className="flex flex-wrap justify-start gap-2 mb-10">
           {filters.map((f) => (
             <button
               key={f}
-              role="tab"
-              aria-selected={filter === f}
-              onClick={() => { setFilter(f); setModalIndex(null); }}
-              className={`tab-btn ${filter === f ? "active" : ""}`}
+              onClick={() => { setFilter(f); setIndex(null); }}
+              aria-pressed={filter === f}
+              className={`px-5 py-2.5 text-sm font-bold uppercase tracking-wider transition-all duration-150 clip-path-polygon\(0_3px_3px_0_100%_0_100%_calc\(100%-3px\)_calc\(100%-3px\)_100%_0_100%\) ${
+                filter === f 
+                  ? "bg-gradient-to-r from-red to-gold text-red-dark border-none shadow-[4px_4px_0_rgba(255,190,11,0.5)]" 
+                  : "glass text-white/80 hover:text-gold hover:border-gold/50 border border-white/10"
+              }`}
             >
               {f}
             </button>
           ))}
         </div>
-
-        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" role="list" aria-label={`Fotos categoría ${filter}`}>
-          {filteredPhotos.map((photo, index) => (
-            <li key={photo.id}>
-              <button
-                onClick={() => openModal(index)}
-                className="sport-card w-full aspect-square group glass-strong overflow-hidden relative"
-                aria-label={`Ver ${photo.title}`}
-              >
-                <img
-                  src={photo.url}
-                  alt={photo.title}
-                  loading="lazy"
-                  className="sport-card-img w-full h-full object-cover"
-                  width="400"
-                  height="400"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-left transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="font-semibold text-white text-sm">{photo.title}</p>
-                  <p className="text-xs text-neon-yellow uppercase tracking-wider">{photo.category}</p>
-                </div>
-                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
-                  <div className="w-8 h-8 rounded-full bg-black/50 backdrop-blur flex items-center justify-center border border-gold/30">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.8)]">
-                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                      <circle cx="12" cy="13" r="4" />
-                    </svg>
-                  </div>
+        
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {list.map((p, i) => (
+            <li key={p.id}>
+              <button onClick={() => setIndex(i)} className="group relative block w-full aspect-square overflow-hidden clip-path-polygon\(0_0_100%_0_100%_96%_96%_100%_0_100%\) glass hover:border-gold hover:border-2 hover:shadow-[8px_8px_0_rgba(255,190,11,0.3)] hover:-translate-y-1 hover:-translate-x-1 transition-all duration-200" aria-label={`Ver ${p.title}`}>
+                <img src={p.url} alt={p.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                {/* Corner accent */}
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/50" />
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-red/50" />
+                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-red/50" />
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/50" />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-red/90 via-red/50 to-transparent p-4 text-left">
+                  <span className="text-xs font-bold text-white drop-shadow-lg block">{p.title}</span>
+                  <span className="text-[10px] text-gold/80 uppercase tracking-wider">{p.category}</span>
                 </div>
               </button>
             </li>
           ))}
-
-          {filteredPhotos.length === 0 && (
-            <li className="col-span-full glass rounded-2xl p-12 text-center">
-              <p className="text-white-dim">No hay fotos en esta categoría.</p>
-            </li>
-          )}
         </ul>
       </div>
 
-      {currentPhoto && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={currentPhoto.title}
-          onClick={closeModal}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
-        >
-<button
-  onClick={closeModal}
-  aria-label="Cerrar galería"
-  className="absolute top-4 right-4 z-10 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:text-neon-yellow hover:bg-neon-yellow/10 transition-colors"
->
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]">
-    <path d="M18 6L6 18M6 6l12 12" />
-  </svg>
-</button>
-
-<button
-  onClick={prevPhoto}
-  aria-label="Foto anterior"
-  className="absolute left-4 z-10 w-14 h-14 rounded-full glass flex items-center justify-center text-white hover:text-neon-yellow hover:bg-neon-yellow/10 transition-colors hidden sm:block"
->
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]">
-    <path d="M15 18l-6-6 6-6" />
-  </svg>
-</button>
-
-          <figure onClick={(e) => e.stopPropagation()} className="relative max-w-5xl max-h-[85vh] w-full">
-            <img
-              src={currentPhoto.url}
-              alt={currentPhoto.title}
-              className="max-h-[85vh] w-auto rounded-xl mx-auto object-contain"
-              style={{
-                transform: `translateX(${modalDirection * 20}px)`,
-                opacity: modalDirection === 0 ? 1 : 0.5,
-              }}
-            />
-            <figcaption className="mt-4 text-center text-sm text-white-dim">
-              {currentPhoto.title} · {currentPhoto.category}
-            </figcaption>
+      {current && (
+        <div role="dialog" aria-modal="true" aria-label={current.title} onClick={() => setIndex(null)}
+             className="lightbox-overlay fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4">
+          <button onClick={() => setIndex(null)} aria-label="Cerrar" className="absolute top-4 right-4 text-3xl text-white/80 hover:text-gold transition-colors">×</button>
+          <button onClick={(e) => { e.stopPropagation(); setIndex((index - 1 + list.length) % list.length); }} aria-label="Anterior" className="absolute left-4 text-4xl text-white/80 hover:text-gold">‹</button>
+          <figure onClick={(e) => e.stopPropagation()} className="max-h-full max-w-4xl">
+            <img src={current.url} alt={current.title} className="lightbox-img max-h-[80vh] w-auto" />
+            <figcaption className="mt-4 text-center text-sm text-gold font-medium">{current.title} · {current.category}</figcaption>
           </figure>
-
-<button
-  onClick={nextPhoto}
-  aria-label="Siguiente foto"
-  className="absolute right-4 z-10 w-14 h-14 rounded-full glass flex items-center justify-center text-white hover:text-neon-yellow hover:bg-neon-yellow/10 transition-colors hidden sm:block"
->
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]">
-    <path d="M9 18l6-6-6-6" />
-  </svg>
-</button>
+          <button onClick={(e) => { e.stopPropagation(); setIndex((index + 1) % list.length); }} aria-label="Siguiente" className="absolute right-4 text-4xl text-white/80 hover:text-gold">›</button>
         </div>
       )}
     </section>

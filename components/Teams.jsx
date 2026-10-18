@@ -1,81 +1,48 @@
 "use client";
 
-import { useState } from "react";
 import teams from "@/data/teams.json";
+import Image from "next/image";
 
-const categories = ["Todas", "Sub-08", "Sub-10", "Sub-12"];
-
-function TeamBadge({ short, color, crestUrl }) {
-  const [imgError, setImgError] = useState(false);
-
-  if (crestUrl && !imgError) {
+function Crest({ short, color, logo }) {
+  if (logo) {
     return (
-      <div className="relative w-20 h-24 mx-auto team-badge" style={{ "--team-color": color }}>
-        <img
-          src={crestUrl}
-          alt=""
-          className="w-full h-full object-cover"
-          onError={() => setImgError(true)}
-          loading="lazy"
-          aria-hidden="true"
-        />
-        <span className="team-badge-initials" style={{ opacity: 0 }}>{short}</span>
-      </div>
+      <Image
+        src={logo}
+        alt={`${short} crest`}
+        width={80}
+        height={80}
+        className="w-20 h-20 object-contain filter drop-shadow-lg"
+      />
     );
   }
-
   return (
-    <div className="relative w-20 h-24 mx-auto team-badge" style={{ "--team-color": color }} role="img" aria-label={`Escudo de ${short}`}>
-      <span className="team-badge-initials">{short}</span>
+    <div className="w-20 h-20 flex items-center justify-center bg-gradient-to-br from-red/30 to-gold/30 border-2 border-gold/50 shadow-[4px_4px_0_rgba(255,190,11,0.4)]">
+      <span className="font-black text-2xl text-white drop-shadow-lg">{short}</span>
     </div>
   );
 }
 
 export default function Teams() {
-  const [activeCategory, setActiveCategory] = useState("Todas");
-
-  const filteredTeams = activeCategory === "Todas"
-    ? teams
-    : teams.filter((t) => t.category === activeCategory);
-
   return (
-    <section id="equipos" className="px-4 py-16 grass-field tables">
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="text-center mb-12">
-          <span className="badge-torneo">Participantes</span>
-          <h2 className="font-display mt-6 text-4xl sm:text-5xl neon-title" data-text="EQUIPOS">EQUIPOS</h2>
-          <p className="mt-2 text-white-dim">Academias inscritas por categoría</p>
+    <section id="equipos" className="px-4 pt-24 pb-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12">
+          <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl text-gradient-gold tracking-tight">Equipos</h2>
+          <p className="mt-3 text-white/60 text-lg font-medium uppercase tracking-wide">14 Academias Participantes</p>
         </div>
-
-        <div className="tabs-list justify-center mb-10" role="tablist" aria-label="Categorías">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              role="tab"
-              aria-selected={activeCategory === cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`tab-btn ${activeCategory === cat ? "active" : ""}`}
+        <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {teams.map((t, i) => (
+            <li 
+              key={t.id} 
+              className="relative glass p-4 flex flex-col items-center text-center transition-all duration-200 hover:border-gold hover:border-2 hover:shadow-[8px_8px_0_rgba(255,190,11,0.3)] hover:-translate-y-1 hover:-translate-x-1 fade-in-up" 
+              style={{ animationDelay: `${i * 50}ms` }}
             >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6" role="list" aria-label={`Equipos ${activeCategory !== "Todas" ? `categoría ${activeCategory}` : ""}`}>
-          {filteredTeams.map((team) => (
-            <li key={team.id} className="glass-strong rounded-2xl p-5 sport-card text-center group">
-              <TeamBadge short={team.short} color={team.color} crestUrl={team.crestUrl} />
-              <h3 className="mt-4 font-semibold text-white leading-snug group-hover:text-gold transition-colors">{team.name}</h3>
-              <p className="mt-1 text-xs text-white-dim uppercase tracking-wider">{team.category}</p>
-              {team.group && <p className="mt-1 text-xs text-gold-dim font-medium">Grupo {team.group}</p>}
+              {/* Top accent bar */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red to-gold" />
+              <Crest short={t.short} color={t.color} logo={t.logo} />
+              <span className="mt-4 text-sm font-bold leading-snug text-white uppercase tracking-wide">{t.name}</span>
             </li>
           ))}
-
-          {filteredTeams.length === 0 && (
-            <li className="col-span-full glass rounded-2xl p-12 text-center">
-              <p className="text-white-dim">No hay equipos en esta categoría.</p>
-            </li>
-          )}
         </ul>
       </div>
     </section>
