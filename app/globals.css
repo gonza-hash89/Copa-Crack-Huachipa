@@ -3,16 +3,32 @@
 @tailwind utilities;
 
 :root {
-  --bg-night: #080404;
-  --grass-dark: #0a1208;
-  --grass-stripe: #0d1a0a;
-  --grass-fiber: #14280f;
-  --gold: #e8c547;
-  --gold-dim: #b89530;
-  --red: #c0392b;
-  --red-glow: #e74c3c;
-  --white: #f5f0e8;
-  --white-dim: #c9c0b0;
+  /* ===== PALETA NEÓN / FOSFORESCENTE ===== */
+  --bg-night: #050202;
+  --bg-deep: #0a0303;
+
+  /* AMARILLO NEÓN VIBRANTE */
+  --neon-yellow: #FFEB00;
+  --neon-yellow-dim: #E8D400;
+  --neon-yellow-glow: #FFEB00;
+  --neon-gold: #FFD700;
+  --neon-amber: #FFB300;
+
+  /* ROJO FOSFORESCENTE */
+  --phosphor-red: #FF073A;
+  --phosphor-red-dim: #E6002E;
+  --phosphor-red-glow: #FF2D4A;
+  --phosphor-crimson: #DC143C;
+
+  /* CÉSPED NOCTURNO */
+  --grass-dark: #061004;
+  --grass-stripe: #091806;
+  --grass-fiber: #0D2008;
+
+  /* BLANCOS Y GRISES */
+  --white: #FFFEF7;
+  --white-dim: #E8E4D0;
+  --gray-dark: #1A1510;
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
@@ -22,10 +38,10 @@ body {
   color: var(--white);
   background-color: var(--bg-night);
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(232,197,71,0.15), transparent 60%),
-    radial-gradient(ellipse 60% 40% at 10% 10%, rgba(192,57,43,0.12), transparent 50%),
-    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(192,57,43,0.12), transparent 50%),
-    radial-gradient(ellipse 100% 60% at 50% 110%, rgba(232,197,71,0.08), transparent 50%);
+    radial-gradient(ellipse 90% 60% at 50% -15%, rgba(255,235,0,0.12), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 10% 10%, rgba(255,7,58,0.10), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(255,7,58,0.10), transparent 50%),
+    radial-gradient(ellipse 100% 70% at 50% 110%, rgba(255,235,0,0.06), transparent 50%);
   background-attachment: fixed;
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
 }
@@ -34,7 +50,6 @@ body {
    CÉSPED SINTÉTICO NOCTURNO - CSS PURO
    ======================================== */
 
-/* Capa de fondo fija SOLO para el césped y líneas - NUNCA bloquea scroll */
 .grass-field-bg {
   position: fixed;
   inset: 0;
@@ -42,7 +57,6 @@ body {
   pointer-events: none;
   background-color: var(--grass-dark);
   background-image:
-    /* Franjas de corte de cancha */
     repeating-linear-gradient(
       0deg,
       var(--grass-dark) 0%,
@@ -50,591 +64,442 @@ body {
       var(--grass-stripe) 3.5%,
       var(--grass-stripe) 7%
     ),
-    /* Fibras sutiles */
     repeating-linear-gradient(
       90deg,
-      transparent 0%,
-      transparent 98%,
-      var(--grass-fiber) 98%,
-      var(--grass-fiber) 100%
+      transparent 0%, transparent 98%,
+      var(--grass-fiber) 98%, var(--grass-fiber) 100%
     ),
     repeating-linear-gradient(
-      0deg,
-      transparent 0%,
-      transparent 96%,
-      rgba(20,40,15,0.08) 96%,
-      rgba(20,40,15,0.08) 100%
+      0deg, transparent 0%, transparent 96%,
+      rgba(13,32,8,0.1) 96%, rgba(13,32,8,0.1) 100%
     );
-  background-size:
-    100% 100%,
-    4px 100%,
-    100% 8px;
+  background-size: 100% 100%, 4px 100%, 100% 8px;
   background-blend-mode: overlay, normal, normal;
 }
 
-/* Reflectores (spotlights) - capa separada */
 .grass-field-bg::before {
   content: "";
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 120% 80% at -10% -10%, rgba(245,240,220,0.10), transparent 60%),
-    radial-gradient(ellipse 120% 80% at 110% -10%, rgba(245,240,220,0.10), transparent 60%),
-    radial-gradient(ellipse 120% 80% at -10% 110%, rgba(245,240,220,0.06), transparent 60%),
-    radial-gradient(ellipse 120% 80% at 110% 110%, rgba(245,240,220,0.06), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 50% -20%, rgba(245,240,220,0.14), transparent 55%),
-    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(245,240,220,0.08), transparent 55%);
+    radial-gradient(ellipse 130% 90% at -10% -10%, rgba(255,235,0,0.14), transparent 60%),
+    radial-gradient(ellipse 130% 90% at 110% -10%, rgba(255,235,0,0.14), transparent 60%),
+    radial-gradient(ellipse 130% 90% at -10% 110%, rgba(255,7,58,0.08), transparent 60%),
+    radial-gradient(ellipse 130% 90% at 110% 110%, rgba(255,7,58,0.08), transparent 60%),
+    radial-gradient(ellipse 90% 70% at 50% -25%, rgba(255,235,0,0.18), transparent 55%),
+    radial-gradient(ellipse 90% 70% at 50% 125%, rgba(255,235,0,0.10), transparent 55%);
   pointer-events: none;
 }
 
-/* Líneas del campo - capa separada con opacidad muy baja */
 .grass-field-bg::after {
   content: "";
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-image:
-    radial-gradient(circle at 50% 50%, transparent 12%, var(--gold) 12%, var(--gold) 12.2%, transparent 12.2%),
-    radial-gradient(ellipse 31% 59% at 3% 50%, transparent 98.5%, var(--gold-dim) 98.5%, var(--gold-dim) 99.2%, transparent 99.2%),
-    radial-gradient(ellipse 31% 59% at 97% 50%, transparent 98.5%, var(--gold-dim) 98.5%, var(--gold-dim) 99.2%, transparent 99.2%),
-    radial-gradient(ellipse 10% 27% at 3% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
-    radial-gradient(ellipse 10% 27% at 97% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
-    radial-gradient(circle at 13.5% 50%, var(--gold) 0.8%, transparent 0.8%),
-    radial-gradient(circle at 86.5% 50%, var(--gold) 0.8%, transparent 0.8%),
-    linear-gradient(90deg, transparent 49.9%, var(--gold-dim) 49.9%, var(--gold-dim) 50.1%, transparent 50.1%);
+    radial-gradient(circle at 50% 50%, transparent 12%, var(--neon-yellow) 12%, var(--neon-yellow) 12.2%, transparent 12.2%),
+    radial-gradient(ellipse 31% 59% at 3% 50%, transparent 98.5%, var(--neon-gold) 98.5%, var(--neon-gold) 99.2%, transparent 99.2%),
+    radial-gradient(ellipse 31% 59% at 97% 50%, transparent 98.5%, var(--neon-gold) 98.5%, var(--neon-gold) 99.2%, transparent 99.2%),
+    radial-gradient(ellipse 10% 27% at 3% 50%, transparent 99%, var(--neon-gold) 99%, var(--neon-gold) 99.5%, transparent 99.5%),
+    radial-gradient(ellipse 10% 27% at 97% 50%, transparent 99%, var(--neon-gold) 99%, var(--neon-gold) 99.5%, transparent 99.5%),
+    radial-gradient(circle at 13.5% 50%, var(--neon-yellow) 0.8%, transparent 0.8%),
+    radial-gradient(circle at 86.5% 50%, var(--neon-yellow) 0.8%, transparent 0.8%),
+    linear-gradient(90deg, transparent 49.9%, var(--neon-gold) 49.9%, var(--neon-gold) 50.1%, transparent 50.1%);
   background-size: 100% 100%;
-  opacity: 0.08;
+  opacity: 0.1;
   pointer-events: none;
 }
 
-/* Clase que se aplica al body - SIN overflow hidden, SIN position relative que rompa scroll */
-.grass-field {
-  min-height: 100vh;
-  background: transparent !important;
-}
+.grass-field { min-height: 100vh; background: transparent !important; }
 
-/* Responsive para líneas de fondo */
 @media (max-width: 640px) {
-  .grass-field-bg::after {
-    opacity: 0.05;
-    background-image:
-      radial-gradient(circle at 50% 50%, transparent 15%, var(--gold) 15%, var(--gold) 15.3%, transparent 15.3%),
-      radial-gradient(ellipse 35% 60% at 2% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
-      radial-gradient(ellipse 35% 60% at 98% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
-      linear-gradient(90deg, transparent 49.9%, var(--gold-dim) 49.9%, var(--gold-dim) 50.1%, transparent 50.1%);
-  }
+  .grass-field-bg::after { opacity: 0.06; }
 }
 
 @media (min-width: 1920px) {
-  .grass-field-bg::after {
-    background-size: 80% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+  .grass-field-bg::after { background-size: 80% 100%; background-position: center; background-repeat: no-repeat; }
 }
 
-/* Variante hero - reflectores más intensos */
+/* Variante hero - reflectores neón intensos */
 .grass-field.hero ~ .grass-field-bg::before {
   background:
-    radial-gradient(ellipse 140% 90% at 50% -20%, rgba(245,240,220,0.18), transparent 55%),
-    radial-gradient(ellipse 100% 70% at 10% 10%, rgba(192,57,43,0.10), transparent 50%),
-    radial-gradient(ellipse 100% 70% at 90% 10%, rgba(192,57,43,0.10), transparent 50%);
+    radial-gradient(ellipse 150% 100% at 50% -25%, rgba(255,235,0,0.22), transparent 55%),
+    radial-gradient(ellipse 110% 80% at 10% 10%, rgba(255,7,58,0.14), transparent 50%),
+    radial-gradient(ellipse 110% 80% at 90% 10%, rgba(255,7,58,0.14), transparent 50%);
 }
 
-.grass-field.hero ~ .grass-field-bg::after {
-  opacity: 0.12;
-  background-image:
-    radial-gradient(circle at 50% 50%, transparent 10%, var(--gold) 10%, var(--gold) 10.2%, transparent 10.2%),
-    radial-gradient(ellipse 28% 55% at 4% 50%, transparent 98.5%, var(--gold-dim) 98.5%, var(--gold-dim) 99.2%, transparent 99.2%),
-    radial-gradient(ellipse 28% 55% at 96% 50%, transparent 98.5%, var(--gold-dim) 98.5%, var(--gold-dim) 99.2%, transparent 99.2%),
-    radial-gradient(ellipse 12% 30% at 4% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
-    radial-gradient(ellipse 12% 30% at 96% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
-    radial-gradient(circle at 12% 50%, var(--gold) 1%, transparent 1%),
-    radial-gradient(circle at 88% 50%, var(--gold) 1%, transparent 1%),
-    linear-gradient(90deg, transparent 49.8%, var(--gold-dim) 49.8%, var(--gold-dim) 50.2%, transparent 50.2%);
-}
+.grass-field.hero ~ .grass-field-bg::after { opacity: 0.15; }
 
 /* Variante tables - más tenue */
-.grass-field.tables ~ .grass-field-bg::before {
-  opacity: 0.5;
+.grass-field.tables ~ .grass-field-bg::before { opacity: 0.6; }
+.grass-field.tables ~ .grass-field-bg::after { opacity: 0.05; }
+
+/* ========================================
+   TIPOGRAFÍA NEÓN - EFECTOS FOSFORESCENTES
+   ======================================== */
+
+.font-display {
+  font-family: "Bebas Neue", "Impact", "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
 }
 
-.grass-field.tables ~ .grass-field-bg::after {
-  opacity: 0.04;
-  background-image:
-    radial-gradient(circle at 50% 50%, transparent 14%, var(--gold) 14%, var(--gold) 14.2%, transparent 14.2%),
-    radial-gradient(ellipse 33% 58% at 3% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
-    radial-gradient(ellipse 33% 58% at 97% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
-    linear-gradient(90deg, transparent 49.9%, var(--gold-dim) 49.9%, var(--gold-dim) 50.1%, transparent 50.1%);
+/* TÍTULO PRINCIPAL - GRADIENTE NEÓN ANIMADO */
+.neon-title {
+  background: linear-gradient(135deg, #FFEB00 0%, #FFD700 25%, #FFEB00 50%, #FFB300 75%, #FFEB00 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: neon-sweep 4s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(255,235,0,0.6)) drop-shadow(0 0 20px rgba(255,235,0,0.4));
+}
+
+@keyframes neon-sweep {
+  0% { background-position: 300% center; filter: drop-shadow(0 0 8px rgba(255,235,0,0.6)) drop-shadow(0 0 20px rgba(255,235,0,0.4)); }
+  50% { filter: drop-shadow(0 0 16px rgba(255,235,0,0.9)) drop-shadow(0 0 40px rgba(255,235,0,0.6)); }
+  100% { background-position: -100% center; filter: drop-shadow(0 0 8px rgba(255,235,0,0.6)) drop-shadow(0 0 20px rgba(255,235,0,0.4)); }
+}
+
+/* TEXTO ROJO FOSFORESCENTE */
+.phosphor-text {
+  background: linear-gradient(135deg, #FF073A 0%, #FF2D4A 50%, #FF6B7A 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  filter: drop-shadow(0 0 6px rgba(255,7,58,0.7));
+}
+
+/* TEXTO CON BORDE NEÓN */
+.neon-stroke {
+  -webkit-text-stroke: 1px var(--neon-yellow);
+  paint-order: stroke fill;
+  filter: drop-shadow(0 0 4px rgba(255,235,0,0.5));
+}
+
+/* ========================================
+   COMPONENTES BASE - ESTILO NEÓN
+   ======================================== */
+
+.glass {
+  background: rgba(6, 10, 4, 0.92);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,235,0,0.3);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.02) inset,
+    0 8px 40px rgba(0,0,0,0.8),
+    0 0 30px rgba(255,235,0,0.08),
+    inset 0 0 40px rgba(255,235,0,0.02);
+  transition: all 0.3s ease;
+}
+
+.glass:hover {
+  border-color: rgba(255,235,0,0.5);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03) inset,
+    0 12px 56px rgba(0,0,0,0.9),
+    0 0 50px rgba(255,235,0,0.15),
+    inset 0 0 60px rgba(255,235,0,0.03);
+}
+
+.glass-strong {
+  background: rgba(4, 8, 2, 0.97);
+  border-color: rgba(255,235,0,0.5);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 16px 64px rgba(0,0,0,0.95),
+    0 0 80px rgba(255,235,0,0.12),
+    inset 0 0 80px rgba(255,235,0,0.04);
+}
+
+.gold-border { border: 1px solid var(--neon-gold); box-shadow: 0 0 8px rgba(255,215,0,0.3); }
+.gold-border-dim { border: 1px solid rgba(255,215,0,0.4); }
+
+/* BOTÓN PRIMARIO - NEÓN AMARILLO CON GLOW PULSANTE */
+.btn-primary {
+  @apply relative px-8 py-3.5 rounded-full font-bold uppercase tracking-wider text-sm transition-all duration-300;
+  background: linear-gradient(135deg, #FFEB00 0%, #FFD700 50%, #FFEB00 100%);
+  background-size: 200% auto;
+  color: var(--bg-night);
+  box-shadow:
+    0 0 0 1px rgba(255,235,0,0.8) inset,
+    0 4px 30px rgba(255,235,0,0.6),
+    0 0 40px rgba(255,235,0,0.4),
+    0 0 80px rgba(255,235,0,0.2);
+  animation: btn-neon-pulse 3s ease-in-out infinite;
+}
+
+@keyframes btn-neon-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(255,235,0,0.8) inset, 0 4px 30px rgba(255,235,0,0.6), 0 0 40px rgba(255,235,0,0.4), 0 0 80px rgba(255,235,0,0.2); }
+  50% { box-shadow: 0 0 0 1px rgba(255,235,0,1) inset, 0 6px 40px rgba(255,235,0,0.8), 0 0 60px rgba(255,235,0,0.6), 0 0 120px rgba(255,235,0,0.35); }
+}
+
+.btn-primary:hover {
+  background-position: 100% center;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 0 0 2px rgba(255,235,0,1) inset,
+    0 8px 48px rgba(255,235,0,0.9),
+    0 0 80px rgba(255,235,0,0.6),
+    0 0 160px rgba(255,235,0,0.4);
+}
+
+.btn-primary:active { transform: translateY(-1px) scale(0.98); }
+
+/* BOTÓN SECUNDARIO - ROJO FOSFORESCENTE */
+.btn-secondary {
+  @apply px-8 py-3.5 rounded-full font-bold uppercase tracking-wider text-sm transition-all duration-300;
+  background: transparent;
+  color: var(--neon-yellow);
+  border: 2px solid var(--neon-yellow);
+  box-shadow: 0 0 20px rgba(255,235,0,0.3), inset 0 0 20px rgba(255,235,0,0.1);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #FF073A 0%, #FF2D4A 100%);
+  color: var(--white);
+  border-color: var(--phosphor-red);
+  box-shadow: 0 0 30px rgba(255,7,58,0.6), inset 0 0 30px rgba(255,7,58,0.2);
+  transform: translateY(-2px);
+}
+
+/* BOTÓN WHATSAPP - VERDE NEÓN */
+.btn-whatsapp {
+  @apply px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 flex items-center gap-2;
+  background: linear-gradient(135deg, #00FF88 0%, #00E676 100%);
+  color: var(--bg-night);
+  box-shadow:
+    0 0 0 1px rgba(0,255,136,0.8) inset,
+    0 4px 24px rgba(0,255,136,0.5),
+    0 0 40px rgba(0,255,136,0.3);
+  animation: wa-pulse 3s ease-in-out infinite;
+}
+
+@keyframes wa-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(0,255,136,0.8) inset, 0 4px 24px rgba(0,255,136,0.5), 0 0 40px rgba(0,255,136,0.3); }
+  50% { box-shadow: 0 0 0 1px rgba(0,255,136,1) inset, 0 6px 36px rgba(0,255,136,0.7), 0 0 60px rgba(0,255,136,0.5); }
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 0 0 2px rgba(0,255,136,1) inset,
+    0 8px 40px rgba(0,255,136,0.8),
+    0 0 80px rgba(0,255,136,0.5);
+}
+
+/* BADGE TORNEO - NEÓN CON GLOW */
+.badge-torneo {
+  @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider;
+  background: linear-gradient(135deg, rgba(255,235,0,0.25) 0%, rgba(255,7,58,0.15) 100%);
+  border: 1px solid rgba(255,235,0,0.7);
+  color: var(--neon-yellow);
+  box-shadow:
+    0 0 16px rgba(255,235,0,0.4),
+    inset 0 0 16px rgba(255,235,0,0.1),
+    0 0 0 1px rgba(255,235,0,0.3) inset;
+  animation: badge-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes badge-glow {
+  0%, 100% { box-shadow: 0 0 16px rgba(255,235,0,0.4), inset 0 0 16px rgba(255,235,0,0.1), 0 0 0 1px rgba(255,235,0,0.3) inset; }
+  50% { box-shadow: 0 0 32px rgba(255,235,0,0.7), inset 0 0 32px rgba(255,235,0,0.2), 0 0 0 2px rgba(255,235,0,0.5) inset; }
 }
 
 /* ========================================
    CONTENIDO PRINCIPAL - SOBRE EL FONDO
    ======================================== */
 
-/* Fuerza a todo el contenido real a estar por encima del fondo */
-main,
-section,
-header,
-footer,
-.glass,
-.glass-strong,
-.sport-card,
-.table-container,
-.tabs-list,
-.tab-btn,
-.btn-primary,
-.btn-secondary,
-.btn-whatsapp,
-.badge-torneo,
-.form-input,
-.official-crest,
-.fab-whatsapp {
-  position: relative;
-  z-index: 10;
+main, section, header, footer,
+.glass, .glass-strong, .sport-card, .table-container,
+.tabs-list, .tab-btn, .btn-primary, .btn-secondary,
+.btn-whatsapp, .badge-torneo, .form-input,
+.official-crest, .fab-whatsapp {
+  position: relative; z-index: 10;
 }
 
-/* Mejora de contraste para tarjetas y contenedores */
-.glass,
-.glass-strong,
-.sport-card {
-  background: rgba(8, 16, 6, 0.9) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(232,197,71,0.25) !important;
+/* TARJETAS CON GLOW NEÓN */
+.glass, .glass-strong, .sport-card {
+  background: rgba(4, 8, 2, 0.95) !important;
+  backdrop-filter: blur(24px) !important; -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(255,235,0,0.35) !important;
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.03) inset,
-    0 12px 48px rgba(0,0,0,0.7),
-    0 0 60px rgba(0,0,0,0.5) !important;
+    0 0 0 1px rgba(255,255,255,0.02) inset,
+    0 12px 56px rgba(0,0,0,0.9),
+    0 0 50px rgba(255,235,0,0.12) !important;
+  transition: all 0.4s ease;
 }
 
-.glass-strong {
-  background: rgba(6, 12, 4, 0.95) !important;
-  border-color: rgba(232,197,71,0.4) !important;
+.glass:hover, .glass-strong:hover, .sport-card:hover {
+  border-color: rgba(255,235,0,0.7) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 16px 72px rgba(0,0,0,0.95),
+    0 0 80px rgba(255,235,0,0.2),
+    inset 0 0 100px rgba(255,235,0,0.05) !important;
+  transform: translateY(-6px);
 }
 
+.sport-card {
+  clip-path: polygon(0 8%, 8% 0, 100% 0, 100% 92%, 92% 100%, 0 100%);
+  background: rgba(4, 8, 2, 0.95) !important;
+  border: 1px solid rgba(255,235,0,0.25);
+}
+
+.sport-card::before {
+  content: ""; position: absolute; inset: 0;
+  clip-path: polygon(0 8%, 8% 0, 100% 0, 100% 92%, 92% 100%, 0 100%);
+  background: linear-gradient(135deg, rgba(255,235,0,0.12) 0%, transparent 50%, rgba(255,7,58,0.08) 100%);
+  opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+}
+
+.sport-card:hover::before { opacity: 1; }
+
+/* TABLAS */
 .table-container {
-  background: rgba(6, 12, 4, 0.85) !important;
-  border: 1px solid rgba(232,197,71,0.2);
+  background: rgba(4, 8, 2, 0.9) !important;
+  border: 1px solid rgba(255,235,0,0.25);
+  box-shadow: 0 0 40px rgba(255,235,0,0.08);
 }
 
 .table th {
-  background: linear-gradient(135deg, rgba(232,197,71,0.18) 0%, rgba(192,57,43,0.12) 100%) !important;
+  background: linear-gradient(135deg, rgba(255,235,0,0.25) 0%, rgba(255,7,58,0.15) 100%) !important;
+  color: var(--neon-yellow);
+  border-bottom: 2px solid rgba(255,235,0,0.4);
+  text-shadow: 0 0 8px rgba(255,235,0,0.5);
 }
 
-.table td {
-  background: rgba(6, 12, 4, 0.7) !important;
-}
+.table td { background: rgba(4, 8, 2, 0.75) !important; border-bottom: 1px solid rgba(255,215,0,0.1); }
+.table tbody tr:hover td { background: rgba(255,235,0,0.12) !important; }
+.table tbody tr:nth-child(even) td { background: rgba(4, 8, 2, 0.55) !important; }
 
-.table tbody tr:nth-child(even) td {
-  background: rgba(6, 12, 4, 0.5) !important;
-}
-
+/* TABS */
 .tabs-list .tab-btn {
-  background: rgba(6, 12, 4, 0.9) !important;
-  backdrop-filter: blur(12px) !important;
+  background: rgba(4, 8, 2, 0.95) !important; backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255,235,0,0.25); color: var(--white-dim);
 }
+
+.tabs-list .tab-btn:hover { border-color: rgba(255,235,0,0.6); color: var(--neon-yellow); }
 
 .tabs-list .tab-btn.active {
-  background: linear-gradient(135deg, var(--gold) 0%, #ffd700 100%) !important;
-  box-shadow: 0 4px 24px rgba(232,197,71,0.5);
-}
-
-.form-input {
-  background: rgba(6, 12, 4, 0.9) !important;
-  backdrop-filter: blur(12px) !important;
-  border-color: rgba(232,197,71,0.25) !important;
-}
-
-.form-input:focus {
-  border-color: var(--gold) !important;
-  box-shadow: 0 0 0 3px rgba(232,197,71,0.25), 0 0 24px rgba(232,197,71,0.15) !important;
-}
-
-.badge-torneo {
-  background: linear-gradient(135deg, rgba(232,197,71,0.25) 0%, rgba(192,57,43,0.18) 100%) !important;
-  border-color: rgba(232,197,71,0.6) !important;
-  box-shadow: 0 0 24px rgba(232,197,71,0.25);
-}
-
-/* Asegurar que el hero y secciones no tengan fondo que tape el césped */
-section[id] {
-  background: transparent !important;
-}
-
-/* Header y Footer también sobre el fondo */
-header,
-footer {
-  background: transparent !important;
-  z-index: 20;
-}
-
-/* ========================================
-   TIPOGRAFÍA Y EFECTOS DE TEXTO
-   ======================================== */
-
-.font-display {
-  font-family: "Bebas Neue", "Impact", "Arial Narrow Bold", sans-serif;
-  letter-spacing: 0.03em;
-  line-height: 1.1;
-}
-
-.gold-gradient {
-  background: linear-gradient(135deg, #ffd700 0%, #e8c547 30%, #ffd700 60%, #ff8c00 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: gold-shine 3s linear infinite;
-}
-
-@keyframes gold-shine {
-  0% { background-position: 200% center; }
-  100% { background-position: -20% center; }
-}
-
-.red-gradient {
-  background: linear-gradient(135deg, #c0392b 0%, #e74c3c 50%, #ff6b5b 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-/* ========================================
-   COMPONENTES BASE
-   ======================================== */
-
-.glass {
-  background: rgba(10, 18, 8, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(232,197,71,0.2);
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.02) inset,
-    0 8px 32px rgba(0,0,0,0.5),
-    0 0 40px rgba(232,197,71,0.05);
-}
-
-.glass-strong {
-  background: rgba(8, 16, 6, 0.92);
-  border-color: rgba(232,197,71,0.35);
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.03) inset,
-    0 12px 48px rgba(0,0,0,0.6),
-    0 0 60px rgba(232,197,71,0.08);
-}
-
-.gold-border {
-  border: 1px solid var(--gold-dim);
-}
-
-.gold-border-dim {
-  border: 1px solid rgba(232,197,71,0.3);
-}
-
-.btn-primary {
-  @apply relative px-8 py-3.5 rounded-full font-bold uppercase tracking-wider text-sm transition-all duration-300;
-  background: linear-gradient(135deg, #ffd700 0%, #e8c547 50%, #ffd700 100%);
-  background-size: 200% auto;
+  background: linear-gradient(135deg, var(--neon-yellow) 0%, var(--neon-gold) 100%) !important;
   color: var(--bg-night);
-  box-shadow: 0 4px 24px rgba(232,197,71,0.4);
+  border-color: var(--neon-yellow);
+  box-shadow:
+    0 0 0 1px rgba(255,235,0,0.8) inset,
+    0 4px 30px rgba(255,235,0,0.6),
+    0 0 40px rgba(255,235,0,0.4);
 }
 
-.btn-primary:hover {
-  background-position: 100% center;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(232,197,71,0.6);
-}
-
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-.btn-secondary {
-  @apply px-8 py-3.5 rounded-full font-bold uppercase tracking-wider text-sm transition-all duration-300;
-  background: transparent;
-  color: var(--gold);
-  border: 2px solid var(--gold);
-}
-
-.btn-secondary:hover {
-  background: var(--gold);
-  color: var(--bg-night);
-}
-
-.btn-whatsapp {
-  @apply px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 flex items-center gap-2;
-  background: #25d366;
-  color: white;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.5);
-}
-
-.btn-whatsapp:hover {
-  background: #1ea952;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(37,211,102,0.7);
-}
-
-.badge-torneo {
-  @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider;
-  background: linear-gradient(135deg, rgba(232,197,71,0.2) 0%, rgba(192,57,43,0.15) 100%);
-  border: 1px solid rgba(232,197,71,0.5);
-  color: var(--gold);
-  box-shadow: 0 0 20px rgba(232,197,71,0.2);
-}
-
-/* ========================================
-   FORMULARIOS
-   ======================================== */
-
+/* FORMULARIOS */
 .form-input {
   @apply w-full px-4 py-3.5 rounded-xl text-base transition-all duration-300;
-  background: rgba(8, 16, 6, 0.8);
-  border: 1px solid rgba(232,197,71,0.2);
+  background: rgba(4, 8, 2, 0.95) !important;
+  backdrop-filter: blur(16px) !important; -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255,235,0,0.3) !important;
   color: var(--white);
 }
 
 .form-input:focus {
   outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(232,197,71,0.2), 0 0 20px rgba(232,197,71,0.1);
+  border-color: var(--neon-yellow) !important;
+  box-shadow:
+    0 0 0 3px rgba(255,235,0,0.3),
+    0 0 30px rgba(255,235,0,0.2),
+    inset 0 0 20px rgba(255,235,0,0.1) !important;
 }
 
-.form-input::placeholder {
-  color: var(--white-dim);
-  opacity: 0.5;
+.form-input::placeholder { color: var(--white-dim); opacity: 0.6; }
+
+.form-label { @apply block mb-2 text-sm font-medium; color: var(--neon-yellow); text-shadow: 0 0 8px rgba(255,235,0,0.4); }
+
+/* ESCUDO OFICIAL */
+.official-crest {
+  @apply relative w-72 h-80 mx-auto;
+  filter:
+    drop-shadow(0 0 20px rgba(255,235,0,0.7))
+    drop-shadow(0 0 40px rgba(255,235,0,0.5))
+    drop-shadow(0 24px 48px rgba(0,0,0,0.7));
 }
 
-.form-label {
-  @apply block mb-2 text-sm font-medium text-gold;
+.official-crest-glow {
+  position: absolute; inset: -30px;
+  background: radial-gradient(ellipse at center, rgba(255,235,0,0.35) 0%, transparent 70%);
+  border-radius: 50%; animation: crest-pulse 3s ease-in-out infinite; z-index: -1;
 }
+
+@keyframes crest-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); filter: brightness(1); }
+  50% { opacity: 1; transform: scale(1.12); filter: brightness(1.3); }
+}
+
+/* FAB WHATSAPP */
+.fab-whatsapp {
+  @apply fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full transition-all duration-300;
+  background: linear-gradient(135deg, #00FF88 0%, #00E676 100%);
+  box-shadow:
+    0 0 0 2px rgba(0,255,136,0.6) inset,
+    0 8px 32px rgba(0,255,136,0.5),
+    0 0 50px rgba(0,255,136,0.4),
+    0 0 100px rgba(0,255,136,0.2);
+  animation: fab-neon-breathe 2.5s ease-in-out infinite;
+}
+
+@keyframes fab-neon-breathe {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(0,255,136,0.6) inset, 0 8px 32px rgba(0,255,136,0.5), 0 0 50px rgba(0,255,136,0.4), 0 0 100px rgba(0,255,136,0.2); }
+  50% { box-shadow: 0 0 0 3px rgba(0,255,136,0.9) inset, 0 12px 48px rgba(0,255,136,0.8), 0 0 80px rgba(0,255,136,0.6), 0 0 150px rgba(0,255,136,0.35); }
+}
+
+.fab-whatsapp:hover { transform: scale(1.15); }
+.fab-whatsapp svg { @apply w-8 h-8; color: var(--bg-night); }
 
 /* ========================================
-   TABLAS
-   ======================================== */
-
-.table-container {
-  @apply overflow-x-auto rounded-2xl;
-  background: rgba(8, 16, 6, 0.6);
-}
-
-.table {
-  @apply w-full border-collapse;
-}
-
-.table th {
-  @apply px-4 py-3 text-left text-xs font-bold uppercase tracking-wider;
-  background: linear-gradient(135deg, rgba(232,197,71,0.15) 0%, rgba(192,57,43,0.1) 100%);
-  color: var(--gold);
-  border-bottom: 2px solid rgba(232,197,71,0.3);
-}
-
-.table td {
-  @apply px-4 py-3 text-sm;
-  border-bottom: 1px solid rgba(232,197,71,0.08);
-  background: rgba(8, 16, 6, 0.5);
-}
-
-.table tr:last-child td {
-  border-bottom: none;
-}
-
-.table tbody tr {
-  transition: background 0.2s ease;
-}
-
-.table tbody tr:hover {
-  background: rgba(232,197,71,0.08);
-}
-
-.table tbody tr:nth-child(even) td {
-  background: rgba(8, 16, 6, 0.3);
-}
-
-.table tbody tr:nth-child(even):hover td {
-  background: rgba(232,197,71,0.08);
-}
-
-/* ========================================
-   TARJETAS DEPORTIVAS ANGULARES
-   ======================================== */
-
-.sport-card {
-  @apply relative overflow-hidden rounded-2xl transition-all duration-300;
-  clip-path: polygon(0 8%, 8% 0, 100% 0, 100% 92%, 92% 100%, 0 100%);
-  background: rgba(10, 18, 8, 0.9);
-  border: 1px solid rgba(232,197,71,0.15);
-}
-
-.sport-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  clip-path: polygon(0 8%, 8% 0, 100% 0, 100% 92%, 92% 100%, 0 100%);
-  background: linear-gradient(135deg, rgba(232,197,71,0.08) 0%, transparent 50%, rgba(192,57,43,0.05) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.sport-card:hover::before {
-  opacity: 1;
-}
-
-.sport-card:hover {
-  border-color: rgba(232,197,71,0.5);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 40px rgba(232,197,71,0.1);
-}
-
-.sport-card-img {
-  @apply w-full h-48 object-cover transition-transform duration-500;
-}
-
-.sport-card:hover .sport-card-img {
-  transform: scale(1.05);
-}
-
-/* ========================================
-   ESCUDOS DE RESPALDO SVG
+   ESCUDOS EQUIPOS - NEÓN
    ======================================== */
 
 .team-badge {
   @apply relative w-20 h-24 mx-auto flex items-center justify-center;
   background: var(--team-color, var(--grass-dark));
   clip-path: polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
-  border: 2px solid var(--gold-dim);
+  border: 2px solid var(--neon-gold);
+  box-shadow:
+    0 0 16px rgba(255,215,0,0.5),
+    inset 0 0 16px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(255,215,0,0.4) inset;
 }
 
 .team-badge::before {
-  content: "";
-  position: absolute;
-  inset: 2px;
+  content: ""; position: absolute; inset: 2px;
   clip-path: polygon(50% 0%, 100% 15%, 100% 85%, 50% 100%, 0% 85%, 0% 15%);
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.4);
 }
 
 .team-badge-initials {
-  @apply relative z-10 font-display text-2xl font-bold text-gold text-shadow-gold;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 12px var(--gold);
+  @apply relative z-10 font-display text-2xl font-bold;
+  color: var(--neon-yellow);
+  text-shadow:
+    0 0 8px rgba(255,235,0,0.9),
+    0 0 16px rgba(255,235,0,0.7),
+    0 2px 4px rgba(0,0,0,0.9);
 }
 
-.text-shadow-gold {
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 12px var(--gold);
-}
-
-/* ========================================
-   ESCUDO OFICIAL DECORATIVO (HERO)
-   ======================================== */
-
-.official-crest {
-  @apply relative w-72 h-80 mx-auto;
-  filter: drop-shadow(0 0 30px rgba(232,197,71,0.4)) drop-shadow(0 20px 40px rgba(0,0,0,0.5));
-}
-
-.official-crest svg {
-  width: 100%;
-  height: 100%;
-}
-
-.official-crest-glow {
-  position: absolute;
-  inset: -20px;
-  background: radial-gradient(ellipse at center, rgba(232,197,71,0.25) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: crest-pulse 4s ease-in-out infinite;
-  z-index: -1;
-}
-
-@keyframes crest-pulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.1); }
-}
-
-/* ========================================
-   FLOATING ACTION BUTTON (FAB)
-   ======================================== */
-
-.fab-whatsapp {
-  @apply fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full transition-all duration-300;
-  background: linear-gradient(135deg, #25d366 0%, #1ea952 100%);
-  box-shadow:
-    0 8px 32px rgba(37,211,102,0.5),
-    0 0 0 4px rgba(37,211,102,0.2),
-    0 0 60px rgba(37,211,102,0.3);
-  animation: fab-breathe 3s ease-in-out infinite;
-}
-
-.fab-whatsapp:hover {
-  transform: scale(1.1);
-  box-shadow:
-    0 12px 40px rgba(37,211,102,0.6),
-    0 0 0 6px rgba(37,211,102,0.3),
-    0 0 80px rgba(37,211,102,0.4);
-}
-
-@keyframes fab-breathe {
-  0%, 100% { box-shadow: 0 8px 32px rgba(37,211,102,0.5), 0 0 0 4px rgba(37,211,102,0.2), 0 0 60px rgba(37,211,102,0.3); }
-  50% { box-shadow: 0 8px 32px rgba(37,211,102,0.5), 0 0 0 8px rgba(37,211,102,0.15), 0 0 80px rgba(37,211,102,0.4); }
-}
-
-.fab-whatsapp svg {
-  @apply w-8 h-8 text-white;
-}
+.text-shadow-gold { text-shadow: 0 0 8px rgba(255,235,0,0.9), 0 0 16px rgba(255,235,0,0.7), 0 2px 4px rgba(0,0,0,0.9); }
 
 /* ========================================
    TABS / PESTAÑAS
    ======================================== */
-
-.tabs-list {
-  @apply flex flex-wrap gap-2 mb-6;
-}
-
-.tab-btn {
-  @apply px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200;
-  background: rgba(8, 16, 6, 0.8);
-  border: 1px solid rgba(232,197,71,0.2);
-  color: var(--white-dim);
-}
-
-.tab-btn:hover {
-  border-color: rgba(232,197,71,0.5);
-  color: var(--gold);
-}
-
-.tab-btn.active {
-  background: linear-gradient(135deg, var(--gold) 0%, #ffd700 100%);
-  color: var(--bg-night);
-  border-color: var(--gold);
-  box-shadow: 0 4px 20px rgba(232,197,71,0.4);
-}
+.tabs-list { @apply flex flex-wrap gap-2 mb-6; }
 
 /* ========================================
-   ACCESIBILIDAD Y MOTION
+   ACCESIBILIDAD
    ======================================== */
-
-:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
+:focus-visible { outline: 2px solid var(--neon-yellow); outline-offset: 2px; box-shadow: 0 0 16px rgba(255,235,0,0.6); }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
 
 /* ========================================
    UTILIDADES
    ======================================== */
-
-.text-gold { color: var(--gold); }
-.text-gold-dim { color: var(--gold-dim); }
-.text-red { color: var(--red); }
+.text-neon { color: var(--neon-yellow); text-shadow: 0 0 8px rgba(255,235,0,0.6); }
+.text-neon-dim { color: var(--neon-gold); }
+.text-phosphor { color: var(--phosphor-red); text-shadow: 0 0 8px rgba(255,7,58,0.7); }
 .text-white-dim { color: var(--white-dim); }
 
 .bg-grass { background-color: var(--grass-dark); }
@@ -644,8 +509,7 @@ footer {
 .aspect-square { aspect-ratio: 1 / 1; }
 .aspect-crest { aspect-ratio: 9 / 10; }
 
-/* Scrollbar personalizada */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg-night); }
-::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--neon-yellow), var(--phosphor-red)); border-radius: 4px; box-shadow: 0 0 8px rgba(255,235,0,0.5); }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--phosphor-red), var(--neon-yellow)); }

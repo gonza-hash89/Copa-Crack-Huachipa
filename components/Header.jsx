@@ -39,18 +39,18 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <Link href="#inicio" className="flex items-center gap-3" aria-label="Copa Crack Perú - Inicio">
             <Logo size={48} />
-            <span className="hidden sm:block font-display text-xl text-gold">Copa Crack Perú</span>
+            <span className="hidden sm:block font-display text-xl text-neon-yellow">Copa Crack Perú</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-white-dim hover:text-gold transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gold after:transition-all hover:after:w-full"
-              >
-                {link.label}
-              </Link>
+<Link
+  key={link.href}
+  href={link.href}
+  className="text-sm font-medium text-white-dim hover:text-neon-yellow transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-neon-yellow after:transition-all hover:after:w-full"
+>
+  {link.label}
+</Link>
             ))}
             <a
               href={waUrl}
@@ -66,22 +66,22 @@ export default function Header() {
             </a>
           </div>
 
-          <button
-            className="md:hidden p-2 rounded-xl glass text-gold hover:bg-gold/10 transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-menu"
-            aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
-          >
-            {mobileOpen ? (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                <path d="M3 12h18M3 6h18M3 18h18" />
-              </svg>
-            )}
+<button
+  className="md:hidden p-2 rounded-xl glass text-neon-yellow hover:bg-neon-yellow/10 transition-colors"
+  onClick={() => setMobileOpen(!mobileOpen)}
+  aria-expanded={mobileOpen}
+  aria-controls="mobile-menu"
+  aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+>
+{mobileOpen ? (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]">
+    <path d="M18 6L6 18M6 6l12 12" />
+  </svg>
+) : (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]">
+    <path d="M3 12h18M3 6h18M3 18h18" />
+  </svg>
+)}
           </button>
         </div>
 
@@ -93,14 +93,14 @@ export default function Header() {
         >
           <div className="glass-strong rounded-2xl p-4 space-y-2">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block px-4 py-3 rounded-xl text-base font-medium text-white-dim hover:text-gold hover:bg-gold/5 transition-colors"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
+<Link
+  key={link.href}
+  href={link.href}
+  className="block px-4 py-3 rounded-xl text-base font-medium text-white-dim hover:text-neon-yellow hover:bg-neon-yellow/5 transition-colors"
+  onClick={() => setMobileOpen(false)}
+>
+  {link.label}
+</Link>
             ))}
             <a
               href={waUrl}

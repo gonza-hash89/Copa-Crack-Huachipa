@@ -34,7 +34,7 @@ function DGCell({ dg }) {
   const isPositive = dg > 0;
   const isNegative = dg < 0;
   return (
-    <span className={`font-display ${isPositive ? "text-green-400" : isNegative ? "text-red-400" : "text-white-dim"}`}>
+    <span className={`font-display ${isPositive ? "text-green-400" : isNegative ? "text-phosphor" : "text-white-dim"}`}>
       {isPositive ? "+" : ""}{dg}
     </span>
   );
@@ -50,7 +50,7 @@ export default function Standings() {
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <span className="badge-torneo">Clasificación</span>
-          <h2 className="font-display mt-6 text-4xl sm:text-5xl gold-gradient" data-text="POSICIONES">TABLA DE POSICIONES</h2>
+          <h2 className="font-display mt-6 text-4xl sm:text-5xl neon-title" data-text="POSICIONES">TABLA DE POSICIONES</h2>
           <p className="mt-2 text-white-dim">Clasificación oficial por categoría</p>
         </div>
 
@@ -68,7 +68,7 @@ export default function Standings() {
           ))}
         </div>
 
-        <div className="table-container gold-border-dim">
+        <div className="table-container gold-border">
           <table className="table" role="table" aria-label={`Tabla de posiciones ${activeCategory}`}>
             <thead>
               <tr>

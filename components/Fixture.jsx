@@ -5,7 +5,7 @@ import fixtures from "@/data/fixtures.json";
 
 const statusStyles = {
   programado: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-  en_vivo: "bg-red-500/20 text-red-400 border-red-500/30 animate-pulse",
+  en_vivo: "bg-phosphor-red/20 text-phosphor-red border-phosphor-red/30 animate-pulse shadow-[0_0_12px_rgba(255,7,58,0.5)]",
   finalizado: "bg-green-500/20 text-green-400 border-green-500/30",
   suspendido: "bg-amber-500/20 text-amber-400 border-amber-500/30",
 };
@@ -28,7 +28,7 @@ export default function Fixture() {
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <span className="badge-torneo">Próximos Partidos</span>
-          <h2 className="font-display mt-6 text-4xl sm:text-5xl gold-gradient" data-text="FIXTURE">FIXTURE</h2>
+          <h2 className="font-display mt-6 text-4xl sm:text-5xl neon-title" data-text="FIXTURE">FIXTURE</h2>
           <p className="mt-2 text-white-dim">Calendario completo por jornadas</p>
         </div>
 
@@ -70,14 +70,14 @@ export default function Fixture() {
               <div className="text-center px-4">
                 <div className="flex items-center justify-center gap-3 mb-2">
                   <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border ${statusStyles[match.status]}`}>
-                    {match.status === "en_vivo" && <span className="w-1.5 h-1.5 rounded-full bg-red-400 mr-1.5 animate-pulse" aria-hidden="true" />}
+                    {match.status === "en_vivo" && <span className="w-1.5 h-1.5 rounded-full bg-phosphor-red mr-1.5 animate-pulse shadow-[0_0_8px_rgba(255,7,58,0.8)]" aria-hidden="true" />}
                     {statusLabels[match.status]}
                   </span>
                 </div>
                 <div className="flex items-center justify-center gap-4">
-                  <span className="font-display text-3xl text-gold tabular-nums">{match.score.local}</span>
-                  <span className="text-white-dim">-</span>
-                  <span className="font-display text-3xl text-gold tabular-nums">{match.score.visitante}</span>
+<span className="font-display text-3xl text-neon-yellow tabular-nums">{match.score.local}</span>
+<span className="text-white-dim">-</span>
+<span className="font-display text-3xl text-neon-yellow tabular-nums">{match.score.visitante}</span>
                 </div>
                 <div className="flex items-center justify-center gap-4 mt-2 text-sm text-white-dim">
                   <span className="flex items-center gap-1">

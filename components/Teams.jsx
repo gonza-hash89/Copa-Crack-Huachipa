@@ -43,7 +43,7 @@ export default function Teams() {
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <span className="badge-torneo">Participantes</span>
-          <h2 className="font-display mt-6 text-4xl sm:text-5xl gold-gradient" data-text="EQUIPOS">EQUIPOS</h2>
+          <h2 className="font-display mt-6 text-4xl sm:text-5xl neon-title" data-text="EQUIPOS">EQUIPOS</h2>
           <p className="mt-2 text-white-dim">Academias inscritas por categoría</p>
         </div>
 

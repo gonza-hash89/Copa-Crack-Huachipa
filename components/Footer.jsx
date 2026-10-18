@@ -31,11 +31,11 @@ export default function Footer() {
           <div className="glass-strong rounded-2xl p-6 sport-card">
             <div className="flex items-center gap-3 mb-4">
               <svg width="48" height="48" viewBox="0 0 90 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M45 5 L85 20 V80 C85 92 68 98 45 98 C22 98 5 92 5 80 V20 Z" fill="#080404" stroke="#e8c547" strokeWidth="3" />
-                <text x="45" y="55" textAnchor="middle" fontFamily="Bebas Neue, Impact, sans-serif" fontSize="28" fill="#e8c547" fontWeight="bold" letterSpacing="2">CCP</text>
+<path d="M45 5 L85 20 V80 C85 92 68 98 45 98 C22 98 5 92 5 80 V20 Z" fill="#050202" stroke="#FFEB00" strokeWidth="3" filter="drop-shadow(0 0 8px #FFEB00)" />
+<text x="45" y="55" textAnchor="middle" fontFamily="Bebas Neue, Impact, sans-serif" fontSize="28" fill="#FFEB00" fontWeight="bold" letterSpacing="2" filter="drop-shadow(0 0 6px #FFEB00)">CCP</text>
               </svg>
               <div>
-                <h3 className="font-display text-xl text-gold">Copa Crack Perú</h3>
+                <h3 className="font-display text-xl text-neon-yellow">Copa Crack Perú</h3>
                 <p className="text-xs text-white-dim">Torneo de Fútbol Formativo</p>
               </div>
             </div>
@@ -49,7 +49,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full glass flex items-center justify-center text-white-dim hover:text-gold hover:border-gold/50 transition-colors border border-white/10"
+                  className="w-10 h-10 rounded-full glass flex items-center justify-center text-white-dim hover:text-neon-yellow hover:border-neon-yellow/50 transition-colors border border-white/10"
                   aria-label={social.name}
                 >
                   {social.icon}
@@ -62,16 +62,16 @@ export default function Footer() {
             <h4 className="font-display text-lg text-gold mb-4">Ubicación</h4>
             <address className="text-sm text-white-dim not-italic space-y-3">
               <div className="flex items-start gap-3">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8c547" strokeWidth="2" className="flex-shrink-0 mt-0.5" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" className="flex-shrink-0 mt-0.5 drop-shadow-[0_0_4px_rgba(255,235,0,0.5)]" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 <span>Complejo Deportivo Cerro Camote<br />Huachipa, Lurigancho-Chosica, Lima</span>
               </div>
               <div className="flex items-start gap-3">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8c547" strokeWidth="2" className="flex-shrink-0 mt-0.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <a href={`tel:+${WHATSAPP_NUMBER}`} className="hover:text-gold transition-colors">+51 999 999 999</a>
+                <a href={`tel:+${WHATSAPP_NUMBER}`} className="hover:text-neon-yellow transition-colors text-phosphor-red">+51 999 999 999</a>
               </div>
               <div className="flex items-start gap-3">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8c547" strokeWidth="2" className="flex-shrink-0 mt-0.5" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:info@copacrackperu.com" className="hover:text-gold transition-colors">info@copacrackperu.com</a>
+                <a href="mailto:info@copacrackperu.com" className="hover:text-neon-yellow transition-colors text-phosphor-red">info@copacrackperu.com</a>
               </div>
             </address>
           </div>
@@ -91,10 +91,10 @@ export default function Footer() {
                   { href: "#patrocinadores", label: "Patrocinadores" },
                 ].map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-white-dim hover:text-gold transition-colors flex items-center gap-2 group">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="transform group-hover:translate-x-1 transition-transform" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-                      {link.label}
-                    </Link>
+<Link href={link.href} className="text-sm text-white-dim hover:text-neon-yellow transition-colors flex items-center gap-2 group">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" className="transform group-hover:translate-x-1 transition-transform drop-shadow-[0_0_4px_rgba(255,235,0,0.5)]" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+  {link.label}
+</Link>
                   </li>
                 ))}
               </ul>
@@ -102,14 +102,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="glass rounded-2xl p-6 border border-gold/20">
+        <div className="glass rounded-2xl p-6 border border-neon-yellow/20">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center justify-center sm:justify-start gap-4 flex-wrap">
-              <Link href="/privacidad" className="text-xs text-white-dim hover:text-gold transition-colors">Política de Privacidad</Link>
-              <span className="text-white/20">·</span>
-              <Link href="/terminos" className="text-xs text-white-dim hover:text-gold transition-colors">Términos y Condiciones</Link>
-              <span className="text-white/20">·</span>
-              <Link href="/reclamaciones" className="text-xs text-white-dim hover:text-gold transition-colors">Libro de Reclamaciones</Link>
+<Link href="/privacidad" className="text-xs text-white-dim hover:text-neon-yellow transition-colors">Política de Privacidad</Link>
+<span className="text-white/20">·</span>
+<Link href="/terminos" className="text-xs text-white-dim hover:text-neon-yellow transition-colors">Términos y Condiciones</Link>
+<span className="text-white/20">·</span>
+<Link href="/reclamaciones" className="text-xs text-white-dim hover:text-neon-yellow transition-colors">Libro de Reclamaciones</Link>
             </div>
             <p className="text-xs text-white/50 text-center sm:text-right">
               © {new Date().getFullYear()} Copa Crack Perú. Todos los derechos reservados.

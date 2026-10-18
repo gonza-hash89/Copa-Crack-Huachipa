@@ -58,7 +58,7 @@ export default function PhotoGallery() {
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <span className="badge-torneo">Multimedia</span>
-          <h2 className="font-display mt-6 text-4xl sm:text-5xl gold-gradient" data-text="GALERÍA">GALERÍA DE FOTOS</h2>
+          <h2 className="font-display mt-6 text-4xl sm:text-5xl neon-title" data-text="GALERÍA">GALERÍA DE FOTOS</h2>
           <p className="mt-2 text-white-dim">Los mejores momentos del torneo</p>
         </div>
 
@@ -95,11 +95,11 @@ export default function PhotoGallery() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-left transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                   <p className="font-semibold text-white text-sm">{photo.title}</p>
-                  <p className="text-xs text-gold uppercase tracking-wider">{photo.category}</p>
+                  <p className="text-xs text-neon-yellow uppercase tracking-wider">{photo.category}</p>
                 </div>
                 <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
                   <div className="w-8 h-8 rounded-full bg-black/50 backdrop-blur flex items-center justify-center border border-gold/30">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8c547" strokeWidth="2" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.8)]">
                       <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
                       <circle cx="12" cy="13" r="4" />
                     </svg>
@@ -125,25 +125,25 @@ export default function PhotoGallery() {
           onClick={closeModal}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
         >
-          <button
-            onClick={closeModal}
-            aria-label="Cerrar galería"
-            className="absolute top-4 right-4 z-10 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:text-gold hover:bg-gold/10 transition-colors"
-          >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
+<button
+  onClick={closeModal}
+  aria-label="Cerrar galería"
+  className="absolute top-4 right-4 z-10 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:text-neon-yellow hover:bg-neon-yellow/10 transition-colors"
+>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]">
+    <path d="M18 6L6 18M6 6l12 12" />
+  </svg>
+</button>
 
-          <button
-            onClick={prevPhoto}
-            aria-label="Foto anterior"
-            className="absolute left-4 z-10 w-14 h-14 rounded-full glass flex items-center justify-center text-white hover:text-gold hover:bg-gold/10 transition-colors hidden sm:block"
-          >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
+<button
+  onClick={prevPhoto}
+  aria-label="Foto anterior"
+  className="absolute left-4 z-10 w-14 h-14 rounded-full glass flex items-center justify-center text-white hover:text-neon-yellow hover:bg-neon-yellow/10 transition-colors hidden sm:block"
+>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]">
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+</button>
 
           <figure onClick={(e) => e.stopPropagation()} className="relative max-w-5xl max-h-[85vh] w-full">
             <img
@@ -160,15 +160,15 @@ export default function PhotoGallery() {
             </figcaption>
           </figure>
 
-          <button
-            onClick={nextPhoto}
-            aria-label="Siguiente foto"
-            className="absolute right-4 z-10 w-14 h-14 rounded-full glass flex items-center justify-center text-white hover:text-gold hover:bg-gold/10 transition-colors hidden sm:block"
-          >
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M9 18l6-6-6-6" />
-            </svg>
-          </button>
+<button
+  onClick={nextPhoto}
+  aria-label="Siguiente foto"
+  className="absolute right-4 z-10 w-14 h-14 rounded-full glass flex items-center justify-center text-white hover:text-neon-yellow hover:bg-neon-yellow/10 transition-colors hidden sm:block"
+>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]">
+    <path d="M9 18l6-6-6-6" />
+  </svg>
+</button>
         </div>
       )}
     </section>

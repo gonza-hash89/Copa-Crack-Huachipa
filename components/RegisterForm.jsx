@@ -126,7 +126,7 @@ export default function RegisterForm() {
       <div className="relative z-10 mx-auto max-w-3xl">
         <div className="text-center mb-12">
           <span className="badge-torneo">Inscripción</span>
-          <h2 className="font-display mt-6 text-4xl sm:text-5xl gold-gradient" data-text="INSCRIPCIÓN">INSCRIPCIÓN EN LÍNEA</h2>
+          <h2 className="font-display mt-6 text-4xl sm:text-5xl neon-title" data-text="INSCRIPCIÓN">INSCRIPCIÓN EN LÍNEA</h2>
           <p className="mt-2 text-white-dim">Completa el formulario y te contactaremos por WhatsApp</p>
         </div>
 
@@ -152,15 +152,15 @@ export default function RegisterForm() {
 
             <div>
               <label htmlFor="category" className="form-label">Categoría *</label>
-              <select
-                id="category"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`form-input appearance-none bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22none%22 viewBox=%220 0 24 24%22 stroke=%22%23e8c547%22%3E%3Cpath stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%222%22 d=%22M19 9l-7 7-7-7%22/%3E%3C/svg%3E')] bg-[right_1rem_center] bg-no-repeat pr-10 ${errors.category ? "border-red-500 focus:border-red-500" : ""}`}
-                required
-              >
+<select
+  id="category"
+  name="category"
+  value={formData.category}
+  onChange={handleChange}
+  onBlur={handleBlur}
+  className={`form-input appearance-none bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22none%22 viewBox=%220 0 24 24%22 stroke=%22%23FFEB00%22%3E%3Cpath stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%222%22 d=%22M19 9l-7 7-7-7%22/%3E%3C/svg%3E')] bg-[right_1rem_center] bg-no-repeat pr-10 ${errors.category ? "border-phosphor-red focus:border-phosphor-red" : ""}`}
+  required
+>
                 <option value="">Selecciona una categoría</option>
                 {categories.map((cat) => (
                   <option key={cat.value} value={cat.value}>{cat.label}</option>
@@ -228,15 +228,15 @@ Ej:
             </div>
           </div>
 
-          <div className="flex items-start gap-3 p-4 rounded-xl bg-gold/5 border border-gold/20">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e8c547" strokeWidth="2" className="flex-shrink-0 mt-0.5" aria-hidden="true">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-            <div className="text-sm text-white-dim">
-              <p className="font-medium text-gold">Protección de datos:</p>
-              Al enviar, tus datos se formatean y abren directamente en WhatsApp. No almacenamos información sensible en nuestros servidores. Cumplimos Ley N° 29733.
-            </div>
-          </div>
+<div className="flex items-start gap-3 p-4 rounded-xl bg-neon-yellow/5 border border-neon-yellow/20">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" className="flex-shrink-0 mt-0.5 drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]" aria-hidden="true">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+  </svg>
+  <div className="text-sm text-white-dim">
+    <p className="font-medium text-neon-yellow">Protección de datos:</p>
+    Al enviar, tus datos se formatean y abren directamente en WhatsApp. No almacenamos información sensible en nuestros servidores. Cumplimos Ley N° 29733.
+  </div>
+</div>
 
           <button
             type="submit"

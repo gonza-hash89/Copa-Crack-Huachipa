@@ -42,7 +42,7 @@ export default function Sponsors() {
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <span className="badge-torneo">Aliados</span>
-          <h2 className="font-display mt-6 text-4xl sm:text-5xl gold-gradient" data-text="PATROCINADORES">PATROCINADORES OFICIALES</h2>
+          <h2 className="font-display mt-6 text-4xl sm:text-5xl neon-title" data-text="PATROCINADORES">PATROCINADORES OFICIALES</h2>
           <p className="mt-2 text-white-dim">Empresas que apoyan el fútbol formativo</p>
         </div>
 
@@ -82,9 +82,9 @@ export default function Sponsors() {
                       height="80"
                     />
                   ) : (
-                    <div className="w-32 h-16 rounded-xl bg-gradient-to-r from-gold/20 to-red/20 flex items-center justify-center border border-gold/30">
-                      <span className="font-display text-gold text-xl">{sponsor.name.substring(0, 3).toUpperCase()}</span>
-                    </div>
+<div className="w-32 h-16 rounded-xl bg-gradient-to-r from-neon-yellow/20 to-phosphor-red/20 flex items-center justify-center border border-neon-yellow/30">
+  <span className="font-display text-neon-yellow text-xl">{sponsor.name.substring(0, 3).toUpperCase()}</span>
+</div>
                   )}
                 </a>
               </div>
@@ -93,65 +93,65 @@ export default function Sponsors() {
 
           {sponsors.length > visibleCount && (
             <>
-              <button
-                onClick={prevSlide}
-                aria-label="Patrocinador anterior"
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 sm:-translate-x-4 z-10 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:text-gold hover:bg-gold/10 transition-colors hidden sm:block"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-              <button
-                onClick={nextSlide}
-                aria-label="Siguiente patrocinador"
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 sm:translate-x-4 z-10 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:text-gold hover:bg-gold/10 transition-colors hidden sm:block"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </button>
+<button
+  onClick={prevSlide}
+  aria-label="Patrocinador anterior"
+  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 sm:-translate-x-4 z-10 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:text-neon-yellow hover:bg-neon-yellow/10 transition-colors hidden sm:block"
+>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]">
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+</button>
+<button
+  onClick={nextSlide}
+  aria-label="Siguiente patrocinador"
+  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 sm:translate-x-4 z-10 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:text-neon-yellow hover:bg-neon-yellow/10 transition-colors hidden sm:block"
+>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]">
+    <path d="M9 18l6-6-6-6" />
+  </svg>
+</button>
             </>
           )}
 
           <div className="flex justify-center gap-2 mt-8" role="tablist" aria-label="Indicadores de patrocinadores">
             {sponsors.map((_, index) => (
-              <button
-                key={index}
-                role="tab"
-                aria-selected={index === currentIndex}
-                aria-label={`Ir a patrocinador ${index + 1}`}
-                onClick={() => goToSlide(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "bg-gold w-8"
-                    : "bg-white/30 hover:bg-gold/50"
-                }`}
-              />
+<button
+  key={index}
+  role="tab"
+  aria-selected={index === currentIndex}
+  aria-label={`Ir a patrocinador ${index + 1}`}
+  onClick={() => goToSlide(index)}
+  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+    index === currentIndex
+      ? "bg-neon-yellow w-8 shadow-[0_0_12px_rgba(255,235,0,0.8)]"
+      : "bg-white/30 hover:bg-neon-yellow/50"
+  }`}
+/>
             ))}
           </div>
         </div>
 
         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
           {sponsors.filter((s) => s.tier === "gold").map((sponsor) => (
-            <a
-              key={sponsor.id}
-              href={sponsor.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass rounded-xl p-4 sport-card flex items-center justify-center border-gold/30 hover:border-gold/60 transition-colors group"
-            >
-              {sponsor.logoUrl ? (
-                <img
-                  src={sponsor.logoUrl}
-                  alt={sponsor.name}
-                  loading="lazy"
-                  className="max-h-16 max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                />
-              ) : (
-                <span className="font-display text-gold text-lg">{sponsor.name}</span>
-              )}
-            </a>
+<a
+  key={sponsor.id}
+  href={sponsor.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="glass rounded-xl p-4 sport-card flex items-center justify-center border-neon-yellow/30 hover:border-neon-yellow/60 transition-colors group"
+>
+  {sponsor.logoUrl ? (
+    <img
+      src={sponsor.logoUrl}
+      alt={sponsor.name}
+      loading="lazy"
+      className="max-h-16 max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+    />
+  ) : (
+    <span className="font-display text-neon-yellow text-lg">{sponsor.name}</span>
+  )}
+</a>
           ))}
         </div>
       </div>
