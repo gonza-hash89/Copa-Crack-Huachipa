@@ -21,8 +21,10 @@ const columns = [
 function TeamCell({ team }) {
   return (
     <div className="flex items-center gap-3">
-      <div className="w-8 h-10 team-badge flex-shrink-0" style={{ "--team-color": team.color }}>
-        <span className="team-badge-initials text-xs">{team.short}</span>
+      <div className="w-8 h-10 flex-shrink-0">
+        <div className="w-full h-full bg-gradient-to-br from-red/30 to-gold/30 border-2 border-gold/50 shadow-[4px_4px_0_rgba(255,190,11,0.4)] flex items-center justify-center">
+          <span className="font-black text-xl text-white drop-shadow-lg">{team.short}</span>
+        </div>
       </div>
       <span className="font-medium text-white hidden sm:block">{team.name}</span>
       <span className="font-medium text-white sm:hidden">{team.short}</span>
@@ -34,7 +36,7 @@ function DGCell({ dg }) {
   const isPositive = dg > 0;
   const isNegative = dg < 0;
   return (
-    <span className={`font-display ${isPositive ? "text-green-400" : isNegative ? "text-phosphor" : "text-white-dim"}`}>
+    <span className={`font-display ${isPositive ? "text-green-400" : isNegative ? "text-red" : "text-white/60"}`}>
       {isPositive ? "+" : ""}{dg}
     </span>
   );
@@ -46,12 +48,12 @@ export default function Standings() {
   const currentStandings = standings[activeCategory] || [];
 
   return (
-    <section id="posiciones" className="px-4 py-16 grass-field tables">
+    <section id="posiciones" className="px-4 py-16">
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="text-center mb-12">
-          <span className="badge-torneo">Clasificación</span>
-          <h2 className="font-display mt-6 text-4xl sm:text-5xl neon-title" data-text="POSICIONES">TABLA DE POSICIONES</h2>
-          <p className="mt-2 text-white-dim">Clasificación oficial por categoría</p>
+          <span className="badge-sharp">Clasificación</span>
+          <h2 className="font-display mt-6 text-4xl sm:text-5xl text-gradient-gold" data-text="POSICIONES">TABLA DE POSICIONES</h2>
+          <p className="mt-2 text-white/60">Clasificación oficial por categoría</p>
         </div>
 
         <div className="tabs-list justify-center mb-8" role="tablist" aria-label="Categorías">
@@ -80,23 +82,23 @@ export default function Standings() {
             <tbody>
               {currentStandings.map((team, index) => (
                 <tr key={team.id} className={team.pos <= 2 ? "bg-gold/5" : ""}>
-                  <td className="font-display text-gold text-center">{team.pos}</td>
-                  <td><TeamCell team={team} /></td>
+                  <td className="font-display text-gold-bright text-center">{team.pos}</td>
+                  <td><TeamCell team={team.team} /></td>
                   <td className="text-center tabular-nums">{team.pj}</td>
                   <td className="text-center tabular-nums text-green-400">{team.pg}</td>
                   <td className="text-center tabular-nums text-yellow-400">{team.pe}</td>
-                  <td className="text-center tabular-nums text-red-400">{team.pp}</td>
+                  <td className="text-center tabular-nums text-red">{team.pp}</td>
                   <td className="text-center tabular-nums text-green-400">{team.gf}</td>
-                  <td className="text-center tabular-nums text-red-400">{team.gc}</td>
+                  <td className="text-center tabular-nums text-red">{team.gc}</td>
                   <td className="text-center"><DGCell dg={team.dg} /></td>
-                  <td className="font-display text-gold text-center tabular-nums">{team.pts}</td>
+                  <td className="font-display text-gold-bright text-center tabular-nums">{team.pts}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <div className="mt-6 grid grid-cols-3 gap-4 text-xs text-white-dim">
+        <div className="mt-6 grid grid-cols-3 gap-4 text-xs text-white/60">
           <div className="flex items-center gap-2 justify-center">
             <span className="w-3 h-3 rounded bg-green-400" aria-hidden="true"></span>
             <span>Clasifica a Copa Oro</span>

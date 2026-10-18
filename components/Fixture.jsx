@@ -5,7 +5,7 @@ import fixtures from "@/data/fixtures.json";
 
 const statusStyles = {
   programado: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-  en_vivo: "bg-phosphor-red/20 text-phosphor-red border-phosphor-red/30 animate-pulse shadow-[0_0_12px_rgba(255,7,58,0.5)]",
+  en_vivo: "bg-red/20 text-red border-red/30 animate-pulse shadow-[0_0_12px_rgba(255,30,39,0.5)]",
   finalizado: "bg-green-500/20 text-green-400 border-green-500/30",
   suspendido: "bg-amber-500/20 text-amber-400 border-amber-500/30",
 };
@@ -24,12 +24,12 @@ export default function Fixture() {
   const currentFixtures = fixtures.filter((f) => f.jornada === activeTab);
 
   return (
-    <section id="fixture" className="px-4 py-16 grass-field tables">
+    <section id="fixture" className="px-4 py-16">
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="text-center mb-12">
-          <span className="badge-torneo">Próximos Partidos</span>
-          <h2 className="font-display mt-6 text-4xl sm:text-5xl neon-title" data-text="FIXTURE">FIXTURE</h2>
-          <p className="mt-2 text-white-dim">Calendario completo por jornadas</p>
+          <span className="badge-sharp">Próximos Partidos</span>
+          <h2 className="font-display mt-6 text-4xl sm:text-5xl text-gradient-gold" data-text="FIXTURE">FIXTURE</h2>
+          <p className="mt-2 text-white/60">Calendario completo por jornadas</p>
         </div>
 
         <div className="tabs-list justify-center mb-8" role="tablist" aria-label="Jornadas">
@@ -52,34 +52,36 @@ export default function Fixture() {
           {currentFixtures.map((match) => (
             <article
               key={match.id}
-              className="glass-strong rounded-2xl p-5 grid grid-cols-[1fr_auto_1fr] gap-4 items-center sport-card"
+              className="glass clip-path-polygon\(0_2%_2%_0_100%_0_100%_98%_98%_100%_0_100%\) p-5 grid grid-cols-[1fr_auto_1fr] gap-4 items-center fade-in-up"
               role="tabpanel"
               id={`panel-jornada-${activeTab}`}
               aria-labelledby={`tab-jornada-${activeTab}`}
             >
               <div className="flex items-center gap-4 text-right lg:text-right">
-                <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 team-badge" style={{ "--team-color": match.local.color }}>
-                  <span className="team-badge-initials">{match.local.short}</span>
+                <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
+                  <div className="w-full h-full bg-gradient-to-br from-red/30 to-gold/30 border-2 border-gold/50 shadow-[4px_4px_0_rgba(255,190,11,0.4)] flex items-center justify-center">
+                    <span className="font-black text-2xl text-white drop-shadow-lg">{match.local.short}</span>
+                  </div>
                 </div>
                 <div>
                   <p className="font-semibold text-white">{match.local.name}</p>
-                  <p className="text-xs text-white-dim">{match.local.category}</p>
+                  <p className="text-xs text-white/60">{match.local.category}</p>
                 </div>
               </div>
 
               <div className="text-center px-4">
                 <div className="flex items-center justify-center gap-3 mb-2">
                   <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border ${statusStyles[match.status]}`}>
-                    {match.status === "en_vivo" && <span className="w-1.5 h-1.5 rounded-full bg-phosphor-red mr-1.5 animate-pulse shadow-[0_0_8px_rgba(255,7,58,0.8)]" aria-hidden="true" />}
+                    {match.status === "en_vivo" && <span className="w-1.5 h-1.5 rounded-full bg-red mr-1.5 animate-pulse" aria-hidden="true" />}
                     {statusLabels[match.status]}
                   </span>
                 </div>
                 <div className="flex items-center justify-center gap-4">
-<span className="font-display text-3xl text-neon-yellow tabular-nums">{match.score.local}</span>
-<span className="text-white-dim">-</span>
-<span className="font-display text-3xl text-neon-yellow tabular-nums">{match.score.visitante}</span>
+                  <span className="font-display text-3xl text-gold-bright tabular-nums">{match.score.local}</span>
+                  <span className="text-white/60">-</span>
+                  <span className="font-display text-3xl text-gold-bright tabular-nums">{match.score.visitante}</span>
                 </div>
-                <div className="flex items-center justify-center gap-4 mt-2 text-sm text-white-dim">
+                <div className="flex items-center justify-center gap-4 mt-2 text-sm text-white/60">
                   <span className="flex items-center gap-1">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                     {match.time}
@@ -94,18 +96,20 @@ export default function Fixture() {
               <div className="flex items-center gap-4 text-left">
                 <div>
                   <p className="font-semibold text-white">{match.visitante.name}</p>
-                  <p className="text-xs text-white-dim">{match.visitante.category}</p>
+                  <p className="text-xs text-white/60">{match.visitante.category}</p>
                 </div>
-                <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 team-badge" style={{ "--team-color": match.visitante.color }}>
-                  <span className="team-badge-initials">{match.visitante.short}</span>
+                <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
+                  <div className="w-full h-full bg-gradient-to-br from-red/30 to-gold/30 border-2 border-gold/50 shadow-[4px_4px_0_rgba(255,190,11,0.4)] flex items-center justify-center">
+                    <span className="font-black text-2xl text-white drop-shadow-lg">{match.visitante.short}</span>
+                  </div>
                 </div>
               </div>
             </article>
           ))}
 
           {currentFixtures.length === 0 && (
-            <div className="glass rounded-2xl p-12 text-center">
-              <p className="text-white-dim">No hay partidos programados para esta jornada.</p>
+            <div className="glass clip-path-polygon\(0_4px_4px_0_100%_0_100%_calc\(100%-4px\)_calc\(100%-4px\)_100%_0_100%\) rounded-none p-12 text-center">
+              <p className="text-white/60">No hay partidos programados para esta jornada.</p>
             </div>
           )}
         </div>

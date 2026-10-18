@@ -122,15 +122,15 @@ export default function RegisterForm() {
   };
 
   return (
-    <section id="inscripcion" className="px-4 py-16 grass-field tables">
+    <section id="inscripcion" className="px-4 py-16">
       <div className="relative z-10 mx-auto max-w-3xl">
         <div className="text-center mb-12">
-          <span className="badge-torneo">Inscripción</span>
-          <h2 className="font-display mt-6 text-4xl sm:text-5xl neon-title" data-text="INSCRIPCIÓN">INSCRIPCIÓN EN LÍNEA</h2>
-          <p className="mt-2 text-white-dim">Completa el formulario y te contactaremos por WhatsApp</p>
+          <span className="badge-sharp">Inscripción</span>
+          <h2 className="font-display mt-6 text-4xl sm:text-5xl text-gradient-gold" data-text="INSCRIPCIÓN">INSCRIPCIÓN EN LÍNEA</h2>
+          <p className="mt-2 text-white/60">Completa el formulario y te contactaremos por WhatsApp</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="glass-strong rounded-2xl p-6 sm:p-8 sport-card space-y-6" noValidate>
+        <form onSubmit={handleSubmit} className="glass clip-path-polygon\(0_4px_4px_0_100%_0_100%_calc\(100%-4px\)_calc\(100%-4px\)_100%_0_100%\) p-6 sm:p-8 fade-in-up space-y-6" noValidate>
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="sm:col-span-2">
               <label htmlFor="teamName" className="form-label">Nombre del Equipo *</label>
@@ -141,32 +141,32 @@ export default function RegisterForm() {
                 value={formData.teamName}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`form-input ${errors.teamName ? "border-red-500 focus:border-red-500" : ""}`}
+                className={`form-input ${errors.teamName ? "border-red focus:border-red" : ""}`}
                 placeholder="Ej: Academia Los Cracks FC"
                 maxLength={60}
                 required
                 autoComplete="organization"
               />
-              {errors.teamName && <p className="mt-1 text-sm text-red-400">{errors.teamName}</p>}
+              {errors.teamName && <p className="mt-1 text-sm text-red">{errors.teamName}</p>}
             </div>
 
             <div>
               <label htmlFor="category" className="form-label">Categoría *</label>
-<select
-  id="category"
-  name="category"
-  value={formData.category}
-  onChange={handleChange}
-  onBlur={handleBlur}
-  className={`form-input appearance-none bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22none%22 viewBox=%220 0 24 24%22 stroke=%22%23FFEB00%22%3E%3Cpath stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%222%22 d=%22M19 9l-7 7-7-7%22/%3E%3C/svg%3E')] bg-[right_1rem_center] bg-no-repeat pr-10 ${errors.category ? "border-phosphor-red focus:border-phosphor-red" : ""}`}
-  required
->
+              <select
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={`form-input appearance-none bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22none%22 viewBox=%220 0 24 24%22 stroke=%22%23ffbe0b%22%3E%3Cpath stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%222%22 d=%22M19 9l-7 7-7-7%22/%3E%3C/svg%3E')] bg-[right_1rem_center] bg-no-repeat pr-10 ${errors.category ? "border-red focus:border-red" : ""}`}
+                required
+              >
                 <option value="">Selecciona una categoría</option>
                 {categories.map((cat) => (
                   <option key={cat.value} value={cat.value}>{cat.label}</option>
                 ))}
               </select>
-              {errors.category && <p className="mt-1 text-sm text-red-400">{errors.category}</p>}
+              {errors.category && <p className="mt-1 text-sm text-red">{errors.category}</p>}
             </div>
 
             <div>
@@ -178,13 +178,13 @@ export default function RegisterForm() {
                 value={formData.delegateName}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`form-input ${errors.delegateName ? "border-red-500 focus:border-red-500" : ""}`}
+                className={`form-input ${errors.delegateName ? "border-red focus:border-red" : ""}`}
                 placeholder="Ej: Juan Pérez"
                 maxLength={60}
                 required
                 autoComplete="name"
               />
-              {errors.delegateName && <p className="mt-1 text-sm text-red-400">{errors.delegateName}</p>}
+              {errors.delegateName && <p className="mt-1 text-sm text-red">{errors.delegateName}</p>}
             </div>
 
             <div>
@@ -196,13 +196,13 @@ export default function RegisterForm() {
                 value={formData.phone}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`form-input ${errors.phone ? "border-red-500 focus:border-red-500" : ""}`}
+                className={`form-input ${errors.phone ? "border-red focus:border-red" : ""}`}
                 placeholder="+51 9XX XXX XXX"
                 maxLength={20}
                 required
                 autoComplete="tel"
               />
-              {errors.phone && <p className="mt-1 text-sm text-red-400">{errors.phone}</p>}
+              {errors.phone && <p className="mt-1 text-sm text-red">{errors.phone}</p>}
             </div>
 
             <div className="sm:col-span-2">
@@ -213,7 +213,7 @@ export default function RegisterForm() {
                 value={formData.roster}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`form-input min-h-[140px] resize-y ${errors.roster ? "border-red-500 focus:border-red-500" : ""}`}
+                className={`form-input min-h-[140px] resize-y ${errors.roster ? "border-red focus:border-red" : ""}`}
                 placeholder="Lista los jugadores (nombre, DNI, fecha de nacimiento, dorsal) - uno por línea
 Ej:
 1. Carlos Ramírez - 12345678 - 15/03/2015 - 10
@@ -223,20 +223,20 @@ Ej:
                 maxLength={1000}
                 required
               />
-              {errors.roster && <p className="mt-1 text-sm text-red-400">{errors.roster}</p>}
-              <p className="mt-2 text-xs text-white-dim">Mínimo 5 jugadores. Formato libre, se enviará tal cual a WhatsApp.</p>
+              {errors.roster && <p className="mt-1 text-sm text-red">{errors.roster}</p>}
+              <p className="mt-2 text-xs text-white/60">Mínimo 5 jugadores. Formato libre, se enviará tal cual a WhatsApp.</p>
             </div>
           </div>
 
-<div className="flex items-start gap-3 p-4 rounded-xl bg-neon-yellow/5 border border-neon-yellow/20">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFEB00" strokeWidth="2" className="flex-shrink-0 mt-0.5 drop-shadow-[0_0_4px_rgba(255,235,0,0.6)]" aria-hidden="true">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-  </svg>
-  <div className="text-sm text-white-dim">
-    <p className="font-medium text-neon-yellow">Protección de datos:</p>
-    Al enviar, tus datos se formatean y abren directamente en WhatsApp. No almacenamos información sensible en nuestros servidores. Cumplimos Ley N° 29733.
-  </div>
-</div>
+          <div className="flex items-start gap-3 p-4 rounded-xl bg-red/5 border border-red/20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff1e27" strokeWidth="2" className="flex-shrink-0 mt-0.5 drop-shadow-[0_0_4px_rgba(255,30,39,0.6)]" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <div className="text-sm text-white/60">
+              <p className="font-medium text-red">Protección de datos:</p>
+              Al enviar, tus datos se formatean y abren directamente en WhatsApp. No almacenamos información sensible en nuestros servidores. Cumplimos Ley N° 29733.
+            </div>
+          </div>
 
           <button
             type="submit"
@@ -253,7 +253,7 @@ Ej:
               </>
             ) : (
               <>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="#080404" className="mr-2" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#050202" className="mr-2" aria-hidden="true">
                   <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z" />
                 </svg>
                 Enviar Inscripción por WhatsApp
@@ -262,28 +262,28 @@ Ej:
           </button>
 
           {submitStatus === "success" && (
-            <div className="text-center p-4 rounded-xl bg-green-500/20 border border-green-500/30 animate-fade-in">
+            <div className="text-center p-4 rounded-xl bg-green-500/20 border border-green-500/30 fade-in-up">
               <p className="text-green-400 font-medium">✅ ¡Formulario enviado! Se abrió WhatsApp con tu inscripción.</p>
-              <p className="text-xs text-white-dim mt-1">Completa el envío en la app de WhatsApp.</p>
+              <p className="text-xs text-white/60 mt-1">Completa el envío en la app de WhatsApp.</p>
             </div>
           )}
 
           {submitStatus === "error" && (
-            <div className="text-center p-4 rounded-xl bg-red-500/20 border border-red-500/30 animate-fade-in">
-              <p className="text-red-400 font-medium">❌ Error al abrir WhatsApp. Intenta de nuevo o escríbenos directamente.</p>
+            <div className="text-center p-4 rounded-xl bg-red/20 border border-red/30 fade-in-up">
+              <p className="text-red font-medium">❌ Error al abrir WhatsApp. Intenta de nuevo o escríbenos directamente.</p>
             </div>
           )}
         </form>
 
         <div className="mt-8 text-center">
-          <p className="text-white-dim">¿Prefieres escribir directamente?</p>
+          <p className="text-white/60">¿Prefieres escribir directamente?</p>
           <a
             href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hola, quiero inscribir mi equipo en la Copa Crack Perú.")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-whatsapp inline-flex mt-3"
+            className="btn-secondary inline-flex mt-3"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffbe0b" aria-hidden="true" className="drop-shadow-[0_0_4px_rgba(255,190,11,0.6)]">
               <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z" />
             </svg>
             Abrir WhatsApp Directo
