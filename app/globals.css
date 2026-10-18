@@ -66,6 +66,7 @@ body {
     4px 100%,
     100% 8px;
   background-blend-mode: overlay, normal, normal;
+  overflow: hidden;
 }
 
 .grass-field::before {
@@ -85,31 +86,56 @@ body {
   z-index: 1;
 }
 
+/* Contenedor responsivo para las líneas del campo - mantiene aspect-ratio de cancha */
 .grass-field::after {
   content: "";
   position: absolute;
   inset: 0;
+  /* Contenedor interno que mantiene proporción de cancha (105m x 68m ≈ 1.54) */
   background-image:
-    /* Círculo central */
-    radial-gradient(circle at 50% 50%, transparent 18%, var(--gold) 18%, var(--gold) 18.5%, transparent 18.5%),
-    /* Área grande izquierda */
-    radial-gradient(ellipse 45% 35% at 5% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    /* Área grande derecha */
-    radial-gradient(ellipse 45% 35% at 95% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    /* Área chica izquierda */
-    radial-gradient(ellipse 20% 15% at 5% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    /* Área chica derecha */
-    radial-gradient(ellipse 20% 15% at 95% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    /* Punto penal izquierdo */
-    radial-gradient(circle at 18% 50%, var(--gold) 1.5%, transparent 1.5%),
-    /* Punto penal derecho */
-    radial-gradient(circle at 82% 50%, var(--gold) 1.5%, transparent 1.5%),
+    /* Círculo central (radio 9.15m) */
+    radial-gradient(circle at 50% 50%, transparent 12%, var(--gold) 12%, var(--gold) 12.3%, transparent 12.3%),
+    /* Área grande (16.5m x 40.3m) - izquierda */
+    radial-gradient(ellipse 31% 59% at 3% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    /* Área grande - derecha */
+    radial-gradient(ellipse 31% 59% at 97% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    /* Área chica (5.5m x 18.3m) - izquierda */
+    radial-gradient(ellipse 10% 27% at 3% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    /* Área chica - derecha */
+    radial-gradient(ellipse 10% 27% at 97% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    /* Punto penal (11m) - izquierdo */
+    radial-gradient(circle at 13.5% 50%, var(--gold) 1%, transparent 1%),
+    /* Punto penal - derecho */
+    radial-gradient(circle at 86.5% 50%, var(--gold) 1%, transparent 1%),
     /* Línea central */
-    linear-gradient(90deg, transparent 49.8%, var(--gold-dim) 49.8%, var(--gold-dim) 50.2%, transparent 50.2%);
+    linear-gradient(90deg, transparent 49.9%, var(--gold-dim) 49.9%, var(--gold-dim) 50.1%, transparent 50.1%);
   background-size: 100% 100%;
-  opacity: 0.35;
+  opacity: 0.3;
   pointer-events: none;
   z-index: 2;
+  /* Clip para que no se desborde en pantallas extremas */
+  clip-path: inset(0);
+}
+
+/* Responsive: en móviles (vertical), reducimos opacidad y simplificamos */
+@media (max-width: 640px) {
+  .grass-field::after {
+    opacity: 0.18;
+    background-image:
+      radial-gradient(circle at 50% 50%, transparent 15%, var(--gold) 15%, var(--gold) 15.5%, transparent 15.5%),
+      radial-gradient(ellipse 35% 60% at 2% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+      radial-gradient(ellipse 35% 60% at 98% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+      linear-gradient(90deg, transparent 49.9%, var(--gold-dim) 49.9%, var(--gold-dim) 50.1%, transparent 50.1%);
+  }
+}
+
+/* En pantallas muy anchas, limitamos el ancho efectivo del campo */
+@media (min-width: 1920px) {
+  .grass-field::after {
+    background-size: 80% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
 
 /* Variante hero - césped más visible */
@@ -150,20 +176,34 @@ body {
 }
 
 .grass-field.hero::after {
-  opacity: 0.5;
+  opacity: 0.45;
+  background-image:
+    radial-gradient(circle at 50% 50%, transparent 10%, var(--gold) 10%, var(--gold) 10.3%, transparent 10.3%),
+    radial-gradient(ellipse 28% 55% at 4% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    radial-gradient(ellipse 28% 55% at 96% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    radial-gradient(ellipse 12% 30% at 4% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    radial-gradient(ellipse 12% 30% at 96% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    radial-gradient(circle at 12% 50%, var(--gold) 1.2%, transparent 1.2%),
+    radial-gradient(circle at 88% 50%, var(--gold) 1.2%, transparent 1.2%),
+    linear-gradient(90deg, transparent 49.8%, var(--gold-dim) 49.8%, var(--gold-dim) 50.2%, transparent 50.2%);
 }
 
 /* Variante tables - césped más tenue */
 .grass-field.tables {
-  opacity: 0.4;
+  opacity: 0.35;
 }
 
 .grass-field.tables::before {
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .grass-field.tables::after {
-  opacity: 0.15;
+  opacity: 0.12;
+  background-image:
+    radial-gradient(circle at 50% 50%, transparent 14%, var(--gold) 14%, var(--gold) 14.3%, transparent 14.3%),
+    radial-gradient(ellipse 33% 58% at 3% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    radial-gradient(ellipse 33% 58% at 97% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    linear-gradient(90deg, transparent 49.9%, var(--gold-dim) 49.9%, var(--gold-dim) 50.1%, transparent 50.1%);
 }
 
 /* ========================================
