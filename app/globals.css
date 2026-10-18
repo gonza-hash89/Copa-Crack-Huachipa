@@ -34,8 +34,12 @@ body {
    CÉSPED SINTÉTICO NOCTURNO - CSS PURO
    ======================================== */
 
-.grass-field {
-  position: relative;
+/* Capa de fondo fija SOLO para el césped y líneas - NUNCA bloquea scroll */
+.grass-field-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background-color: var(--grass-dark);
   background-image:
     /* Franjas de corte de cancha */
@@ -58,152 +62,210 @@ body {
       0deg,
       transparent 0%,
       transparent 96%,
-      rgba(20,40,15,0.15) 96%,
-      rgba(20,40,15,0.15) 100%
+      rgba(20,40,15,0.08) 96%,
+      rgba(20,40,15,0.08) 100%
     );
   background-size:
     100% 100%,
     4px 100%,
     100% 8px;
   background-blend-mode: overlay, normal, normal;
-  overflow: hidden;
 }
 
-.grass-field::before {
+/* Reflectores (spotlights) - capa separada */
+.grass-field-bg::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    /* Reflectores de estadio - 4 esquinas */
-    radial-gradient(ellipse 120% 80% at -10% -10%, rgba(245,240,220,0.18), transparent 60%),
-    radial-gradient(ellipse 120% 80% at 110% -10%, rgba(245,240,220,0.18), transparent 60%),
-    radial-gradient(ellipse 120% 80% at -10% 110%, rgba(245,240,220,0.12), transparent 60%),
-    radial-gradient(ellipse 120% 80% at 110% 110%, rgba(245,240,220,0.12), transparent 60%),
-    /* Reflectores laterales */
-    radial-gradient(ellipse 80% 60% at 50% -20%, rgba(245,240,220,0.22), transparent 55%),
-    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(245,240,220,0.15), transparent 55%);
+    radial-gradient(ellipse 120% 80% at -10% -10%, rgba(245,240,220,0.10), transparent 60%),
+    radial-gradient(ellipse 120% 80% at 110% -10%, rgba(245,240,220,0.10), transparent 60%),
+    radial-gradient(ellipse 120% 80% at -10% 110%, rgba(245,240,220,0.06), transparent 60%),
+    radial-gradient(ellipse 120% 80% at 110% 110%, rgba(245,240,220,0.06), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% -20%, rgba(245,240,220,0.14), transparent 55%),
+    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(245,240,220,0.08), transparent 55%);
   pointer-events: none;
-  z-index: 1;
 }
 
-/* Contenedor responsivo para las líneas del campo - mantiene aspect-ratio de cancha */
-.grass-field::after {
+/* Líneas del campo - capa separada con opacidad muy baja */
+.grass-field-bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  /* Contenedor interno que mantiene proporción de cancha (105m x 68m ≈ 1.54) */
   background-image:
-    /* Círculo central (radio 9.15m) */
-    radial-gradient(circle at 50% 50%, transparent 12%, var(--gold) 12%, var(--gold) 12.3%, transparent 12.3%),
-    /* Área grande (16.5m x 40.3m) - izquierda */
-    radial-gradient(ellipse 31% 59% at 3% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    /* Área grande - derecha */
-    radial-gradient(ellipse 31% 59% at 97% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    /* Área chica (5.5m x 18.3m) - izquierda */
-    radial-gradient(ellipse 10% 27% at 3% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    /* Área chica - derecha */
-    radial-gradient(ellipse 10% 27% at 97% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    /* Punto penal (11m) - izquierdo */
-    radial-gradient(circle at 13.5% 50%, var(--gold) 1%, transparent 1%),
-    /* Punto penal - derecho */
-    radial-gradient(circle at 86.5% 50%, var(--gold) 1%, transparent 1%),
-    /* Línea central */
+    radial-gradient(circle at 50% 50%, transparent 12%, var(--gold) 12%, var(--gold) 12.2%, transparent 12.2%),
+    radial-gradient(ellipse 31% 59% at 3% 50%, transparent 98.5%, var(--gold-dim) 98.5%, var(--gold-dim) 99.2%, transparent 99.2%),
+    radial-gradient(ellipse 31% 59% at 97% 50%, transparent 98.5%, var(--gold-dim) 98.5%, var(--gold-dim) 99.2%, transparent 99.2%),
+    radial-gradient(ellipse 10% 27% at 3% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
+    radial-gradient(ellipse 10% 27% at 97% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
+    radial-gradient(circle at 13.5% 50%, var(--gold) 0.8%, transparent 0.8%),
+    radial-gradient(circle at 86.5% 50%, var(--gold) 0.8%, transparent 0.8%),
     linear-gradient(90deg, transparent 49.9%, var(--gold-dim) 49.9%, var(--gold-dim) 50.1%, transparent 50.1%);
   background-size: 100% 100%;
-  opacity: 0.3;
+  opacity: 0.08;
   pointer-events: none;
-  z-index: 2;
-  /* Clip para que no se desborde en pantallas extremas */
-  clip-path: inset(0);
 }
 
-/* Responsive: en móviles (vertical), reducimos opacidad y simplificamos */
+/* Clase que se aplica al body - SIN overflow hidden, SIN position relative que rompa scroll */
+.grass-field {
+  min-height: 100vh;
+  background: transparent !important;
+}
+
+/* Responsive para líneas de fondo */
 @media (max-width: 640px) {
-  .grass-field::after {
-    opacity: 0.18;
+  .grass-field-bg::after {
+    opacity: 0.05;
     background-image:
-      radial-gradient(circle at 50% 50%, transparent 15%, var(--gold) 15%, var(--gold) 15.5%, transparent 15.5%),
-      radial-gradient(ellipse 35% 60% at 2% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-      radial-gradient(ellipse 35% 60% at 98% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+      radial-gradient(circle at 50% 50%, transparent 15%, var(--gold) 15%, var(--gold) 15.3%, transparent 15.3%),
+      radial-gradient(ellipse 35% 60% at 2% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
+      radial-gradient(ellipse 35% 60% at 98% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
       linear-gradient(90deg, transparent 49.9%, var(--gold-dim) 49.9%, var(--gold-dim) 50.1%, transparent 50.1%);
   }
 }
 
-/* En pantallas muy anchas, limitamos el ancho efectivo del campo */
 @media (min-width: 1920px) {
-  .grass-field::after {
+  .grass-field-bg::after {
     background-size: 80% 100%;
     background-position: center;
     background-repeat: no-repeat;
   }
 }
 
-/* Variante hero - césped más visible */
-.grass-field.hero {
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      var(--grass-dark) 0%,
-      var(--grass-dark) 3%,
-      var(--grass-stripe) 3%,
-      var(--grass-stripe) 6%
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0%,
-      transparent 97%,
-      var(--grass-fiber) 97%,
-      var(--grass-fiber) 100%
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent 0%,
-      transparent 94%,
-      rgba(20,40,15,0.25) 94%,
-      rgba(20,40,15,0.25) 100%
-    );
-  background-size:
-    100% 100%,
-    3px 100%,
-    100% 6px;
-}
-
-.grass-field.hero::before {
+/* Variante hero - reflectores más intensos */
+.grass-field.hero ~ .grass-field-bg::before {
   background:
-    radial-gradient(ellipse 140% 90% at 50% -20%, rgba(245,240,220,0.28), transparent 55%),
-    radial-gradient(ellipse 100% 70% at 10% 10%, rgba(192,57,43,0.15), transparent 50%),
-    radial-gradient(ellipse 100% 70% at 90% 10%, rgba(192,57,43,0.15), transparent 50%);
+    radial-gradient(ellipse 140% 90% at 50% -20%, rgba(245,240,220,0.18), transparent 55%),
+    radial-gradient(ellipse 100% 70% at 10% 10%, rgba(192,57,43,0.10), transparent 50%),
+    radial-gradient(ellipse 100% 70% at 90% 10%, rgba(192,57,43,0.10), transparent 50%);
 }
 
-.grass-field.hero::after {
-  opacity: 0.45;
+.grass-field.hero ~ .grass-field-bg::after {
+  opacity: 0.12;
   background-image:
-    radial-gradient(circle at 50% 50%, transparent 10%, var(--gold) 10%, var(--gold) 10.3%, transparent 10.3%),
-    radial-gradient(ellipse 28% 55% at 4% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    radial-gradient(ellipse 28% 55% at 96% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    radial-gradient(ellipse 12% 30% at 4% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    radial-gradient(ellipse 12% 30% at 96% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    radial-gradient(circle at 12% 50%, var(--gold) 1.2%, transparent 1.2%),
-    radial-gradient(circle at 88% 50%, var(--gold) 1.2%, transparent 1.2%),
+    radial-gradient(circle at 50% 50%, transparent 10%, var(--gold) 10%, var(--gold) 10.2%, transparent 10.2%),
+    radial-gradient(ellipse 28% 55% at 4% 50%, transparent 98.5%, var(--gold-dim) 98.5%, var(--gold-dim) 99.2%, transparent 99.2%),
+    radial-gradient(ellipse 28% 55% at 96% 50%, transparent 98.5%, var(--gold-dim) 98.5%, var(--gold-dim) 99.2%, transparent 99.2%),
+    radial-gradient(ellipse 12% 30% at 4% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
+    radial-gradient(ellipse 12% 30% at 96% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
+    radial-gradient(circle at 12% 50%, var(--gold) 1%, transparent 1%),
+    radial-gradient(circle at 88% 50%, var(--gold) 1%, transparent 1%),
     linear-gradient(90deg, transparent 49.8%, var(--gold-dim) 49.8%, var(--gold-dim) 50.2%, transparent 50.2%);
 }
 
-/* Variante tables - césped más tenue */
-.grass-field.tables {
-  opacity: 0.35;
+/* Variante tables - más tenue */
+.grass-field.tables ~ .grass-field-bg::before {
+  opacity: 0.5;
 }
 
-.grass-field.tables::before {
-  opacity: 0.4;
-}
-
-.grass-field.tables::after {
-  opacity: 0.12;
+.grass-field.tables ~ .grass-field-bg::after {
+  opacity: 0.04;
   background-image:
-    radial-gradient(circle at 50% 50%, transparent 14%, var(--gold) 14%, var(--gold) 14.3%, transparent 14.3%),
-    radial-gradient(ellipse 33% 58% at 3% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
-    radial-gradient(ellipse 33% 58% at 97% 50%, transparent 98%, var(--gold-dim) 98%, var(--gold-dim) 99%, transparent 99%),
+    radial-gradient(circle at 50% 50%, transparent 14%, var(--gold) 14%, var(--gold) 14.2%, transparent 14.2%),
+    radial-gradient(ellipse 33% 58% at 3% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
+    radial-gradient(ellipse 33% 58% at 97% 50%, transparent 99%, var(--gold-dim) 99%, var(--gold-dim) 99.5%, transparent 99.5%),
     linear-gradient(90deg, transparent 49.9%, var(--gold-dim) 49.9%, var(--gold-dim) 50.1%, transparent 50.1%);
+}
+
+/* ========================================
+   CONTENIDO PRINCIPAL - SOBRE EL FONDO
+   ======================================== */
+
+/* Fuerza a todo el contenido real a estar por encima del fondo */
+main,
+section,
+header,
+footer,
+.glass,
+.glass-strong,
+.sport-card,
+.table-container,
+.tabs-list,
+.tab-btn,
+.btn-primary,
+.btn-secondary,
+.btn-whatsapp,
+.badge-torneo,
+.form-input,
+.official-crest,
+.fab-whatsapp {
+  position: relative;
+  z-index: 10;
+}
+
+/* Mejora de contraste para tarjetas y contenedores */
+.glass,
+.glass-strong,
+.sport-card {
+  background: rgba(8, 16, 6, 0.9) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(232,197,71,0.25) !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03) inset,
+    0 12px 48px rgba(0,0,0,0.7),
+    0 0 60px rgba(0,0,0,0.5) !important;
+}
+
+.glass-strong {
+  background: rgba(6, 12, 4, 0.95) !important;
+  border-color: rgba(232,197,71,0.4) !important;
+}
+
+.table-container {
+  background: rgba(6, 12, 4, 0.85) !important;
+  border: 1px solid rgba(232,197,71,0.2);
+}
+
+.table th {
+  background: linear-gradient(135deg, rgba(232,197,71,0.18) 0%, rgba(192,57,43,0.12) 100%) !important;
+}
+
+.table td {
+  background: rgba(6, 12, 4, 0.7) !important;
+}
+
+.table tbody tr:nth-child(even) td {
+  background: rgba(6, 12, 4, 0.5) !important;
+}
+
+.tabs-list .tab-btn {
+  background: rgba(6, 12, 4, 0.9) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+.tabs-list .tab-btn.active {
+  background: linear-gradient(135deg, var(--gold) 0%, #ffd700 100%) !important;
+  box-shadow: 0 4px 24px rgba(232,197,71,0.5);
+}
+
+.form-input {
+  background: rgba(6, 12, 4, 0.9) !important;
+  backdrop-filter: blur(12px) !important;
+  border-color: rgba(232,197,71,0.25) !important;
+}
+
+.form-input:focus {
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3px rgba(232,197,71,0.25), 0 0 24px rgba(232,197,71,0.15) !important;
+}
+
+.badge-torneo {
+  background: linear-gradient(135deg, rgba(232,197,71,0.25) 0%, rgba(192,57,43,0.18) 100%) !important;
+  border-color: rgba(232,197,71,0.6) !important;
+  box-shadow: 0 0 24px rgba(232,197,71,0.25);
+}
+
+/* Asegurar que el hero y secciones no tengan fondo que tape el césped */
+section[id] {
+  background: transparent !important;
+}
+
+/* Header y Footer también sobre el fondo */
+header,
+footer {
+  background: transparent !important;
+  z-index: 20;
 }
 
 /* ========================================

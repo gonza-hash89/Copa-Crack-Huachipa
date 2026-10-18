@@ -197,6 +197,8 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="grass-field">
+        {/* Capa de fondo fija: césped + reflectores + líneas - NO bloquea scroll */}
+        <div className="grass-field-bg" aria-hidden="true" />
         <Header />
         <main>{children}</main>
         <Footer />
