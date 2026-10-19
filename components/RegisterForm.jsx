@@ -13,9 +13,8 @@ const categories = [
 const initialFormData = {
   teamName: "",
   category: "",
-  delegateName: "",
+  coachName: "",
   phone: "",
-  roster: "",
 };
 
 export default function RegisterForm() {
@@ -33,17 +32,13 @@ export default function RegisterForm() {
       case "category":
         if (!value) return "Selecciona una categoría";
         break;
-      case "delegateName":
-        if (!value.trim()) return "Nombre del delegado es obligatorio";
+      case "coachName":
+        if (!value.trim()) return "Nombre del profesor/entrenador es obligatorio";
         if (value.trim().length < 3) return "Mínimo 3 caracteres";
         break;
       case "phone":
         if (!value.trim()) return "Teléfono es obligatorio";
         if (!/^[\d\s+\-()]{9,}$/.test(value)) return "Formato de teléfono inválido";
-        break;
-      case "roster":
-        if (!value.trim()) return "Plantel es obligatorio";
-        if (value.trim().length < 20) return "Detalla al menos 5 jugadores (mínimo 20 caracteres)";
         break;
     }
     return "";
@@ -68,11 +63,8 @@ export default function RegisterForm() {
       "",
       `📋 *Equipo:* ${data.teamName}`,
       `🏷️ *Categoría:* ${categories.find(c => c.value === data.category)?.label || data.category}`,
-      `👤 *Delegado:* ${data.delegateName}`,
+      `👨‍🏫 *Profesor/Entrenador:* ${data.coachName}`,
       `📱 *Teléfono:* ${data.phone}`,
-      "",
-      "👥 *PLANTEL:*",
-      data.roster,
       "",
       "✅ Enviado desde la web oficial copacrackperu.com",
     ];
@@ -170,21 +162,21 @@ export default function RegisterForm() {
             </div>
 
             <div>
-              <label htmlFor="delegateName" className="form-label">Nombre del Delegado *</label>
+              <label htmlFor="coachName" className="form-label">Profesor / Entrenador *</label>
               <input
                 type="text"
-                id="delegateName"
-                name="delegateName"
-                value={formData.delegateName}
+                id="coachName"
+                name="coachName"
+                value={formData.coachName}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`form-input ${errors.delegateName ? "border-red focus:border-red" : ""}`}
-                placeholder="Ej: Juan Pérez"
+                className={`form-input ${errors.coachName ? "border-red focus:border-red" : ""}`}
+                placeholder="Ej: Prof. Juan Pérez"
                 maxLength={60}
                 required
                 autoComplete="name"
               />
-              {errors.delegateName && <p className="mt-1 text-sm text-red">{errors.delegateName}</p>}
+              {errors.coachName && <p className="mt-1 text-sm text-red">{errors.coachName}</p>}
             </div>
 
             <div>
@@ -203,28 +195,6 @@ export default function RegisterForm() {
                 autoComplete="tel"
               />
               {errors.phone && <p className="mt-1 text-sm text-red">{errors.phone}</p>}
-            </div>
-
-            <div className="sm:col-span-2">
-              <label htmlFor="roster" className="form-label">Plantel (Jugadores) *</label>
-              <textarea
-                id="roster"
-                name="roster"
-                value={formData.roster}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={`form-input min-h-[140px] resize-y ${errors.roster ? "border-red focus:border-red" : ""}`}
-                placeholder="Lista los jugadores (nombre, DNI, fecha de nacimiento, dorsal) - uno por línea
-Ej:
-1. Carlos Ramírez - 12345678 - 15/03/2015 - 10
-2. Diego Torres - 87654321 - 22/07/2014 - 7
-3. Andrés López - 11223344 - 05/11/2015 - 9
-..."
-                maxLength={1000}
-                required
-              />
-              {errors.roster && <p className="mt-1 text-sm text-red">{errors.roster}</p>}
-              <p className="mt-2 text-xs text-white/60">Mínimo 5 jugadores. Formato libre, se enviará tal cual a WhatsApp.</p>
             </div>
           </div>
 

@@ -1,73 +1,93 @@
 [
   {
-    "id": "2024",
-    "year": 2024,
-    "name": "Copa Crack 2024 - 4ª Edición",
+    "id": "2026-4",
+    "year": 2026,
+    "name": "Copa Crack 2026 - 4ª Edición",
+    "teams": 28,
+    "categories": [
+      {
+        "category": "Sub-08",
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
+      },
+      {
+        "category": "Sub-10",
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
+      },
+      {
+        "category": "Sub-12",
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
+      }
+    ]
+  },
+  {
+    "id": "2026-3",
+    "year": 2026,
+    "name": "Copa Crack 2026 - 3ª Edición",
+    "teams": 26,
+    "categories": [
+      {
+        "category": "Sub-08",
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
+      },
+      {
+        "category": "Sub-10",
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
+      },
+      {
+        "category": "Sub-12",
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
+      }
+    ]
+  },
+  {
+    "id": "2025-2",
+    "year": 2025,
+    "name": "Copa Crack 2025 - 2ª Edición",
     "teams": 24,
     "categories": [
       {
         "category": "Sub-08",
-        "oro": { "campeon": "Academia Los Cracks FC", "subcampeon": "Club Deportivo Cerro Camote", "tercero": "Real Huachipa FC", "goleador": "Mateo R. (12 goles)", "arquero": "Sebastián L." },
-        "plata": { "campeon": "Atlético Cerro Camote", "subcampeon": "Deportivo Los Cracks", "tercero": "Fútbol Formativo Lima", "goleador": "Diego M. (8 goles)", "arquero": "Lucas P." }
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
       },
       {
         "category": "Sub-10",
-        "oro": { "campeon": "Academia Estrellas del Futuro", "subcampeon": "Academia Los Cracks FC", "tercero": "Escuela Fútbol Huachipa", "goleador": "Adrián G. (15 goles)", "arquero": "Nicolás V." },
-        "plata": { "campeon": "Club Deportivo Cerro Camote", "subcampeon": "Real Huachipa FC", "tercero": "Atlético Cerro Camote", "goleador": "Santiago R. (9 goles)", "arquero": "Mateo S." }
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
       },
       {
         "category": "Sub-12",
-        "oro": { "campeon": "Escuela Fútbol Huachipa", "subcampeon": "Academia Los Cracks FC", "tercero": "Academia Estrellas del Futuro", "goleador": "Joaquín P. (18 goles)", "arquero": "Gabriel M." },
-        "plata": { "campeon": "Real Huachipa FC", "subcampeon": "Club Deportivo Cerro Camote", "tercero": "Atlético Cerro Camote", "goleador": "Lucas F. (11 goles)", "arquero": "Andrés R." }
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
       }
     ]
   },
   {
-    "id": "2023",
-    "year": 2023,
-    "name": "Copa Crack 2023 - 3ª Edición",
+    "id": "2025-1",
+    "year": 2025,
+    "name": "Copa Crack 2025 - 1ª Edición",
     "teams": 20,
     "categories": [
       {
         "category": "Sub-08",
-        "oro": { "campeon": "Academia Los Cracks FC", "subcampeon": "Escuela Fútbol Huachipa", "tercero": "Club Deportivo Cerro Camote", "goleador": "Mateo R. (10 goles)", "arquero": "Sebastián L." },
-        "plata": { "campeon": "Real Huachipa FC", "subcampeon": "Academia Estrellas del Futuro", "tercero": "Atlético Cerro Camote", "goleador": "Diego M. (7 goles)", "arquero": "Lucas P." }
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
       },
       {
         "category": "Sub-10",
-        "oro": { "campeon": "Club Deportivo Cerro Camote", "subcampeon": "Academia Los Cracks FC", "tercero": "Escuela Fútbol Huachipa", "goleador": "Adrián G. (13 goles)", "arquero": "Nicolás V." },
-        "plata": { "campeon": "Atlético Cerro Camote", "subcampeon": "Real Huachipa FC", "tercero": "Academia Estrellas del Futuro", "goleador": "Santiago R. (8 goles)", "arquero": "Mateo S." }
-      }
-    ]
-  },
-  {
-    "id": "2022",
-    "year": 2022,
-    "name": "Copa Crack 2022 - 2ª Edición",
-    "teams": 16,
-    "categories": [
-      {
-        "category": "Sub-08",
-        "oro": { "campeon": "Escuela Fútbol Huachipa", "subcampeon": "Academia Los Cracks FC", "tercero": "Club Deportivo Cerro Camote", "goleador": "Mateo R. (9 goles)", "arquero": "Sebastián L." },
-        "plata": { "campeon": "Academia Estrellas del Futuro", "subcampeon": "Real Huachipa FC", "tercero": "Atlético Cerro Camote", "goleador": "Diego M. (6 goles)", "arquero": "Lucas P." }
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
       },
       {
-        "category": "Sub-10",
-        "oro": { "campeon": "Academia Los Cracks FC", "subcampeon": "Club Deportivo Cerro Camote", "tercero": "Escuela Fútbol Huachipa", "goleador": "Adrián G. (11 goles)", "arquero": "Nicolás V." },
-        "plata": { "campeon": "Real Huachipa FC", "subcampeon": "Atlético Cerro Camote", "tercero": "Academia Estrellas del Futuro", "goleador": "Santiago R. (7 goles)", "arquero": "Mateo S." }
-      }
-    ]
-  },
-  {
-    "id": "2021",
-    "year": 2021,
-    "name": "Copa Crack 2021 - 1ª Edición",
-    "teams": 12,
-    "categories": [
-      {
-        "category": "Sub-10",
-        "oro": { "campeon": "Academia Los Cracks FC", "subcampeon": "Escuela Fútbol Huachipa", "tercero": "Club Deportivo Cerro Camote", "goleador": "Adrián G. (8 goles)", "arquero": "Nicolás V." },
-        "plata": { "campeon": "Academia Estrellas del Futuro", "subcampeon": "Real Huachipa FC", "tercero": "Atlético Cerro Camote", "goleador": "Santiago R. (5 goles)", "arquero": "Mateo S." }
+        "category": "Sub-12",
+        "oro": { "campeon": "Por definir", "subcampeon": "Por definir" },
+        "plata": { "campeon": "Por definir", "subcampeon": "Por definir" }
       }
     ]
   }

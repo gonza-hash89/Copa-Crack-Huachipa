@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import standings from "@/data/standings.json";
 
 const categories = ["Sub-08", "Sub-10", "Sub-12"];
 
@@ -45,8 +44,6 @@ function DGCell({ dg }) {
 export default function Standings() {
   const [activeCategory, setActiveCategory] = useState("Sub-08");
 
-  const currentStandings = standings[activeCategory] || [];
-
   return (
     <section id="posiciones" className="px-4 py-16">
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -71,31 +68,24 @@ export default function Standings() {
         </div>
 
         <div className="table-container gold-border">
-          <table className="table" role="table" aria-label={`Tabla de posiciones ${activeCategory}`}>
-            <thead>
-              <tr>
-                {columns.map((col) => (
-                  <th key={col.key} className={col.width} scope="col">{col.label}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {currentStandings.map((team, index) => (
-                <tr key={team.id} className={team.pos <= 2 ? "bg-gold/5" : ""}>
-                  <td className="font-display text-gold-bright text-center">{team.pos}</td>
-                  <td><TeamCell team={team.team} /></td>
-                  <td className="text-center tabular-nums">{team.pj}</td>
-                  <td className="text-center tabular-nums text-green-400">{team.pg}</td>
-                  <td className="text-center tabular-nums text-yellow-400">{team.pe}</td>
-                  <td className="text-center tabular-nums text-red">{team.pp}</td>
-                  <td className="text-center tabular-nums text-green-400">{team.gf}</td>
-                  <td className="text-center tabular-nums text-red">{team.gc}</td>
-                  <td className="text-center"><DGCell dg={team.dg} /></td>
-                  <td className="font-display text-gold-bright text-center tabular-nums">{team.pts}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="glass-card clip-path-polygon\(0_4px_4px_0_100%_0_100%_calc\(100%-4px\)_calc\(100%-4px\)_100%_0_100%\) p-8 text-center">
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-red/20 to-gold/20 border-2 border-gold/30 flex items-center justify-center mx-auto">
+                <svg className="w-10 h-10 text-gold-bright" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="text-center">
+                <h3 className="font-display text-2xl sm:text-3xl text-gradient-gold mb-2">Próximamente</h3>
+                <p className="text-white/60 max-w-md mx-auto">La tabla de posiciones se actualizará al iniciar el próximo torneo. Las clasificaciones se publicarán tras la primera jornada.</p>
+              </div>
+              <div className="flex flex-wrap justify-center gap-2 mt-4">
+                <span className="badge-sharp text-xs">Copa Oro</span>
+                <span className="badge-sharp text-xs bg-gradient-to-r from-white to-gray-200 text-gray-800">Copa Plata</span>
+              </div>
+              <p className="text-xs text-white/40 mt-2">La clasificación se definirá tras la primera fecha del torneo.</p>
+            </div>
+          </div>
         </div>
 
         <div className="mt-6 grid grid-cols-3 gap-4 text-xs text-white/60">

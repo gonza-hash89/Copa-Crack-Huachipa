@@ -29,9 +29,10 @@ function Cup({ title, badge, border, data }) {
 export default function PastTournaments() {
   const [open, setOpen] = useState(editions[0]?.id);
   return (
-    <section id="historial" className="px-4 pt-24 pb-16">
+    <section id="historial" className="px-4 py-24 pb-16">
       <div className="mx-auto max-w-3xl">
         <h2 className="font-display text-4xl sm:text-5xl text-center text-gradient-gold mb-10">Historial de campeones</h2>
+        <p className="text-center text-white/60 mb-10">Ediciones 2025 y 2026 — Próximas ediciones en programación</p>
         <div className="space-y-3">
           {editions.map((ed) => {
             const isOpen = open === ed.id;
