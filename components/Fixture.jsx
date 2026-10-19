@@ -7,7 +7,7 @@ export default function Fixture() {
         <div className="text-center mb-12">
           <span className="badge-sharp">Próximos Partidos</span>
           <h2 className="font-display mt-6 text-4xl sm:text-5xl text-gradient-gold" data-text="FIXTURE">FIXTURE</h2>
-          <p className="mt-2 text-white/60">Calendario completo por jornadas</p>
+          <p className="mt-2 text-white/60">Calendario completo por fechas</p>
         </div>
 
         <div className="table-container gold-border">
@@ -23,10 +23,10 @@ export default function Fixture() {
                 <p className="text-white/60 max-w-md mx-auto">El calendario de partidos se publicará próximamente. El fixture se dará a conocer antes del inicio del torneo.</p>
               </div>
               <div className="flex flex-wrap justify-center gap-2 mt-4">
-                <span className="badge-sharp text-xs">Jornada 1</span>
-                <span className="badge-sharp text-xs bg-gradient-to-r from-white to-gray-200 text-gray-800">Jornada 2</span>
-                <span className="badge-sharp text-xs">Jornada 3</span>
-                <span className="badge-sharp text-xs bg-gradient-to-r from-white to-gray-200 text-gray-800">Jornada 4</span>
+                <span className="badge-sharp text-xs">Fecha 1</span>
+                <span className="badge-sharp text-xs bg-gradient-to-r from-white to-gray-200 text-gray-800">Fecha 2</span>
+                <span className="badge-sharp text-xs">Fecha 3</span>
+                <span className="badge-sharp text-xs bg-gradient-to-r from-white to-gray-200 text-gray-800">Fecha 4</span>
               </div>
               <p className="text-xs text-white/40 mt-2">El fixture se publicará antes del inicio del torneo.</p>
             </div>
