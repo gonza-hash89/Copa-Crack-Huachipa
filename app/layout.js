@@ -14,17 +14,14 @@ export const metadata = {
     default: "Copa Crack Perú | Torneo de Fútbol Formativo en Huachipa",
     template: "%s | Copa Crack Perú",
   },
-  description: "Sitio oficial de la Copa Crack Perú. Consulta el fixture, tabla de posiciones, resultados por categorías y fotos del torneo de fútbol formativo en Huachipa y Cerro Camote.",
+  description: "El torneo de fútbol infantil y juvenil más apasionante de Huachipa. Categorías Sub-08, Sub-10 y Sub-12. ¡Inscribe a tu academia!",
   keywords: [
     "Copa Crack",
-    "Copa Crack Perú",
-    "torneo de fútbol formativo",
-    "campeonato de fútbol Perú",
-    "campeonato Huachipa",
-    "copa crack Huachipa",
-    "campeonato Cerro Camote",
-    "torneo infantil Huachipa",
-    "fútbol menor Huachipa",
+    "Futbol Formativo",
+    "Huachipa",
+    "Torneo Infantil",
+    "Cerro Camote",
+    "Copa Crack Peru",
   ],
   authors: [{ name: "Copa Crack Perú" }],
   creator: "Copa Crack Perú",
@@ -32,14 +29,14 @@ export const metadata = {
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 } },
   openGraph: {
     title: "Copa Crack Perú | Torneo de Fútbol Formativo en Huachipa",
-    description: "Sitio oficial de la Copa Crack Perú. Consulta el fixture, tabla de posiciones, resultados por categorías y fotos del torneo de fútbol formativo en Huachipa y Cerro Camote.",
+    description: "El torneo de fútbol infantil y juvenil más apasionante de Huachipa. Categorías Sub-08, Sub-10 y Sub-12. ¡Inscribe a tu academia!",
     url: SITE_URL,
     siteName: SITE_NAME,
     locale: "es_PE",
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og-cover.jpg`,
+        url: `${SITE_URL}/logo.png`,
         width: 1200,
         height: 630,
         alt: "Escudo Oficial Copa Crack Perú - Torneo de Fútbol Formativo Huachipa",
@@ -49,8 +46,8 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Copa Crack Perú | Torneo de Fútbol Formativo en Huachipa",
-    description: "Sitio oficial de la Copa Crack Perú. Consulta el fixture, tabla de posiciones, resultados por categorías y fotos del torneo de fútbol formativo en Huachipa y Cerro Camote.",
-    images: [`${SITE_URL}/og-cover.jpg`],
+    description: "El torneo de fútbol infantil y juvenil más apasionante de Huachipa. Categorías Sub-08, Sub-10 y Sub-12. ¡Inscribe a tu academia!",
+    images: [`${SITE_URL}/logo.png`],
     creator: "@CopaCrackPeru",
   },
   alternates: {
@@ -185,9 +182,10 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/logo.png" sizes="any" type="image/png" />
+        <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/logo.png" type="image/png" sizes="16x16" />
+        <link rel="apple-touch-icon" href="/logo.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#080404" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
