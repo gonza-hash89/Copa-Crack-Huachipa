@@ -402,3 +402,94 @@ body {
   outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
+
+/* ========================================
+   FOOTBALL FIELD LINES - BACKGROUND LAYER
+   ======================================== */
+
+.field-lines-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-image:
+    /* Center circle */
+    radial-gradient(circle at 50% 50%, transparent 18%, rgba(255, 255, 255, 0.15) 18%, rgba(255, 255, 255, 0.15) 18.5%, transparent 18.5%),
+    /* Center spot */
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.18) 2%, transparent 2%),
+    /* Halfway line */
+    linear-gradient(90deg, transparent 49.8%, rgba(255, 255, 255, 0.15) 49.8%, rgba(255, 255, 255, 0.15) 50.2%, transparent 50.2%),
+    /* Left penalty area */
+    linear-gradient(90deg, transparent 94%, rgba(255, 255, 255, 0.12) 94%, rgba(255, 255, 255, 0.12) 94.5%, transparent 94.5%),
+    linear-gradient(0deg, transparent 30%, rgba(255, 255, 255, 0.12) 30%, rgba(255, 255, 255, 0.12) 70%, transparent 70%),
+    /* Right penalty area */
+    linear-gradient(90deg, transparent 5.5%, rgba(255, 255, 255, 0.12) 5.5%, rgba(255, 255, 255, 0.12) 6%, transparent 6%),
+    linear-gradient(0deg, transparent 30%, rgba(255, 255, 255, 0.12) 30%, rgba(255, 255, 255, 0.12) 70%, transparent 70%),
+    /* Left goal area (6-yard box) */
+    linear-gradient(90deg, transparent 97%, rgba(255, 255, 255, 0.1) 97%, rgba(255, 255, 255, 0.1) 97.3%, transparent 97.3%),
+    linear-gradient(0deg, transparent 42%, rgba(255, 255, 255, 0.1) 42%, rgba(255, 255, 255, 0.1) 58%, transparent 58%),
+    /* Right goal area (6-yard box) */
+    linear-gradient(90deg, transparent 2.7%, rgba(255, 255, 255, 0.1) 2.7%, rgba(255, 255, 255, 0.1) 3%, transparent 3%),
+    linear-gradient(0deg, transparent 42%, rgba(255, 255, 255, 0.1) 42%, rgba(255, 255, 255, 0.1) 58%, transparent 58%),
+    /* Left penalty spot */
+    radial-gradient(circle at 9% 50%, rgba(255, 255, 255, 0.18) 1.5%, transparent 1.5%),
+    /* Right penalty spot */
+    radial-gradient(circle at 91% 50%, rgba(255, 255, 255, 0.18) 1.5%, transparent 1.5%),
+    /* Center circle arcs (top/bottom) */
+    radial-gradient(ellipse 40% 60% at 50% 50%, transparent 45%, rgba(255, 255, 255, 0.1) 45%, rgba(255, 255, 255, 0.1) 45.5%, transparent 45.5%),
+    /* Touchlines (top/bottom) */
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.12) 0.5%, transparent 0.5%, transparent 99.5%, rgba(255, 255, 255, 0.12) 99.5%, rgba(255, 255, 255, 0.12) 100%),
+    /* Goal lines (left/right) */
+    linear-gradient(0deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.12) 0.5%, transparent 0.5%, transparent 99.5%, rgba(255, 255, 255, 0.12) 99.5%, rgba(255, 255, 255, 0.12) 100%);
+  background-size: 100% 100%;
+  opacity: 0.15;
+}
+
+/* Responsive adjustments for field lines */
+@media (max-width: 768px) {
+  .field-lines-bg {
+    opacity: 0.1;
+  }
+}
+
+@media (max-width: 480px) {
+  .field-lines-bg {
+    opacity: 0.08;
+  }
+}
+
+@media (min-width: 1920px) {
+  .field-lines-bg {
+    background-size: 80% 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+/* Ensure content stays above field lines */
+main,
+section,
+header,
+footer,
+.glass,
+.glass-card,
+.card-glass,
+.table-container,
+.fixture-card,
+.glass,
+.glass-card,
+.card-glass {
+  position: relative;
+  z-index: 10;
+}
+
+/* Hero specific - slightly more visible field lines */
+.hero-active ~ .field-lines-bg,
+section[id="inicio"]:has(~ .field-lines-bg) {
+  opacity: 0.2;
+}
+
+section[id="inicio"] ~ .field-lines-bg {
+  opacity: 0.2;
+}
