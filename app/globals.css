@@ -144,6 +144,50 @@ body {
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* Select dropdown options - dark theme */
+select.form-input,
+select.form-select {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+select.form-input option,
+select.form-select option {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+}
+
+select.form-input option:hover,
+select.form-select option:hover,
+select.form-input option:checked,
+select.form-select option:checked,
+select.form-input option:focus,
+select.form-select option:focus {
+  background-color: #111111;
+  color: #ffbe0b;
+}
+
+select.form-input optgroup,
+select.form-select optgroup {
+  background-color: #111111;
+  color: #ffbe0b;
+}
+
+/* Webkit/Blink specific styling for select dropdown */
+select.form-input::-webkit-select-popup,
+select.form-select::-webkit-select-popup {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: 1px solid #ffbe0b;
+}
+
+select.form-input::-webkit-select-menu,
+select.form-select::-webkit-select-menu {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
 .form-label {
   display: block;
   font-size: 0.875rem;
