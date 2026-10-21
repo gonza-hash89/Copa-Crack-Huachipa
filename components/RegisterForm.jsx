@@ -101,14 +101,23 @@ export default function RegisterForm() {
         });
       }
 
-      window.open(waUrl, "_blank", "noopener,noreferrer");
+      // Open WhatsApp - handle popup blockers gracefully
+      const popup = window.open(waUrl, "_blank", "noopener,noreferrer");
+      
+      // If popup was blocked, fallback to direct navigation
+      if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+        window.location.href = waUrl;
+      }
+
       setSubmitStatus("success");
       setFormData(initialFormData);
     } catch (err) {
       console.error("Error al abrir WhatsApp:", err);
       setSubmitStatus("error");
     } finally {
+      // Always reset submitting state - guaranteed to run
       setIsSubmitting(false);
+      // Safety timeout to clear status message
       setTimeout(() => setSubmitStatus(null), 5000);
     }
   };
